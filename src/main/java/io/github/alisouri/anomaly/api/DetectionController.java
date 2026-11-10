@@ -47,7 +47,7 @@ public final class DetectionController {
   @Operation(
       summary = "Classify a finite numeric sequence",
       description =
-          "IQR uses medians of lower/upper halves, excluding the overall middle for odd n. Boundaries are strict; equality is normal. Default threshold 1.5. Empty input is NO_DATA, 1..3 values add SMALL_DATASET. Omitted threshold uses the default; explicit null is invalid. Unknown fields and numeric strings are rejected.",
+          "IQR uses medians of lower/upper halves, excluding the overall middle for odd n. Z_SCORE uses Welford population variance (divisor n); abs(score) must exceed threshold. Boundaries are strict; equality is normal. Defaults: IQR 1.5, Z_SCORE 3.0. Empty input is NO_DATA, 1..3 values add SMALL_DATASET. Zero Z-Score variance adds ZERO_VARIANCE and all values are normal. Omitted threshold uses the selected default; explicit null is invalid. Unknown fields and numeric strings are rejected.",
       requestBody =
           @io.swagger.v3.oas.annotations.parameters.RequestBody(
               required = true,
@@ -59,6 +59,10 @@ public final class DetectionController {
                             name = "IQR sample",
                             value =
                                 "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"data\":[10,12,11,13,12,14,11,13,12,100]}"),
+                        @ExampleObject(
+                            name = "Population Z-Score",
+                            value =
+                                "{\"algorithm\":\"Z_SCORE\",\"threshold\":1.5,\"data\":[2,4,4,4,5,5,7,9]}"),
                         @ExampleObject(
                             name = "Empty",
                             value = "{\"algorithm\":\"IQR\",\"data\":[]}"),
@@ -72,7 +76,7 @@ public final class DetectionController {
         description = "Successful calculation, including small and empty input",
         content =
             @Content(
-                schema = @Schema(implementation = IqrResponse.class),
+                schema = @Schema(implementation = DetectionResponse.class),
                 examples = {
                   @ExampleObject(
                       name = "Completed",
@@ -85,7 +89,19 @@ public final class DetectionController {
                   @ExampleObject(
                       name = "Small dataset",
                       value =
-                          "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\"],\"anomalies\":[],\"normalValues\":[5.0],\"q1\":5.0,\"q3\":5.0,\"iqr\":0.0,\"lowerBound\":5.0,\"upperBound\":5.0}")
+                          "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\"],\"anomalies\":[],\"normalValues\":[5.0],\"q1\":5.0,\"q3\":5.0,\"iqr\":0.0,\"lowerBound\":5.0,\"upperBound\":5.0}"),
+                  @ExampleObject(
+                      name = "Z-Score completed",
+                      value =
+                          "{\"algorithm\":\"Z_SCORE\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[],\"anomalies\":[9.0],\"normalValues\":[2.0,4.0,4.0,4.0,5.0,5.0,7.0],\"mean\":5.0,\"standardDeviation\":2.0}"),
+                  @ExampleObject(
+                      name = "Z-Score empty",
+                      value =
+                          "{\"algorithm\":\"Z_SCORE\",\"threshold\":3.0,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"mean\":null,\"standardDeviation\":null}"),
+                  @ExampleObject(
+                      name = "Z-Score small and zero variance",
+                      value =
+                          "{\"algorithm\":\"Z_SCORE\",\"threshold\":3.0,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\",\"ZERO_VARIANCE\"],\"anomalies\":[],\"normalValues\":[7.0],\"mean\":7.0,\"standardDeviation\":0.0}")
                 })),
     @ApiResponse(
         responseCode = "400",

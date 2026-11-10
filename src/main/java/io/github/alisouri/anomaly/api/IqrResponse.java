@@ -20,6 +20,20 @@ import java.util.List;
  * @param lowerBound strict lower classification boundary; null for NO_DATA
  * @param upperBound strict upper classification boundary; null for NO_DATA
  */
+@Schema(
+    requiredProperties = {
+      "algorithm",
+      "threshold",
+      "status",
+      "warnings",
+      "anomalies",
+      "normalValues",
+      "q1",
+      "q3",
+      "iqr",
+      "lowerBound",
+      "upperBound"
+    })
 public record IqrResponse(
     @Schema(allowableValues = "IQR", requiredMode = Schema.RequiredMode.REQUIRED) String algorithm,
     double threshold,

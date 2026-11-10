@@ -2,6 +2,7 @@ package io.github.alisouri.anomaly.api;
 
 import io.github.alisouri.anomaly.core.DetectionResult;
 import io.github.alisouri.anomaly.core.IqrResult;
+import io.github.alisouri.anomaly.core.ZScoreResult;
 
 /** Converts core types at the API boundary, keeping serialization out of statistics. */
 public final class ResponseMapper {
@@ -30,6 +31,17 @@ public final class ResponseMapper {
           iqr.iqr(),
           iqr.lowerBound(),
           iqr.upperBound());
+    }
+    if (result instanceof ZScoreResult zScore) {
+      return new ZScoreResponse(
+          summary.algorithm(),
+          summary.threshold(),
+          summary.status(),
+          summary.warnings(),
+          summary.anomalies(),
+          summary.normalValues(),
+          zScore.mean(),
+          zScore.standardDeviation());
     }
     throw new IllegalStateException("No API representation configured for this result type.");
   }
