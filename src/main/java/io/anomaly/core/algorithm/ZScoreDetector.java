@@ -64,7 +64,7 @@ public final class ZScoreDetector implements AnomalyDetector {
     double standardDeviation = Inputs.finite(Math.sqrt(variance));
     var anomalies = new ArrayList<Double>();
     var normal = new ArrayList<Double>();
-    for (double value : original) {
+    for (Double value : original) {
       if (standardDeviation == 0) {
         normal.add(value);
       } else {

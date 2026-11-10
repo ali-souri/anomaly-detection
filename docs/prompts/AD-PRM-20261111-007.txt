@@ -1,0 +1,162 @@
+PROMPT_ID: AD-PRM-20261111-007
+REQUIRED_RESULT_ID: AD-RES-20261111-007
+PARENT: AD-PRM-20261111-006
+SUPERSEDES: AD-PRM-20261111-006
+
+TASK
+Implement and verify a small evidence-led v0.3: reduce allocation, bound request admission, add Docker/Compose and a reproducible load test against the owner's new 10 requests/second target. Preserve simple readable code, actual HTTP behavior, TDD and integration tests. Prepare accurate interview documentation.
+
+This prompt supersedes unexecuted prompt 006 with the owner's new throughput target. Its earlier predecessor was 004. Preserve both issued files and all older results. Run this self-contained prompt; running 006 first is unnecessary. Target about 60 minutes, with short progress checkpoints. Do not weaken checks or claim unexecuted work is complete to meet a time target.
+
+WORKSPACE
+F:\projects\anomaly-detection
+git@github.com:ali-souri/anomaly-detection.git
+Read AGENTS.md, actual Git state, the completed maintenance result 005, benchmark result 003, its raw evidence, architecture decision and current source.
+The owner authorizes routine scoped code/config/docs changes, tests, branches, commits, green merges and pushes. Preserve user changes, previous release refs and repository visibility. No force-push, history rewrite, Git clean/reset, hook bypass or unrelated/global configuration changes.
+Keep generated local caches/data/logs/temp files on F: in this project. Existing installed tools on C: may be executed/read. Use already configured Docker storage without relocating it or causing a new project data root on C:.
+
+EVIDENCE AND SELECTED DESIGN
+Immutable baseline v0.2.1: 0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7.
+Measured baseline harness: 7dfb173a0d1cef3a30a4ae6e24998614da282fe0.
+Two-million MIXED baseline:
+- IQR: 548.925 ms/op, 115.954 MiB allocated/op.
+- Z_SCORE: 155.754 ms/op, 100.507 MiB allocated/op.
+- FULL API medians over three serial samples: 730.644 and 405.794 ms.
+These are local exploratory results, not p99, peak per-request heap, a latency SLO or concurrent capacity.
+
+Keep ONE stateless modular Spring application with the existing Strategy/registry.
+Do not add independent algorithm services, RabbitMQ, gRPC, persistence or an authentication system in this release. Those remain documented conditional follow-ups.
+Keep io.anomaly role packages and the independent core. Do not introduce a framework, lazy-result abstraction or multi-module application redesign.
+
+OWNER'S NEW CAPACITY TARGET
+The owner accepted: 10 requests per second, each containing 2,000,000 numbers.
+Interpret this as 10 complete successful detection requests/second for the whole deployed application, not 10 per replica and not a combined 20 requests/second across algorithms.
+Test IQR-only, Z_SCORE-only and a stated 50/50 mixed workload, each at 10 total requests/second. Report capacity separately for each so a favorable mix cannot hide IQR's heavier demand.
+Use the existing seeded MIXED value fixture and default FULL result shape. Every request still represents one complete global dataset. Each response must transmit all 40,000 anomalies and 1,960,000 normal values.
+These fixtures are about 9.9 MB in each direction per request; 10 requests/second implies about 99 MB/second of payload in EACH direction, before protocol overhead. Record actual transferred bytes and load-generator limits.
+No owner latency SLO was supplied. Report successful-request average, p50/p95/p99 with sample counts, and timeouts. Do not invent an owner-approved latency threshold or claim a throughput result proves acceptable tail latency.
+A passing throughput experiment requires steady successful completion at the requested rate without an accumulating backlog, sustained rejection, timeouts or dropped scheduled work. Report the actual rate and any shortfall precisely; finite window boundary effects must be explained with request/completion timestamps rather than rounded into a pass.
+503/413/invalid-request responses belong to separate overload/validation tests. They never count toward the target's successful throughput.
+First measure one instance. If it cannot meet the target, tune only small measured configuration choices and test multiple replicas of the SAME application within the host's available CPU/RAM budget. Reassess admission limits per instance using measured concurrent memory/CPU, not a guess.
+Multiple replicas are horizontal scaling of this application. Do not split IQR/Z_SCORE into independently developed services just because the first instance misses the target.
+Declare a fixed total resource budget before capacity tests; capture host availability and reserve headroom for the OS and generator. Do not exhaust the host, silently add unlimited replicas, provision paid infrastructure or change global system settings.
+If the target cannot be met within that declared environment/time budget, preserve the working increment and report CAPACITY_TARGET_NOT_MET with the measured limit/bottleneck and a concrete next experiment. Do not lower the target or silently change the response format.
+
+1. SMALL ALLOCATION IMPROVEMENT
+Start with the smallest source-supported opportunity:
+The baseline classification loops iterate primitive double values and then add them to List<Double>, creating boxed output values even though immutable Double objects already exist in the validated input snapshot.
+Prototype reusing those existing immutable Double references in the output partitions, while calculations continue to use primitive arithmetic.
+Keep original-order partitions, duplicates, defensive snapshots and immutable results.
+Measure the actual allocation reduction; do not promise an object-layout-derived number in advance.
+Do not migrate the whole model to primitive arrays if this small change gives a clear measured benefit.
+Do not defer work to lazy List getters, drop normalValues, skip validation, share mutable buffers, or compare a partial result with the old FULL result.
+Avoid identity-only tests that mirror this implementation choice. Verify the public mathematical, ordering and immutability contracts and use benchmarks to establish the allocation claim.
+
+2. CONFIGURABLE ADMISSION AND INPUT LIMITS
+Protect the expensive JSON materialization path, not only the detector method.
+Use a small pre-controller admission filter with immediate acquisition/rejection and no unbounded waiting queue.
+Default single-instance demo policy:
+- Maximum active detection requests per instance: 1.
+- Maximum numbers per request: 2,000,000, inclusive.
+- Maximum request body: 64 MiB.
+Make these positive configurable settings and document environment/property names.
+These are explicit provisional demo policies chosen to support the owner's two-million-number case; they are NOT measured safe capacity or owner latency SLOs. A capacity-test profile may increase active requests after real concurrent-memory/CPU checks; publish every effective setting. A per-instance limit is not a cluster-wide admission limit.
+
+A full slot rejects additional work promptly with HTTP 503 and a documented Retry-After header, consistent Problem Details and a stable error code.
+Oversize input returns HTTP 413 with a documented stable code. Invalid JSON/parameters and numeric 422 behavior remain as before.
+Release admission permits on every completion/error path and hold them through the synchronous response path.
+Acquire before Spring binds the body into JsonNode. A controller-only semaphore does not prevent concurrent eager parsing.
+A Content-Length-only check is insufficient: enforce a real byte/stream limit for unknown/chunked length too. Do not assume a servlet FORM-post size setting limits JSON. Prefer an existing simple supported parsing/servlet mechanism over a homemade general stream framework.
+
+The existing successful request/response schema, defaults, calculations, warnings and FULL output remain.
+The new operational limits/413/503 are deliberately added v0.3 policy: document them explicitly, rather than claiming every historically unlimited request remains accepted.
+The existing two-million-value fixtures must fit and succeed when capacity is available.
+No asynchronous jobs or new output modes are needed.
+
+3. REAL TESTS AND COVERAGE
+Keep all existing regression tests. Use meaningful RED-GREEN-REFACTOR for new admission/limit behavior; record actual commands and failures.
+Add unit tests for new meaningful logic and real random-port HTTP integration tests for:
+- Preserved IQR/Z_SCORE/full/empty/small/strict-error behavior.
+- Valid requests at configured boundaries and appropriate 413 behavior.
+- Body limits for both declared and unknown/chunked lengths.
+- Prompt 503 under occupied admission capacity, and recovery after capacity becomes free.
+- Permit release after success, malformed input and numerical/application failures.
+- Positive/invalid configuration and concurrent request isolation.
+Use deterministic coordination where needed; avoid timing-dependent sleep assertions or replacing all real statistical flows with mocks.
+
+Retain exact zero missed LINE and BRANCH counters for all handwritten production code, with combined unit + integration coverage. No handwritten exclusions, fabricated probes, ignored tests or reduced thresholds.
+Preserve the agent argument and project tmpdir in both test plugins. Missing/stale coverage must not pass.
+Keep pre-commit formatting/lint and pre-push clean verify active.
+Run strict JavaDoc and update the actual class diagram.
+The separate authored benchmark/load harness must also receive meaningful tests and its existing verification, without pretending a root application coverage report covers unrelated tooling.
+
+4. REPEAT MEASUREMENTS FAIRLY
+Use the existing JMH fixtures/analytical validators and the same full detect work.
+Preserve all accepted v0.2 raw files and immutable identities.
+Build explicit baseline and candidate artifacts in separate timed JVMs; do not remove baseline source-identity safeguards just to run changed source.
+Record exact tested candidate/harness commits and executed JAR hashes.
+No active JaCoCo agent in timed JVMs; separate quality gates remain mandatory.
+Match JDK, heap, collector, input/seed, thread count and profiler settings. Capture two forks/multiple measurement iterations for both implementations.
+Prioritize paired 2M MIXED measurements for both algorithms, then other arrangements/scales within the time budget; label the actual completed matrix.
+Verify values/counts/order/statistics before accepting timings. Keep full partitions inside the measured core operation.
+Rerun real FULL API samples and validate the complete outputs, so a core-only allocation gain is not presented as an established end-to-end speed gain.
+Report B/op separately from live heap/working set and distinguish timing uncertainty from measured allocation differences.
+Save new results under docs/benchmarks/v0.3/ with a fresh run identity; never overwrite v0.2 evidence.
+
+5. DOCKER AND LOAD TESTING
+Add a straightforward multi-stage Dockerfile, .dockerignore and Compose configuration for the one actual application.
+Use a runtime consistent with the selected Java target and document it.
+Provide health/startup checks, configurable port/profile/limits, sensible shutdown and explicit resources.
+For the first reproducible demo container configuration, use a 2 GiB heap with a 3 GiB container memory limit and 4 CPUs, leaving native/thread headroom. These are experiment settings, not a proven capacity promise.
+Compare baseline/candidate on equivalent native settings for algorithm claims; test constrained-container behavior separately and identify the changed environment.
+
+Develop a readable k6 suite, using a project-local official installation/container if needed. A small justified alternative is acceptable only if it remains reproducible and actually executable.
+Generate seeded large fixtures outside timing, keep them ignored on F:, and avoid generating/parsing huge arrays repeatedly in the load generator.
+Scenarios:
+- One complete 2M FULL request for each algorithm, with full correctness validation.
+- Repeated ordinary-size traffic.
+- Bounded increasing concurrency, beginning at 1/2/4 clients, with configured admission capacity documented.
+- Deliberate overload and recovery.
+- Oversize/invalid input responses.
+Run bounded real smoke/load checks; report exact counts, duration, environment and unexecuted longer stress/soak plans.
+
+Separate successful accepted work from expected 503/413 responses and unexpected failures.
+Do not let fast overload rejections improve the reported successful-request latency percentiles.
+Fully receive FULL response bodies. Report load-generator resource/bandwidth limitations on the shared host.
+Report throughput, accepted/rejected/error counts, successful-request latency percentiles with sample counts, request/response bytes and process/GC observations where available. Three samples do not establish p99.
+Confirm the packaged application through real HTTP using Compose/container execution, not only a successful image build.
+For scaled deployment, keep replica count and effective per-instance CPU/heap/container limits explicit. Avoid conflicting fixed host ports. If replicas are needed, include simple real load balancing and test the actual entry point; no custom Gateway business application is required.
+A 10-RPS result for a tuned multi-replica profile must not be presented as the default single-instance capacity.
+Load-generator concurrency tests and an arrival-rate test answer different questions. Use a bounded open-arrival-rate run scheduling 10 requests/second; document maximum in-flight work/client limit and inspect dropped iterations. A fixed number of clients that slows down as responses slow down cannot alone verify the 10-RPS target.
+After warmup, run at least 60 seconds of steady target load per declared algorithm scenario if resources allow; longer repetitions are useful within budget. Preserve actual durations and sample counts. Treat this as bounded local capacity evidence, not a production endurance guarantee.
+Validate full outputs outside timing for each fixture/algorithm and perform correctness checks during the run without turning the generator into the bottleneck. Every timed request must fully transmit/receive the FULL bodies. If response bodies are discarded locally after reception to reduce generator memory, disclose this and retain byte-count evidence; do not omit server output.
+Do not save every multi-million-element response. Keep compact counters, timings, resource observations and selected correctness evidence; large fixtures stay ignored.
+If Docker or another required runtime is unavailable, report the exact unexecuted verification as such; run available native checks and retain a working increment. Do not invent successful container/load tests.
+
+6. DOCUMENTATION AND INTERVIEW
+Keep docs short and English-first, with useful JavaDoc and an updated compact Mermaid class diagram.
+Update README with test/coverage/build/run/container/load commands, exact configuration defaults, the 10-RPS target, tested resource budget and actual demonstrated capacity.
+The owner specifically found missing FULL Swagger URLs. Explicitly write:
+http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/v3/api-docs
+Explain the default port/port override and that dev profile PLUS SWAGGER_ENABLED=true is required. Do not merely list relative paths.
+Preserve dev-only Swagger isolation and its tests.
+
+Create docs/releases/v0.3.md, docs/load-tests/README.md, measured v0.3 results and an updated architecture decision.
+Explain why allocation reduction and admission were selected and why microservices were deferred.
+Create docs/interview/voice-script-fa.md: a short Persian explanation grounded only in delivered code and real measurements, covering algorithms, complexity, Strategy, Spring constructor injection, HTTP validation, TDD, real integration tests, Git, coverage, benchmark findings and actual v0.3 changes. Do not claim production-scale proof.
+Keep scope limitations and unexecuted experiments visible.
+
+GIT AND RELEASE
+Use feature branches from develop for meaningful minor changes; merge through develop to tested master.
+Do not modify frozen v0.2.1/earlier refs.
+Only after mandatory application/harness/coverage/integration and bounded real load/container checks pass, with the owner's throughput target honestly met in the declared capacity configuration, create release/v0.3 from master and annotated tag v0.3.0. Verify actual CI on that exact release SHA, including reports.
+If required checks fail or cannot execute, keep the incomplete work clearly identified on its feature branch and report PARTIAL; do not publish a falsely ready release.
+Keep issued prompts/results immutable. Record this prompt under docs/prompts/AD-PRM-20261111-007.txt.
+
+RESULT
+Write docs/results/AD-RES-20261111-007.md.
+Report implementation status separately from CAPACITY_TARGET_MET / CAPACITY_TARGET_NOT_MET / CAPACITY_NOT_EXECUTED. State which IQR-only/Z_SCORE-only/mixed cases reached the target and under which replica/admission/resource configuration.
+Return COMPLETE/PARTIAL, elapsed time, exact source/harness/release identities, separate unit/integration counts and coverage counters, before/after allocation and timing measurements, actual container/load outcomes, configured limits, TDD/CI evidence, key documents and remaining limitations.
+Do not start unrelated infrastructure work or hide missing proof behind a COMPLETE label.
+

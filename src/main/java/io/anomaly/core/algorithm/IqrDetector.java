@@ -49,7 +49,7 @@ public final class IqrDetector implements AnomalyDetector {
     double upper = Inputs.finite(q3 + margin);
     var anomalies = new ArrayList<Double>();
     var normal = new ArrayList<Double>();
-    for (double value : original) {
+    for (Double value : original) {
       if (value < lower || value > upper) {
         anomalies.add(value);
       } else {

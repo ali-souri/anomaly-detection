@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-parent</artifactId><version>3.5.16</version><relativePath/></parent>
   <groupId>io.anomaly</groupId><artifactId>anomaly-benchmarks</artifactId><version>0.2.1-benchmark</version>
-  <properties><java.version>17</java.version><jmh.version>1.37</jmh.version></properties>
+  <properties><java.version>17</java.version><jmh.version>1.37</jmh.version><detector.version>0.2.1</detector.version><detector.classifier>benchmark-baseline</detector.classifier></properties>
   <dependencies>
-    <dependency><groupId>io.anomaly</groupId><artifactId>anomaly-detection</artifactId><version>0.2.1</version><classifier>benchmark-baseline</classifier></dependency>
+    <dependency><groupId>io.anomaly</groupId><artifactId>anomaly-detection</artifactId><version>${detector.version}</version><classifier>${detector.classifier}</classifier></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-core</artifactId><version>${jmh.version}</version></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-generator-annprocess</artifactId><version>${jmh.version}</version><scope>provided</scope></dependency>
     <dependency><groupId>com.fasterxml.jackson.core</groupId><artifactId>jackson-databind</artifactId><version>2.21.4</version></dependency>

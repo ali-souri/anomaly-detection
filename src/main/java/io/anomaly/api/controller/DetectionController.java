@@ -136,6 +136,20 @@ public final class DetectionController {
                 mediaType = "application/problem+json",
                 schema = @Schema(implementation = ProblemDetail.class))),
     @ApiResponse(
+        responseCode = "413",
+        description = "INPUT_TOO_LARGE: configured raw body-byte or number-count policy exceeded",
+        content =
+            @Content(
+                mediaType = "application/problem+json",
+                schema = @Schema(implementation = ProblemDetail.class))),
+    @ApiResponse(
+        responseCode = "503",
+        description = "ADMISSION_FULL: per-instance capacity occupied; Retry-After: 1 (second)",
+        content =
+            @Content(
+                mediaType = "application/problem+json",
+                schema = @Schema(implementation = ProblemDetail.class))),
+    @ApiResponse(
         responseCode = "500",
         description = "INTERNAL_ERROR: unexpected failure without internal details",
         content =

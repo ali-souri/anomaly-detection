@@ -48,7 +48,7 @@ class DevDocsEnabledIT extends HttpTestSupport {
     var document = json(get("/v3/api-docs"));
     var operation = document.path("paths").path("/api/v1/anomaly-detection").path("post");
     assertThat(operation.path("summary").asText()).isNotBlank();
-    for (String status : new String[] {"200", "400", "405", "415", "422", "500"}) {
+    for (String status : new String[] {"200", "400", "405", "413", "415", "422", "503", "500"}) {
       assertThat(operation.path("responses").has(status)).as(status).isTrue();
     }
     assertThat(

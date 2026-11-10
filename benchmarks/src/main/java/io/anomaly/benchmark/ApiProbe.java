@@ -96,8 +96,15 @@ public final class ApiProbe {
         .writeValue(Path.of(args[2]).toFile(), output);
   }
 
-  private static void writeRequest(Path path, String algorithm, List<Double> data)
-      throws Exception {
+  /**
+   * Generates a complete request outside timing; also used by the load suite.
+   *
+   * @param path ignored project-local fixture path
+   * @param algorithm canonical algorithm
+   * @param data generated immutable input
+   * @throws Exception for serialization or file failures
+   */
+  public static void writeRequest(Path path, String algorithm, List<Double> data) throws Exception {
     try (var writer = JSON.createGenerator(path.toFile(), JsonEncoding.UTF8)) {
       writer.writeStartObject();
       writer.writeStringField("algorithm", algorithm);
@@ -132,7 +139,16 @@ public final class ApiProbe {
     return milliseconds;
   }
 
-  private static Map<String, Double> validate(Path response, String algorithm, List<Double> data)
+  /**
+   * Checks every response value, ordering, field and independently known statistic outside timing.
+   *
+   * @param response received complete JSON body
+   * @param algorithm canonical algorithm
+   * @param data expected seeded MIXED input
+   * @return validated statistics
+   * @throws Exception for a malformed, missing or incorrect result
+   */
+  public static Map<String, Double> validate(Path response, String algorithm, List<Double> data)
       throws Exception {
     var expected = FixtureChecks.statistics(algorithm, "MIXED");
     var actual = new HashMap<String, Double>();

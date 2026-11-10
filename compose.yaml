@@ -1,0 +1,23 @@
+name: anomaly-v03
+services:
+  app:
+    image: anomaly-detection:007
+    build: .
+    ports:
+      - "${HTTP_PORT:-8080}:8080"
+    environment:
+      PORT: 8080
+      SPRING_PROFILES_ACTIVE: ${APP_PROFILE:-default}
+      SWAGGER_ENABLED: ${SWAGGER_ENABLED:-false}
+      DETECTION_LIMITS_MAX_ACTIVE: ${MAX_ACTIVE:-1}
+      DETECTION_LIMITS_MAX_NUMBERS: ${MAX_NUMBERS:-2000000}
+      DETECTION_LIMITS_MAX_BODY_BYTES: ${MAX_BODY_BYTES:-67108864}
+      JAVA_TOOL_OPTIONS: -Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -Xlog:gc:stdout:time,uptime,level,tags
+    cpus: 4
+    mem_limit: 3g
+    memswap_limit: 3g
+    pids_limit: 256
+    stop_grace_period: 25s
+    init: true
+    security_opt:
+      - no-new-privileges:true

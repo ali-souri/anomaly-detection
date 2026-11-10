@@ -2,14 +2,28 @@ package io.anomaly.api.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.anomaly.api.dto.DetectionRequest;
+import io.anomaly.api.exception.InputTooLargeException;
 import io.anomaly.api.exception.InvalidRequestException;
 import java.util.ArrayList;
 import java.util.Set;
 
 /** Explicit JSON type checks prevent coercion and preserve omitted-versus-null semantics. */
 public final class RequestParser {
+  private final int maxNumbers;
+
   /** Creates a stateless parser with no coercion or request-specific fields. */
-  public RequestParser() {}
+  public RequestParser() {
+    this(2_000_000);
+  }
+
+  /**
+   * Creates a parser using a validated operational number-count policy.
+   *
+   * @param maxNumbers inclusive maximum from positive startup settings
+   */
+  public RequestParser(int maxNumbers) {
+    this.maxNumbers = maxNumbers;
+  }
 
   private static final Set<String> FIELDS = Set.of("algorithm", "threshold", "data");
 
@@ -45,6 +59,9 @@ public final class RequestParser {
     JsonNode data = request.get("data");
     if (data == null || !data.isArray()) {
       throw new InvalidRequestException("data is a required numeric array; empty is valid.");
+    }
+    if (data.size() > maxNumbers) {
+      throw new InputTooLargeException("data exceeds the configured number limit.");
     }
     var values = new ArrayList<Double>(data.size());
     for (JsonNode value : data) {

@@ -10,11 +10,13 @@ import io.anomaly.core.service.DetectionService;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import java.util.List;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /** Spring composition root; the core has no framework annotations or HTTP dependencies. */
 @Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties(RequestLimits.class)
 public class DetectionConfiguration {
   /** Creates the composition root discovered by Spring. */
   public DetectionConfiguration() {}
@@ -40,8 +42,8 @@ public class DetectionConfiguration {
   }
 
   @Bean
-  RequestParser requestParser() {
-    return new RequestParser();
+  RequestParser requestParser(RequestLimits limits) {
+    return new RequestParser(limits.maxNumbers());
   }
 
   @Bean
@@ -55,7 +57,7 @@ public class DetectionConfiguration {
         .info(
             new Info()
                 .title("Anomaly detection")
-                .version("0.2.1")
+                .version("0.3.0-SNAPSHOT")
                 .description(
                     "Finite JSON numbers; ordered partitions; IQR median-of-halves or population Z-Score. See docs/api.md for numerical conventions and stable Problem Details codes."));
   }

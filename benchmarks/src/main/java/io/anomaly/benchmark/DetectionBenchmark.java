@@ -20,7 +20,7 @@ import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Threads;
 import org.openjdk.jmh.annotations.Warmup;
 
-/** Measures the real baseline detect call, including copies and full result allocation. */
+/** Measures the selected real detect call, including copies and full result allocation. */
 @State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -58,6 +58,9 @@ public class DetectionBenchmark {
     HarnessEnvironment.requireUninstrumented();
     data = FixtureData.create(kind, size, seed);
     detector = algorithm.equals("IQR") ? new IqrDetector() : new ZScoreDetector();
+    System.out.println(
+        "Measured detector loaded from "
+            + detector.getClass().getProtectionDomain().getCodeSource().getLocation());
     threshold = detector.defaultThreshold();
     long before = FixtureChecks.fingerprint(data);
     FixtureChecks.validate(data, kind, detector.detect(data, threshold));
@@ -67,7 +70,7 @@ public class DetectionBenchmark {
   }
 
   /**
-   * Runs only released detection; JMH consumes the returned result to prevent elimination.
+   * Runs complete detection; JMH consumes the returned result to prevent elimination.
    *
    * @return full ordered result, without excluding copy/sort/partition allocation
    */

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootTest(
     useMainMethod = SpringBootTest.UseMainMethod.ALWAYS,
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = "SWAGGER_ENABLED=true")
+    properties = {"SWAGGER_ENABLED=true", "detection.limits.max-active=4"})
 @Import(HttpApiIT.FailureEndpoint.class)
 class HttpApiIT extends HttpTestSupport {
   @Test

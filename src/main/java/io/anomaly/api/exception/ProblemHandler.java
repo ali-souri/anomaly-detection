@@ -21,6 +21,11 @@ public final class ProblemHandler extends ResponseEntityExceptionHandler {
   /** Creates shared, stateless HTTP exception handling. */
   public ProblemHandler() {}
 
+  @ExceptionHandler(InputTooLargeException.class)
+  ResponseEntity<ProblemDetail> tooLarge(InputTooLargeException error, WebRequest request) {
+    return response(HttpStatus.PAYLOAD_TOO_LARGE, "INPUT_TOO_LARGE", error.getMessage(), request);
+  }
+
   @ExceptionHandler(UnsupportedAlgorithmException.class)
   ResponseEntity<ProblemDetail> unsupported(
       UnsupportedAlgorithmException error, WebRequest request) {
@@ -84,10 +89,24 @@ public final class ProblemHandler extends ResponseEntityExceptionHandler {
 
   private static ProblemDetail problem(
       HttpStatus status, String code, String detail, WebRequest request) {
+    return problem(
+        status, code, detail, ((ServletWebRequest) request).getRequest().getRequestURI());
+  }
+
+  /**
+   * Builds the same public error representation for filters and controller advice.
+   *
+   * @param status HTTP status
+   * @param code stable machine-readable code
+   * @param detail safe public explanation
+   * @param path request URI path
+   * @return an RFC 9457 problem with the stable code extension
+   */
+  public static ProblemDetail problem(HttpStatus status, String code, String detail, String path) {
     var problem = ProblemDetail.forStatusAndDetail(status, detail);
     problem.setType(URI.create("urn:anomaly-detection:problem:" + code.toLowerCase(Locale.ROOT)));
     problem.setTitle(status.getReasonPhrase());
-    problem.setInstance(URI.create(((ServletWebRequest) request).getRequest().getRequestURI()));
+    problem.setInstance(URI.create(path));
     problem.setProperty("code", code);
     return problem;
   }
