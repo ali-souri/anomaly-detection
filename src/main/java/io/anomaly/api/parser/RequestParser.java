@@ -54,7 +54,8 @@ public final class RequestParser {
   }
 
   private static double number(JsonNode value, String field) {
-    if (value == null || !value.isNumber() || !Double.isFinite(value.doubleValue())) {
+    // Callers supply an existing field or an array element; JSON null is a nonnumeric NullNode.
+    if (!value.isNumber() || !Double.isFinite(value.doubleValue())) {
       throw new InvalidRequestException(
           field + " must contain finite JSON numbers, without nulls or strings.");
     }

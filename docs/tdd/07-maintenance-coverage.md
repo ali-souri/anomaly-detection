@@ -13,3 +13,15 @@ Exact-gate RED: `./mvnw.cmd -B spotless:apply clean verify`, exit 1, with all 39
 JaCoCo reported 4 missed lines and 6 missed branches against maximum zero.
 Log: .cache/logs/005-coverage-red.log. This is a coverage-gate RED, not invented test-first
 history for existing production code. New tests target the actual reported contracts/paths.
+
+GREEN: .cache/logs/005-coverage-green.log, clean verify exit 0, 46 unit / 47 integration cases,
+zero failures/errors/skips. XML LINE covered=246 missed=0; BRANCH covered=112 missed=0.
+Additional counters: INSTRUCTION 1174/0 missed, METHOD 53/0, CLASS 22/0, COMPLEXITY 111/0.
+
+Two semantics-preserving simplifications explain the smaller branch denominator (116 → 112):
+the private number parser only receives existing fields or array elements, whose JSON null is a
+NullNode, so Java-null checking there was unreachable. Public parse(null) is still rejected/tested.
+In finite Welford arithmetic the updated mean is between the previous mean and the sample, so
+delta and deltaAfter have the same sign or zero; their product cannot be negative. Overflow is
+still rejected by Inputs.finite and reachable underflow/zero-variance guards are retained/tested.
+No protections for reachable inputs, exclusions, annotations or probes were added to hide gaps.

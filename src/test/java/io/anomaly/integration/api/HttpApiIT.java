@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootTest(
+    useMainMethod = SpringBootTest.UseMainMethod.ALWAYS,
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = "SWAGGER_ENABLED=true")
 @Import(HttpApiIT.FailureEndpoint.class)

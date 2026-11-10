@@ -14,8 +14,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      - name: Unit tests, real HTTP integration tests, lint and JavaDoc
-        run: ./mvnw -B verify
+      - name: Verify documented convenience commands
+        run: |
+          ./mvnw -B spotless:check
+          ./mvnw -B test
+          ./mvnw -B test-compile failsafe:integration-test failsafe:verify
+          ./mvnw -B javadoc:javadoc
+          ./mvnw -B spotless:apply
+          git diff --exit-code
+      - name: Clean combined coverage quality gate
+        run: ./mvnw -B clean verify
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -24,3 +32,5 @@ jobs:
             target/surefire-reports
             target/failsafe-reports
             target/reports/apidocs
+            target/site/jacoco
+            target/jacoco.exec
