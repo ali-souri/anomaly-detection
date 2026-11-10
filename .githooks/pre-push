@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 set -eu
 cd "$(git rev-parse --show-toplevel)"
-echo "Running full verification before push (unit tests, HTTP integration tests, JavaDoc)."
+echo "Running clean verification before push (unit tests, real HTTP tests, coverage, JavaDoc)."
 exec bash scripts/maven.sh -B clean verify

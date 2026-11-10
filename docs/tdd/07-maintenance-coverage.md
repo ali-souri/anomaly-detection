@@ -25,3 +25,10 @@ In finite Welford arithmetic the updated mean is between the previous mean and t
 delta and deltaAfter have the same sign or zero; their product cannot be negative. Overflow is
 still rejected by Inputs.finite and reachable underflow/zero-variance guards are retained/tested.
 No protections for reachable inputs, exclusions, annotations or probes were added to hide gaps.
+
+Controlled gate fixtures: `./scripts/verify-coverage.ps1`, exit 0; evidence is under
+.cache/coverage-fixture-20261111-012605. All 46/47 tests passed in the fixture but an uncovered
+application class made clean verify fail and blocked a real push to a local bare remote; its ref
+remained absent. Separate mandatory guard checks rejected missing exec, empty exec, missing XML,
+and an XML fixture with no analyzed classes. Invalid fixture data stayed in that ignored clone.
+The script explicitly returns success only after all expected failures are observed.

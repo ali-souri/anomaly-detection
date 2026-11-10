@@ -57,3 +57,4 @@ final class CoverageFixture {
     }
 } finally { Pop-Location }
 Write-Host "Evidence: $base"
+exit 0
