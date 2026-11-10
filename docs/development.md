@@ -53,6 +53,10 @@ own directory. It does not change global Maven/Java installations or Git setting
 Only the empty-remote documentation/.gitignore root commit is a bootstrap exception.
 Keep feature heads and merge commits. Push completed verified work without rewriting history.
 
+A late direct-Swagger-resource regression was backported on `hotfix/v01-swagger-resources` from
+released master. This patch branch preserves the immutable v0.1.0 tag and adds v0.1.1; it never
+imports Z-Score into the v0.1 line. Its history is merged into develop before the v0.2 release.
+
 ## TDD
 
 For each behavior, write a compiling contract test, run and capture its intended failure,

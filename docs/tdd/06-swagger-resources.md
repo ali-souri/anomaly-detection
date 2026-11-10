@@ -17,7 +17,7 @@ This is an API-only application, so base configuration should not publish genera
 The dev profile can opt into those resources using the same explicit SWAGGER_ENABLED flag as
 Swagger UI and OpenAPI. A backport must preserve the existing v0.1.0 tag and use a new patch tag.
 
-GREEN, 2026-11-10 20:43 UTC:
+GREEN on the v0.2 development line, 2026-11-10 20:43 UTC:
 
 ```powershell
 ./mvnw.cmd -B spotless:apply verify
@@ -26,3 +26,13 @@ GREEN, 2026-11-10 20:43 UTC:
 Exit 0, **39 unit tests and 47 integration tests, no failures/errors/skips**. Direct WebJar
 URLs now return 404 outside dev; both enabled dev documentation endpoints remain available.
 Log: `.cache/logs/swagger-resources-green.log`.
+
+The same compiling regression was cherry-picked onto a patch branch from the released v0.1
+master. Clean backport RED used `./mvnw.cmd -B clean verify` with the same `-Dit.test=...` selector:
+**21 unit tests passed, 1 integration test failed (200 instead of 404), no skips**.
+Log: `.cache/logs/v01-backport-red-clean.log`. No compiled v0.2 classes were used.
+
+Backport GREEN, 2026-11-10 20:46 UTC: `./mvnw.cmd -B spotless:apply clean verify`, exit 0,
+**21 unit tests and 36 integration tests, 0 failures/errors/skips**, format/lint/strict JavaDoc
+passed. Mermaid parsed with 14 production classes and all 13 local links resolved.
+Log: `.cache/logs/v011-backport-green.log`. The patch is v0.1.1; v0.1.0 is not moved.

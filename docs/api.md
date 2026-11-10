@@ -113,3 +113,5 @@ Both `/v3/api-docs` (including YAML) and Swagger UI are disabled in base configu
 profile enables them only when `SWAGGER_ENABLED=true`; dev without the flag defaults to false.
 The same flag outside dev has no effect. The HTTP integration suite checks these modes using
 actual servers and real HTTP requests. No authentication is implemented in these releases.
+The API-only base configuration also disables general static-resource mappings, blocking direct
+Swagger WebJar URLs. Dev enables those mappings only with the same explicit flag.

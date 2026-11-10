@@ -76,6 +76,7 @@ Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev
 - [TDD evidence](docs/tdd/): actual RED/GREEN runs; `verify` runs unit and real HTTP integration suites separately.
 - Generated JavaDoc: `target/reports/apidocs/index.html` after `verify` (strict doclint).
 - [v0.1 release](docs/releases/v0.1.md): `release/v0.1`, annotated tag `v0.1.0`.
+- Corrected v0.1 patch: annotated tag `v0.1.1` closes direct Swagger static-resource access; v0.1.0 is preserved.
 - [v0.2 release](docs/releases/v0.2.md): `release/v0.2`, annotated tag `v0.2.0` (current application).
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
 
