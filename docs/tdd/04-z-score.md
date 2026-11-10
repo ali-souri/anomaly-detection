@@ -37,3 +37,10 @@ Exit 1: **39 unit tests passed; 47 integration tests, 6 failures, 1 error, 0 ski
 Real HTTP requests got UNSUPPORTED_ALGORITHM and the generated schema had no two-way
 discriminator. Existing IQR behavior and generic validation remained green.
 Log: `.cache/logs/zscore-api-red.log`.
+
+Full GREEN, 2026-11-10 20:35 UTC, same unfiltered `spotless:apply verify` command:
+exit 0, **39 unit tests and 47 integration tests, 0 failures/errors/skips**.
+Formatting, Checkstyle (0 violations) and strict JavaDoc all passed.
+Log: `.cache/logs/zscore-api-green.log`.
+The schema test checks oneOf, explicit discriminator mappings, canonical one-value enums,
+and absence of irrelevant statistics. Mixed concurrent requests exercise both real detectors.
