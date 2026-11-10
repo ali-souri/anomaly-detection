@@ -119,6 +119,8 @@ for instrumentation, exact counters, filtering and failure-fixture evidence.
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
 - [Initial execution result](docs/results/AD-RES-20261110-002.md): preserved v0.1/v0.2 evidence.
 - [Maintenance result](docs/results/AD-RES-20261111-005.md): measured coverage, exact v0.2.1 source and CI artifacts.
+- [Executed benchmark](docs/benchmarks/v0.2/report.md): measured v0.2.1 core/API results, raw evidence and run commands.
+- [v0.3 recommendation](docs/decisions/v0.3-architecture.md): minimum complexity supported by those measurements.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.

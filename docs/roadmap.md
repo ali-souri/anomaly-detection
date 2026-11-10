@@ -11,6 +11,13 @@
 - RabbitMQ, gRPC, authentication and per-algorithm services are candidates. Adopt them only
   when benchmark evidence and actual requirements justify their operational cost.
 
-This change does not implement benchmarks or v0.3.
+The v0.2.1 maintenance did not implement benchmarks or v0.3; benchmark 003 was executed subsequently below.
 Timed production/JMH JVMs must have no active JaCoCo agent; clean coverage verification remains
 a separate mandatory pre-push/CI gate and must not be bypassed for benchmarks.
+
+Benchmark AD-PRM-20261110-003 has now executed on v0.2.1. See
+[measured results](benchmarks/v0.2/report.md) and the
+[v0.3 recommendation](decisions/v0.3-architecture.md): retain a stateless modular application,
+measure allocation reduction as the primary next experiment, and establish bounded admission/load
+behavior before considering independent services. No absolute SLO/concurrency target was supplied.
+The next conditional prompt must read AD-RES-20261110-003; v0.3 is not automatically started.

@@ -19,3 +19,8 @@
   with `git rev-parse 'v0.2.1^{commit}'`. Do not start that prompt automatically from maintenance.
 - Timed production/JMH processes must have no active JaCoCo agent. Coverage verification is a
   separate mandatory gate; never disable pre-push/CI gates to obtain benchmark numbers.
+- Benchmark 003 has executed on v0.2.1. Before any conditional v0.3 implementation, read
+  docs/results/AD-RES-20261110-003.md, docs/benchmarks/v0.2/report.md and the architecture decision.
+  The evidence recommends a stateless modular application, allocation reduction and bounded
+  admission/load validation. No owner SLO/concurrency target was supplied; distributed services
+  remain conditional. Do not start v0.3 without the next owner's explicit task.

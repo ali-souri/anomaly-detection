@@ -1,0 +1,3 @@
+algorithm,size,samples,median_ms,minimum_ms,maximum_ms,request_bytes,response_bytes
+IQR,2000000,3,730.6443,707.6358,828.0711,9900028,9900170
+Z_SCORE,2000000,3,405.793999,362.315099,424.416199,9900032,9900170
