@@ -13,8 +13,8 @@ detectors own statistics/classification. API parsing checks JSON node types dire
 default coercion would accept numeric strings and collapse omitted/null parameters.
 
 `DetectionSummary` shares status, warnings, effective threshold and immutable ordered partitions.
-`DetectionResult` only requires that summary. `IqrResult` retains typed IQR statistics without
-placing them on the common contract. API responses are separate so HTTP schema annotations and
+`DetectionResult` only requires that summary. `IqrResult` and `ZScoreResult` retain their typed
+statistics without placing algorithm-specific fields on the common contract. API responses are separate so HTTP schema annotations and
 wire layout never leak into the statistical core. Mapping each result type at the API boundary
 is deliberate: adding an algorithm needs an explicit documented wire shape.
 
@@ -36,6 +36,7 @@ classDiagram
       <<interface>>
     }
     class IqrResponse
+    class ZScoreResponse
     class DetectionService {
       +detect(String, List, Double) DetectionResult
     }
@@ -49,11 +50,13 @@ classDiagram
       +detect(List, double) DetectionResult
     }
     class IqrDetector
+    class ZScoreDetector
     class DetectionResult {
       <<interface>>
       +summary() DetectionSummary
     }
     class IqrResult
+    class ZScoreResult
     class DetectionSummary
     class ProblemHandler
     DetectionController --> RequestParser
@@ -61,13 +64,19 @@ classDiagram
     DetectionController --> DetectionService
     DetectionController --> ResponseMapper
     ResponseMapper ..> IqrResponse
+    ResponseMapper ..> ZScoreResponse
     DetectionResponse <|.. IqrResponse
+    DetectionResponse <|.. ZScoreResponse
     DetectionService --> AlgorithmRegistry
     AlgorithmRegistry o-- AnomalyDetector
     AnomalyDetector <|.. IqrDetector
+    AnomalyDetector <|.. ZScoreDetector
     IqrDetector ..> IqrResult
+    ZScoreDetector ..> ZScoreResult
     DetectionResult <|.. IqrResult
+    DetectionResult <|.. ZScoreResult
     IqrResult *-- DetectionSummary
+    ZScoreResult *-- DetectionSummary
     ProblemHandler ..> DetectionController : handles errors
 ```
 
@@ -88,5 +97,9 @@ arithmetic/validation helpers. It is a Mermaid **class diagram**, with no planne
   validation, registry, algorithms, error handling and profile configuration together.
 
 IQR costs O(n log n) time for sorting a copy and O(n) auxiliary memory. Classification scans the
-original data once. Registry lookup costs expected O(1); parsing and response conversion cost O(n).
+original data once. Z-Score uses Welford population statistics followed by classification in O(n)
+time and O(n) memory for the input copy and ordered partitions. Zero variance is normal with a
+warning; unsafe intermediate overflow/variance underflow returns a typed numerical error.
+Registry lookup costs expected O(1); parsing costs O(n), and response mapping shares immutable
+lists in O(1) (HTTP serialization still costs O(n)).
 The API is synchronous and in-memory, intentionally small enough to read and explain.

@@ -34,7 +34,9 @@ or stages files. It rejects partially staged relevant files before checking the 
 so an unstaged edit cannot disguise the content being committed. It also rejects formatting/lint
 problems anywhere in the checked source tree. Hooks require Bash (included with Git for Windows).
 The pre-push hook always runs full `verify`, including Surefire unit tests, Failsafe `*IT` real
-HTTP tests, format/lint and JavaDoc. No skipping flags are used. CI repeats the same command.
+HTTP tests, format/lint and JavaDoc. No skipping flags are used. CI repeats the same command on
+push/PR and supports manual `workflow_dispatch`. Remote status is checked separately; local
+success is never used as evidence of a successful GitHub run.
 Hook fixture evidence and commands are recorded under [tdd](tdd/).
 
 The wrapper keeps distributions in `.cache/maven`, dependency artifacts in `.cache/repository`,
@@ -59,3 +61,9 @@ commands and results are in `docs/tdd/`; generated full logs stay under `.cache/
 No code predates this execution: both the local folder and remote were empty when inspected.
 
 Use the next prompt to benchmark v0.2 before selecting a v0.3 architecture.
+
+The final release gates run `clean verify` to avoid stale reports. v0.2 has 39 unit test cases
+and 47 integration cases; parameterized invocations are counted individually. No tests are skipped.
+The Mermaid class diagram was parsed with Mermaid 11.12.0 and its named classes checked against
+production source; relative documentation links were checked locally. Parser tooling lives only in
+the ignored project `.cache`, alongside other verification artifacts.
