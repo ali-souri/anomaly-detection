@@ -32,8 +32,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Fixture remote creation failed' }
 
 Push-Location $fixture
 try {
-    $formatPath = 'src/main/java/io/github/alisouri/anomaly/core/FormattingFixture.java'
-    [IO.File]::WriteAllText((Join-Path $fixture $formatPath), "package io.github.alisouri.anomaly.core;`nclass FormattingFixture{}`n")
+    $formatPath = 'src/main/java/io/anomaly/core/algorithm/FormattingFixture.java'
+    [IO.File]::WriteAllText((Join-Path $fixture $formatPath), "package io.anomaly.core.algorithm;`nclass FormattingFixture{}`n")
     & git add -- $formatPath
     & git commit -m 'fixture: malformed formatting must fail' *> (Join-Path $fixtureBase 'format-commit.log')
     if ($LASTEXITCODE -eq 0) { throw 'Formatting failure did not block commit' }
@@ -44,7 +44,7 @@ try {
     Remove-Item -LiteralPath (Join-Path $fixture $formatPath)
     'PASS: formatting failure blocked a real git commit' >> $log
 
-    $partialPath = 'src/main/java/io/github/alisouri/anomaly/AnomalyApplication.java'
+    $partialPath = 'src/main/java/io/anomaly/AnomalyApplication.java'
     $partialAbsolute = Join-Path $fixture $partialPath
     [IO.File]::AppendAllText($partialAbsolute, "`n// staged fixture`n")
     & git add -- $partialPath
@@ -62,9 +62,9 @@ try {
     & git restore --source=HEAD --staged --worktree -- $partialPath
     'PASS: partial staging rejected and fixture worktree/index unchanged' >> $log
 
-    $testPath = 'src/test/java/io/github/alisouri/anomaly/core/HookFailureTest.java'
+    $testPath = 'src/test/java/io/anomaly/core/algorithm/HookFailureTest.java'
     $test = @'
-package io.github.alisouri.anomaly.core;
+package io.anomaly.core.algorithm;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
