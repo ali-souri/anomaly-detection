@@ -1,5 +1,6 @@
 package io.anomaly.core.algorithm;
 
+import io.anomaly.core.exception.NumericalRangeException;
 import io.anomaly.core.model.DetectionResult;
 import java.util.List;
 
