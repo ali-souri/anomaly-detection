@@ -1,0 +1,11 @@
+{
+  "baselineCommit": "0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7",
+  "baselineCoreTree": "db8f6f19d1be30346ed73d9d8d1c5f7797daf97b",
+  "measuredCoreTree": "db8f6f19d1be30346ed73d9d8d1c5f7797daf97b",
+  "harnessCommit": "7dfb173a0d1cef3a30a4ae6e24998614da282fe0",
+  "plainJarSha256": "E352535A66D0451DC3837248AE9A21638DC38658BC391A03BE3634539E3A801A",
+  "applicationJarSha256": "5B7CE5C1760FA672F9C7ED64A0FAA98E53C52B4867E86042EDD570A90A912021",
+  "harnessJarSha256": "992C0DF3943C69FC0A6DD88B95338A9F6999DE76B30C2314635A9C414A8C4222",
+  "recordedUtc": "2026-11-10T22:38:33.4938833Z",
+  "agentPolicy": "No active Java agent in timed JVMs; runtime assertions enabled"
+}

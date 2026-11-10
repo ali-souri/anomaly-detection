@@ -1,0 +1,20 @@
+{
+  "pid": 18716,
+  "port": 50158,
+  "serverJvmOptions": [
+    "-Xms512m",
+    "-Xmx2g",
+    "-XX:+UseG1GC",
+    "-Djava.io.tmpdir=F:\\projects\\anomaly-detection\\.cache\\tmp",
+    "-Xlog:gc:file=.cache/benchmark-api/server-gc.log:time,uptime,level,tags",
+    "-jar",
+    "F:\\projects\\anomaly-detection\\target\\anomaly-detection-0.2.1.jar",
+    "--server.port=50158",
+    "--server.address=127.0.0.1",
+    "--spring.main.banner-mode=off"
+  ],
+  "peakWorkingSetBytes": 1236893696,
+  "privateBytesAfter": 1215713280,
+  "totalCpuSeconds": 17.75,
+  "scope": "Whole application lifetime including startup/warmups/all samples; working set is not Java heap"
+}

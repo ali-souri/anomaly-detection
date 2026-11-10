@@ -1,0 +1,6 @@
+18716:
+VM Arguments:
+jvm_args: -Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=F:\projects\anomaly-detection\.cache\tmp -Xlog:gc:file=.cache/benchmark-api/server-gc.log:time,uptime,level,tags
+java_command: F:\projects\anomaly-detection\target\anomaly-detection-0.2.1.jar --server.port=50158 --server.address=127.0.0.1 --spring.main.banner-mode=off
+java_class_path (initial): F:\projects\anomaly-detection\target\anomaly-detection-0.2.1.jar
+Launcher Type: SUN_STANDARD
