@@ -66,7 +66,55 @@ $env:SWAGGER_ENABLED='true'
 SWAGGER_ENABLED=true ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 ```
 
-Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev does not enable them.
+Then open **http://localhost:8080/swagger-ui/index.html** and **http://localhost:8080/v3/api-docs**.
+Both the dev profile **and** `SWAGGER_ENABLED=true` are required. The default HTTP port is 8080;
+override with `PORT` or `--server.port=9090` (then use that port in both URLs).
+
+## v0.3 candidate: operational policies
+
+One stateless application still serves both strategies and always returns the full ordered
+`anomalies` and `normalValues` arrays. Classification reuses immutable values from its validated
+snapshot. Positive per-instance settings:
+
+| Property | Environment | Default |
+| --- | --- | ---: |
+| `detection.limits.max-active` | `DETECTION_LIMITS_MAX_ACTIVE` | 1 |
+| `detection.limits.max-numbers` | `DETECTION_LIMITS_MAX_NUMBERS` | 2,000,000 inclusive |
+| `detection.limits.max-body-bytes` | `DETECTION_LIMITS_MAX_BODY_BYTES` | 67,108,864 (64 MiB) inclusive |
+
+The byte setting must also be below Integer.MAX_VALUE. Admission happens before JSON conversion,
+has no waiting queue and retains a permit through synchronous response serialization. A full slot
+returns **503 ADMISSION_FULL**, `Retry-After: 1` second. Count/body limits return **413 INPUT_TOO_LARGE**;
+unknown/chunked lengths are bounded too. These deliberately replace historically unlimited input
+with provisional demo policies; they are not proven safe capacity or a latency SLO. Limits apply
+per instance. [API details](docs/api.md), [candidate release record](docs/releases/v0.3.md).
+
+## Containers and capacity
+
+```powershell
+docker compose up --build -d --wait
+curl.exe http://localhost:8080/actuator/health/readiness
+docker compose down
+.\scripts\build-v03.ps1
+.\scripts\benchmark-v03.ps1 -Implementation baseline
+.\scripts\benchmark-v03.ps1 -Implementation candidate
+.\scripts\api-v03.ps1 -Implementation baseline
+.\scripts\api-v03.ps1 -Implementation candidate
+```
+
+The multi-stage build runs clean verify. Java 17 source runs on Temurin Java 21, matching the
+native measurement major runtime. Compose defaults to one 4-CPU/3-GiB container and a 2-GiB G1 heap,
+with readiness checks and graceful shutdown. `HTTP_PORT` overrides the host port; `APP_PROFILE`,
+`SWAGGER_ENABLED`, `MAX_ACTIVE`, `MAX_NUMBERS`, `MAX_BODY_BYTES` configure Compose settings.
+Use `docker compose -f compose.yaml -f compose.capacity.yaml up -d --scale app=3 --wait` for
+the bounded three-copy experiment through nginx; this is horizontal scaling of the same app.
+
+The owner's target is **10 successful complete 2M FULL requests/second total**, separately IQR,
+Z_SCORE and 50/50 mixed. No latency SLO was supplied. The declared ceiling is three application
+containers (12 CPUs/9 GiB), nginx (0.25 CPU/128 MiB) and k6 (2 CPUs/2 GiB). Read the
+[actual load results and run commands](docs/load-tests/README.md) before claiming capacity, and
+the [paired measurements](docs/benchmarks/v0.3/report.md) before claiming allocation/speed gains.
+The candidate is not a published v0.3.0 release unless every required capacity/release gate passes.
 
 ## Testing and Coverage
 

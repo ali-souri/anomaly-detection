@@ -91,8 +91,10 @@ Errors use RFC 9457 `application/problem+json`, with `type`, `title`, numeric `s
 | 400 | `MALFORMED_JSON` | JSON cannot be parsed |
 | 400 | `UNSUPPORTED_ALGORITHM` | Unknown or non-canonical identifier, even for empty input |
 | 405 | `METHOD_NOT_ALLOWED` | Unsupported method; framework Allow header preserved |
+| 413 | `INPUT_TOO_LARGE` | Configured number-count or raw body-byte limit exceeded |
 | 415 | `UNSUPPORTED_MEDIA_TYPE` | Content type is not supported |
 | 422 | `NUMERICAL_RANGE` | Finite inputs produce unsafe/unrepresentable computed arithmetic |
+| 503 | `ADMISSION_FULL` | Per-instance admission full; Retry-After: 1 second |
 | 500 | `INTERNAL_ERROR` | Unexpected failure; internal details are not exposed |
 
 Other framework HTTP errors retain their status and use `HTTP_<status>` codes.
@@ -104,8 +106,17 @@ Other framework HTTP errors retain their status and use `HTTP_<status>` codes.
 Double arithmetic is checked at calculation boundaries, including intermediate overflow. The API
 returns 422 instead of emitting NaN/Infinity or silently classifying with invalid statistics.
 Stable median averaging avoids overflowing the sum of two equal large values. This is an in-memory
-API with no streaming or configured data-size limit yet; deployment ingress limits are a future
-operational decision informed by benchmarks.
+API. v0.3 adds positive configurable per-instance demo policies: 1 active detection request,
+2,000,000 numbers and 64 MiB raw body, both size bounds inclusive. See README for exact property
+and environment names. These are operational limits, not numerical errors or a measured latency SLO.
+Oversize declared bodies are rejected before reading; a bounded JDK read checks actual bytes,
+including unknown/chunked length and trailing whitespace, before Jackson creates a tree. It uses
+a bounded additional raw-body buffer. Number count is checked before allocating the converted
+Double list, after tree creation. Admission is acquired before conversion, with no waiting queue,
+and released in finally after the synchronous filter chain returns (including response writing
+and failure paths). A per-instance bound is not a cluster-wide bound. HTTP 503/413 do not count
+toward the owner's ten successful complete requests/second target. Clients should honor the
+one-second Retry-After and apply their own bounded retry policy.
 
 ## Interactive documentation
 
@@ -113,5 +124,7 @@ Both `/v3/api-docs` (including YAML) and Swagger UI are disabled in base configu
 profile enables them only when `SWAGGER_ENABLED=true`; dev without the flag defaults to false.
 The same flag outside dev has no effect. The HTTP integration suite checks these modes using
 actual servers and real HTTP requests. No authentication is implemented in these releases.
+Full default-port URLs: http://localhost:8080/swagger-ui/index.html and
+http://localhost:8080/v3/api-docs. `PORT` or `--server.port` changes 8080; update both URLs.
 The API-only base configuration also disables general static-resource mappings, blocking direct
 Swagger WebJar URLs. Dev enables those mappings only with the same explicit flag.

@@ -3,7 +3,7 @@
 One Maven application keeps the interview reading path short:
 `DetectionController` â†’ `RequestParser` â†’ `DetectionService` â†’ `AlgorithmRegistry` â†’ `AnomalyDetector`.
 `ResponseMapper` converts typed core results into flat API responses. `ProblemHandler` owns all
-HTTP errors. `DetectionConfiguration` wires these objects with constructor injection. The core
+HTTP errors, including filter rejection through the same problem factory. `DetectionConfiguration` wires these objects with constructor injection. The core
 package imports neither Spring nor Jackson and can run directly in JUnit.
 
 The small Strategy contract isolates the algorithm. The immutable registry is built once from
@@ -26,11 +26,12 @@ The Maven groupId is io.anomaly. Java import compatibility changed; the HTTP con
 | Relative package | Production classes |
 | --- | --- |
 | root | AnomalyApplication |
-| config | DetectionConfiguration |
+| config | DetectionConfiguration, RequestLimits |
 | api.controller | DetectionController |
 | api.dto | DetectionRequest, DetectionResponse, IqrResponse, ZScoreResponse |
-| api.mapper / api.parser | ResponseMapper / RequestParser |
-| api.exception | InvalidRequestException, ProblemHandler |
+| api.mapper / api.parser | ResponseMapper / RequestParser, BoundedRequestBodyAdvice |
+| api.filter | DetectionAdmissionFilter |
+| api.exception | InvalidRequestException, InputTooLargeException, ProblemHandler |
 | core.algorithm | AnomalyDetector, IqrDetector, ZScoreDetector |
 | core.service / core.registry | DetectionService / AlgorithmRegistry |
 | core.model | DetectionResult, DetectionSummary, DetectionStatus, WarningCode, IqrResult, ZScoreResult |
@@ -48,6 +49,9 @@ with documented contracts; no new helper interface or module is introduced.
 
 ```mermaid
 classDiagram
+    class DetectionAdmissionFilter["api.filter.DetectionAdmissionFilter"]
+    class BoundedRequestBodyAdvice["api.parser.BoundedRequestBodyAdvice"]
+    class RequestLimits["config.RequestLimits"]
     class DetectionController["api.controller.DetectionController"] {
       +detect(JsonNode) DetectionResponse
     }
@@ -89,6 +93,11 @@ classDiagram
       +finite(double) double
     }
     class ProblemHandler["api.exception.ProblemHandler"]
+    DetectionAdmissionFilter --> RequestLimits
+    DetectionAdmissionFilter ..> DetectionController : admits before binding
+    DetectionAdmissionFilter ..> ProblemHandler : shared errors
+    BoundedRequestBodyAdvice --> RequestLimits
+    BoundedRequestBodyAdvice ..> DetectionController : limits raw bytes before JSON
     DetectionController --> RequestParser
     RequestParser ..> DetectionRequest
     DetectionController --> DetectionService
@@ -135,3 +144,12 @@ warning; unsafe intermediate overflow/variance underflow returns a typed numeric
 Registry lookup costs expected O(1); parsing costs O(n), and response mapping shares immutable
 lists in O(1) (HTTP serialization still costs O(n)).
 The API is synchronous and in-memory, intentionally small enough to read and explain.
+
+v0.3 reuses immutable Double references in classification partitions, retaining primitive
+arithmetic, defensive snapshots and eager immutable FULL results. No primitive-model migration
+or deferred work is involved. A servlet filter takes an immediate semaphore permit before body
+binding and holds it through synchronous response writing. A Spring RequestBodyAdvice uses
+JDK readNBytes(limit + 1) before Jackson to bound actual raw bytes, then a positive configured
+number-count policy bounds conversion. This adds a bounded raw-body buffer; memory observations
+and concurrency tests must account for it. All request state remains local; the semaphore is
+only operational admission state. Docker/nginx scale copies of this same modular application.

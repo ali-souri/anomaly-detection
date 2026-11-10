@@ -1,8 +1,9 @@
-param([ValidateSet('baseline','candidate')] [string]$Implementation, [string]$BaseUrl)
+param([ValidateSet('baseline','candidate')] [string]$Implementation, [string]$BaseUrl, [string]$Run)
 $ErrorActionPreference='Stop'
 $root=(Resolve-Path (Split-Path -Parent $PSScriptRoot)).Path
 Set-Location $root
-$directory=Join-Path $root ".cache/v0.3/api-$Implementation"
+if (-not $Run) { $Run=$Implementation }
+$directory=Join-Path $root ".cache/v0.3/api-$Run"
 New-Item -ItemType Directory -Force $directory | Out-Null
 $harness=Join-Path $root '.cache/v0.3/candidate/benchmarks.jar'
 $raw=Join-Path $root 'docs/benchmarks/v0.3/raw'
@@ -22,7 +23,7 @@ try {
         }
         if (-not $ready) { throw 'Owned server did not become ready' }
     }
-    & java -Xms512m -Xmx2g -XX:+UseG1GC "-Djava.io.tmpdir=$root/.cache/tmp" -cp $harness io.anomaly.benchmark.ApiProbe $BaseUrl $directory (Join-Path $raw "api-$Implementation.json")
+    & java -Xms512m -Xmx2g -XX:+UseG1GC "-Djava.io.tmpdir=$root/.cache/tmp" -cp $harness io.anomaly.benchmark.ApiProbe $BaseUrl $directory (Join-Path $raw "api-$Run.json")
     if ($LASTEXITCODE -ne 0) { throw 'Complete real HTTP response validation failed' }
     if ($owned) {
         $owned.Refresh()
