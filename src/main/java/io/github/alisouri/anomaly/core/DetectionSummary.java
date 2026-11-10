@@ -1,5 +1,6 @@
 package io.github.alisouri.anomaly.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,5 +25,26 @@ public record DetectionSummary(
     warnings = List.copyOf(warnings);
     anomalies = List.copyOf(anomalies);
     normalValues = List.copyOf(normalValues);
+  }
+
+  static DetectionSummary forData(
+      String algorithm,
+      double threshold,
+      int size,
+      List<WarningCode> extraWarnings,
+      List<Double> anomalies,
+      List<Double> normalValues) {
+    var warnings = new ArrayList<WarningCode>();
+    if (size > 0 && size < 4) {
+      warnings.add(WarningCode.SMALL_DATASET);
+    }
+    warnings.addAll(extraWarnings);
+    return new DetectionSummary(
+        algorithm,
+        threshold,
+        size == 0 ? DetectionStatus.NO_DATA : DetectionStatus.COMPLETED,
+        warnings,
+        anomalies,
+        normalValues);
   }
 }

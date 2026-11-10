@@ -18,4 +18,8 @@ and duplicate rejection; detection calls raised the explicit `TDD scaffold` exce
 Full local log: `.cache/logs/core-red.log`. Earlier Maven dependency timeouts and one PowerShell
 argument-splitting error were infrastructure failures, not statistical RED evidence.
 
-GREEN and refactoring outcomes are appended after implementation.
+GREEN, 2026-11-10 20:16 UTC: same command, exit 0, **21 tests, 0 failures/errors/skips**.
+Full local log: `.cache/logs/core-green.log`.
+Shared validation and immutable summary construction were extracted; the same suites stayed green.
+Median averaging rescales only on sum overflow, preserving equal subnormal values and large equal
+values. Classification scans the original copy, keeping order and duplicates.

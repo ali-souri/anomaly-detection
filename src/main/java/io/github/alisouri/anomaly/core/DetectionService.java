@@ -4,12 +4,16 @@ import java.util.List;
 
 /** Application use case: chooses a strategy and applies its default threshold. */
 public final class DetectionService {
+  private final AlgorithmRegistry registry;
+
   /**
    * Creates a stateless use case with constructor injection.
    *
    * @param registry immutable strategy lookup
    */
-  public DetectionService(AlgorithmRegistry registry) {}
+  public DetectionService(AlgorithmRegistry registry) {
+    this.registry = registry;
+  }
 
   /**
    * Validates selection even for empty data, then delegates without HTTP dependencies.
@@ -23,6 +27,8 @@ public final class DetectionService {
    * @throws NumericalRangeException for unsafe calculated arithmetic
    */
   public DetectionResult detect(String algorithm, List<Double> data, Double threshold) {
-    throw new UnsupportedOperationException("TDD scaffold");
+    AnomalyDetector detector = registry.require(algorithm);
+    double effectiveThreshold = threshold == null ? detector.defaultThreshold() : threshold;
+    return detector.detect(data, effectiveThreshold);
   }
 }

@@ -1,5 +1,7 @@
 package io.github.alisouri.anomaly.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,6 +22,52 @@ public final class IqrDetector implements AnomalyDetector {
 
   @Override
   public IqrResult detect(List<Double> data, double threshold) {
-    throw new UnsupportedOperationException("TDD scaffold");
+    var original = Inputs.copy(data, threshold);
+    int size = original.size();
+    if (size == 0) {
+      return new IqrResult(
+          DetectionSummary.forData(algorithm(), threshold, 0, List.of(), List.of(), List.of()),
+          null,
+          null,
+          null,
+          null,
+          null);
+    }
+    var sorted = new ArrayList<>(original);
+    Collections.sort(sorted);
+    double q1 = size == 1 ? sorted.get(0) : median(sorted, 0, size / 2);
+    double q3 = size == 1 ? sorted.get(0) : median(sorted, (size + 1) / 2, size);
+    double iqr = Inputs.finite(q3 - q1);
+    double margin = Inputs.finite(threshold * iqr);
+    double lower = Inputs.finite(q1 - margin);
+    double upper = Inputs.finite(q3 + margin);
+    var anomalies = new ArrayList<Double>();
+    var normal = new ArrayList<Double>();
+    for (double value : original) {
+      if (value < lower || value > upper) {
+        anomalies.add(value);
+      } else {
+        normal.add(value);
+      }
+    }
+    return new IqrResult(
+        DetectionSummary.forData(algorithm(), threshold, size, List.of(), anomalies, normal),
+        q1,
+        q3,
+        iqr,
+        lower,
+        upper);
+  }
+
+  private static double median(List<Double> sorted, int from, int to) {
+    int middle = from + (to - from) / 2;
+    if ((to - from) % 2 == 1) {
+      return sorted.get(middle);
+    }
+    double left = sorted.get(middle - 1);
+    double right = sorted.get(middle);
+    double sum = left + right;
+    // Rescale only when the sum overflows; ordinary addition preserves subnormal values.
+    return Double.isFinite(sum) ? sum / 2 : left / 2 + right / 2;
   }
 }
