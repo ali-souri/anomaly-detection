@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eu
+cd "$(git rev-parse --show-toplevel)"
+while IFS= read -r -d '' path; do
+  case "$path" in
+    src/*|config/*|pom.xml|mvnw|mvnw.cmd|.mvn/*)
+      if ! git diff --quiet -- "$path"; then
+        echo "Commit blocked: partially staged relevant file: $path" >&2
+        echo "Review and stage the intended complete file, or commit it separately." >&2
+        exit 1
+      fi
+      ;;
+  esac
+done < <(git diff --cached --name-only -z)
+echo "Checking formatting and lint (no files will be rewritten or staged)."
+exec bash scripts/maven.sh -B spotless:check checkstyle:check
