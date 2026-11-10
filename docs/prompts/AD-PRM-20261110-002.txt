@@ -1,0 +1,146 @@
+PROMPT_ID: AD-PRM-20261110-002
+REQUIRED_RESULT_ID: AD-RES-20261110-002
+PARENT: AD-PRM-20261110-001
+SUPERSEDES: AD-PRM-20261110-001
+
+TASK
+Initialize the project and complete release/v0.1 and release/v0.2, using the agreed Git practice, TDD, unit tests, genuine integration tests, and concise documentation.
+
+This replaces the earlier bootstrap-only prompt. If that prompt was already executed, preserve its work and continue from the actual state. Do not repeat initialization or rewrite its history.
+
+The owner has approximately FOUR HOURS for the entire three-prompt sequence AND understanding the code. The working allocation is about 100 minutes for this prompt, 40 for benchmark prompt 003, 60 for conditional v0.3 prompt 004, and 40 for review. These are planning targets, not permission to omit checks or claim incomplete work is complete. Give brief checkpoints. Preserve useful progress and report exact blockers if the allocation proves insufficient.
+
+WORKSPACE AND AUTHORITY
+Canonical Windows folder: F:\projects\anomaly-detection
+Remote: git@github.com:ali-souri/anomaly-detection.git
+Inspect actual files, Git state, remotes, branches, and applicable AGENTS.md first.
+The owner authorizes ordinary project setup, feature branches, commits, tested merges, and pushes in the stated workflow. Preserve existing changes and repository visibility. Do not reset, clean, force-push, rewrite history, expose credentials, change global settings, or bypass hooks.
+Keep project-generated dependency caches, Maven Wrapper distributions, temporary files, test artifacts, build outputs and logs on F:, scoped to this project. Existing installed tools on C: may be read/executed. Do not relocate or modify unrelated installations. Ignore generated/cache files in Git.
+
+TOP PRIORITY: READABLE CODE
+The owner must read and explain this code quickly in an interview.
+Use Java 17 or newer, Maven Wrapper, Spring Boot, JUnit, ordinary small classes/records, constructor injection, and straightforward loops.
+Inspect installed tools and verify compatible stable dependency versions using official sources; pin chosen versions.
+Prefer one small Maven application for v0.1/v0.2. Avoid building a generic framework, elaborate generics, deep inheritance, speculative infrastructure, or an interface for every helper.
+Use Strategy through a small AnomalyDetector contract and an algorithm registry. Keep the statistical core independent of HTTP/Spring.
+Keep the REST controller thin. Keep request/response conversion and HTTP errors in the API layer. Share common result behavior without making the core dependent on IQR-only statistics. Preserve algorithm-specific typed results/statistics in the simplest readable way.
+Ensure request data is not mutated, duplicates are retained, and output partitions preserve original order. Keep request state out of shared fields.
+
+GIT PRACTICE
+- master is the baseline branch.
+- Create develop from master.
+- Create each logical minor feature from current develop as feature/[feature-name].
+- Merge completed features into develop with merge commits, preserving useful commits.
+- Merge develop into master only when a release is complete and all checks pass.
+- Create release/v0.1 from the completed master, and later release/v0.2 from the next completed master.
+- Add annotated tags v0.1.0 and v0.2.0 to identify release commits. Do not move existing tags.
+If the remote is empty, a minimal documentation/.gitignore initial commit on master is the bootstrap exception. If history already exists, preserve and inspect it before establishing the requested branches.
+Use feature branches for bootstrap, statistical behavior, API/validation, documentation, and the Z-Score extension as appropriate. Several feature branches may be completed within this one prompt.
+Push only tested, completed branch heads; preserve the original root/bootstrap commit as necessary. Do not create releases prematurely.
+
+TDD AND QUALITY GATES
+For each new behavior:
+1. Define its contract/test cases.
+2. Write a compiling test, run it, and observe the intended failure.
+3. Implement the minimum code that passes.
+4. Refactor and rerun relevant checks.
+Minimal compilable scaffolding is allowed; infrastructure/download failures are not statistical TDD evidence.
+Record actual RED and GREEN commands/outcomes per logical feature under docs/tdd/. Do not fabricate retrospective TDD evidence. If existing code predates this execution, say so.
+
+Configure Spotless and Checkstyle with compatible, non-conflicting rules.
+Track .githooks/pre-commit and .githooks/pre-push and a simple Windows-friendly installation script. Set core.hooksPath locally only.
+- pre-commit checks formatting and lint; it must not silently rewrite/stage files. Preserve partial staging; either validate the staged content or clearly reject partially staged relevant files.
+- Provide an explicit formatting-fix command followed by user-reviewed staging.
+- pre-push runs full Maven verify, with no test-skipping flags.
+- Configure Surefire for unit tests and Failsafe (or an equivalent explicit setup) for integration tests, so verify runs BOTH.
+- Verify that formatting failures block commits and failing tests block pushes using isolated controlled fixtures; restore them and preserve the user's files/index.
+- Add a small CI workflow that repeats verification. Report its real remote status, without inventing CI success.
+
+RELEASE v0.1: IQR AND API
+Algorithm identifier: IQR.
+Quartile convention: median of lower/upper halves after sorting a COPY. For odd n, exclude the overall middle element from the two halves only; still classify every original value.
+Even-sized half: arithmetic mean of the two middle values. Preserve this convention across future optimizations.
+IQR = Q3 - Q1.
+lowerBound = Q1 - threshold * IQR.
+upperBound = Q3 + threshold * IQR.
+Anomaly iff value < lowerBound OR value > upperBound. Equality with a boundary is normal.
+Default IQR threshold: 1.5. Finite non-negative thresholds, including zero, are valid.
+n=1: explicitly define Q1=Q3=the value.
+n=2/3: apply median-of-halves normally.
+For 1<=n<4, return a successful result with warning code SMALL_DATASET.
+For n=0, return HTTP 200 with status NO_DATA, empty result lists, and explicitly null statistical fields.
+For n>=1, status is COMPLETED, even when no anomalies exist.
+IQR=0 is valid; follow the same strict-boundary formula without special invented widening.
+
+POST /api/v1/anomaly-detection
+Consumes application/json.
+algorithm is required and uses documented canonical identifiers.
+data is a required numeric array. An empty array is valid; absent/null data is invalid.
+threshold is optional: omission invokes the selected algorithm's default, but explicit null is invalid. Do not collapse these cases.
+Reject null elements, nonnumeric values, numeric strings, non-finite values, and wrong JSON shapes. Validate algorithm/parameters even for empty data.
+Reject undocumented fields with a clear 400, rather than silently accepting misspellings.
+
+Example request:
+{"algorithm":"IQR","threshold":1.5,"data":[10,12,11,13,12,14,11,13,12,100]}
+
+Example required IQR statistics/partitions:
+q1=11, q3=13, iqr=2, lowerBound=8, upperBound=16
+anomalies=[100]
+normalValues=[10,12,11,13,12,14,11,13,12]
+
+Keep IQR fields flat at the top level, matching the task. Add algorithm, effective threshold, status, and warnings.
+Use HTTP 200 for successful calculations including small/empty datasets; 400 for invalid requests/unsupported algorithms; 415 for unsupported content type; 422 for finite valid inputs whose calculations cannot be represented safely; 500 for unexpected internal errors. Preserve proper framework status codes such as 405.
+Use consistent RFC 9457 Problem Details errors with a stable error code. Do not expose stack traces.
+Do not round statistics before classification. Guard arithmetic overflow/non-finite computed statistics, not just input values.
+
+Swagger/OpenAPI:
+Document every endpoint, constraints, defaults, success/error responses, and empty/small-data examples.
+Disable BOTH Swagger UI and OpenAPI JSON by default.
+Enable them in the dev profile through SWAGGER_ENABLED=true; outside the dev configuration they remain disabled.
+Integration-test enabled and disabled modes.
+
+Complete and verify v0.1 before creating its release branch/tag.
+
+RELEASE v0.2: Z-SCORE
+Add Z_SCORE as a new detector through the existing Strategy/registry mechanism. Preserve IQR behavior, endpoint and request fields.
+Z = (x - mean) / standardDeviation; anomaly iff abs(Z) > threshold.
+Use POPULATION standard deviation: variance divisor n. Document this convention.
+Default Z_SCORE threshold: 3.0, with finite non-negative configurable thresholds.
+Use a numerically stable method such as Welford for statistics and a subsequent classification pass.
+For zero variance, return all values as normal, without division by zero, and include ZERO_VARIANCE. For 1..3 values also keep SMALL_DATASET.
+For empty Z_SCORE data, use NO_DATA, empty lists and null mean/standardDeviation.
+The Z_SCORE response has the common fields plus mean and standardDeviation. Do not fill it with irrelevant IQR statistics.
+Document the algorithm-specific response alternatives using OpenAPI oneOf/discriminator on algorithm, with unambiguous algorithm values.
+Different algorithms may give different answers on the same data. Do not force Z_SCORE to flag 100 in the original ten-value IQR example when threshold 3 does not warrant it.
+Do not implement future algorithms.
+
+REQUIRED TESTS
+Unit tests: independent hand-calculated expectations for even/odd quartiles, n=0/1/2/3, negatives/decimals, both tails, exact boundaries, zero threshold, IQR=0, duplicates/order, unchanged inputs, defaults and numerical edge cases.
+Z_SCORE tests: known population statistics/outliers, exact score boundary, zero variance, default/custom thresholds, small/empty input, and stability/overflow behavior.
+Registry/service: unsupported algorithm and successful use of an additional test detector without modifying selection logic.
+
+REAL integration tests are mandatory:
+Start the real Spring application on a random port and use a real HTTP client. Exercise actual serialization, validation, registry, algorithms, responses and error handler together; do not stub the algorithm in these tests.
+Cover both algorithms in v0.2, sample results, empty/small input, missing versus null threshold, invalid JSON/types, unknown algorithm, appropriate status codes, Swagger profile/config behavior, and a small concurrent-request isolation case.
+A context-load test alone is NOT sufficient integration coverage.
+Make Maven verify discover and run the integration suite; report unit and integration counts separately.
+No intentional failing/skipped tests may be hidden to declare a release ready.
+
+DOCUMENTATION
+Keep docs concise, English-first for the interviewer, and explain WHY key choices were made.
+- README: quick start, prerequisites, commands for Windows and Unix, curl examples, version/release navigation and tests.
+- docs/architecture.md: actual layers, Strategy, registry, DTO/core separation, SOLID examples, and complexity.
+- A valid Mermaid CLASS DIAGRAM matching the final production classes, embedded in architecture.md and linked from README. Keep it compact; show meaningful relationships and operations, not every accessor or imaginary future class.
+- Meaningful JavaDoc for public production classes/interfaces, record components and public behavior: contracts, formula/convention, units, edge cases, ordering, exceptions, time/memory complexity where relevant. Generate/check JavaDoc and report the outcome.
+- docs/api.md: exact request/response/error contracts and defaults.
+- docs/development.md: Git flow, TDD, hook install/verification and formatting/test commands.
+- docs/releases/v0.1.md and docs/releases/v0.2.md: independent scope, examples, validation, limitations and release identification. Preserve v0.1 documentation while adding v0.2.
+- A short roadmap: v0.2 must be benchmarked before the v0.3 architecture is selected. RabbitMQ, gRPC, authentication and per-algorithm microservices are candidates, not an evidence-free commitment.
+- Record immutable prompt/result IDs; revisions get new IDs and PARENT/SUPERSEDES references.
+
+FINISH
+Run all verification and documentation checks. Confirm release branches/tags correspond to tested code. Commit and push according to the workflow; do not force-push.
+Write docs/results/AD-RES-20261110-002.md and return a short owner-facing report:
+status COMPLETE or PARTIAL, selected versions, exact tested source/release SHAs, feature/merge/release/tag inventory, separate unit/integration counts, TDD and hook evidence, JavaDoc/class-diagram locations, commands, actual remote CI status, elapsed time, and remaining blockers.
+Avoid self-referential commit claims: distinguish the tested code SHA from any later documentation/report commit.
+Do not develop the benchmark or v0.3 in this prompt.
