@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /** Starts the stateless anomaly detection HTTP application. */
 @SpringBootApplication
 public class AnomalyApplication {
+  /** Creates the Spring Boot application configuration. */
+  public AnomalyApplication() {}
+
   /**
    * Starts embedded HTTP serving.
    *

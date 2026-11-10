@@ -5,11 +5,15 @@ import java.util.List;
 /** Strategy for a stateless detector; identifiers are case-sensitive canonical names. */
 public interface AnomalyDetector {
   /**
+   * Identifies this strategy for exact registry lookup.
+   *
    * @return the unique canonical algorithm identifier
    */
   String algorithm();
 
   /**
+   * Supplies the sensitivity used when the request omits threshold.
+   *
    * @return the finite non-negative default sensitivity, in algorithm-specific units
    */
   double defaultThreshold();

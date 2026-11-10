@@ -10,6 +10,9 @@ import java.util.List;
  * classification. Threshold is a dimensionless IQR multiplier.
  */
 public final class IqrDetector implements AnomalyDetector {
+  /** Creates a stateless median-of-halves IQR strategy. */
+  public IqrDetector() {}
+
   @Override
   public String algorithm() {
     return "IQR";
