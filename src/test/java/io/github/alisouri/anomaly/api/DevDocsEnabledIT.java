@@ -71,6 +71,7 @@ class DevDocsEnabledIT extends HttpTestSupport {
     var response = get("/v3/api-docs");
     assertThat(response.statusCode()).isEqualTo(200);
     assertThat(json(response).path("paths").has("/api/v1/anomaly-detection")).isTrue();
+    assertThat(get("/v3/api-docs.yaml").statusCode()).isEqualTo(200);
     assertThat(get("/swagger-ui/index.html").statusCode()).isEqualTo(200);
     assertThat(get("/swagger-ui.html").statusCode()).isIn(302, 301);
   }
