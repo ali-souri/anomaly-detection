@@ -1,3 +1,7 @@
+spring:
+  web:
+    resources:
+      add-mappings: ${SWAGGER_ENABLED:false}
 springdoc:
   api-docs:
     enabled: ${SWAGGER_ENABLED:false}
