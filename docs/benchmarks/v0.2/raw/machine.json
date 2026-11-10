@@ -1,0 +1,18 @@
+{
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700K",
+  "physicalCores": 12,
+  "logicalProcessors": 20,
+  "ramBytes": 34028830720,
+  "freeRamKiB": 16129148,
+  "os": "Microsoft Windows 11 Enterprise",
+  "version": "10.0.26200",
+  "build": "26200",
+  "jdk": "Temurin 21.0.10+7",
+  "javaTarget": 17,
+  "heapMin": "512m",
+  "heapMax": "2g",
+  "gc": "G1",
+  "threads": 1,
+  "seed": 20261110,
+  "baseline": "0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7"
+}

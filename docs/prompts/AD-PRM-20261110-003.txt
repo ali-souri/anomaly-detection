@@ -1,0 +1,90 @@
+PROMPT_ID: AD-PRM-20261110-003
+REQUIRED_RESULT_ID: AD-RES-20261110-003
+PARENT: AD-PRM-20261110-002
+SUPERSEDES: NONE
+
+TASK
+Develop AND EXECUTE a reproducible benchmark of the completed v0.2 implementation, then recommend the simplest defensible v0.3 approach.
+Target allocation: approximately 40 minutes within the owner's overall four-hour budget. Preserve measurement quality and honesty; reduce the declared experiment matrix if necessary and report exactly what ran.
+
+WORKSPACE
+F:\projects\anomaly-detection
+git@github.com:ali-souri/anomaly-detection.git
+Read AGENTS.md, docs/results/AD-RES-20261110-002.md, release docs, actual source and Git state.
+The statistical v0.2 baseline and its unit AND integration suites must be green. If missing, resolve only bounded prerequisites transparently or report BLOCKED; do not benchmark an invented baseline.
+Preserve all owner changes and existing releases/tags. Keep generated data, caches, temporary files and results on F:. Never change global settings or bypass hooks.
+
+SIMPLE IMPLEMENTATION
+Keep the benchmark harness separate from production statistical logic, with pinned compatible dependencies and short documented commands.
+Use OpenJDK JMH for in-process measurements. Benchmark the real released algorithms, not a handwritten replacement.
+A small Maven profile or standalone benchmark module is acceptable; choose the clearest option. Do not refactor the application into a framework just to benchmark it.
+Use TDD for meaningful custom harness behavior such as fixture generation/validation. Do not create trivial tests merely to inflate counts.
+Document public harness classes/methods with useful JavaDoc.
+
+BASELINE INTEGRITY AND GIT
+Create feature/benchmark-v0.2 from develop.
+Record the exact v0.2 release/tag/commit used. Verify and record that the statistical source being measured matches that baseline.
+New harness/build configuration may differ from the release; identify it separately. Do not modify algorithm behavior during this stage.
+If a correctness bug is discovered, preserve the original baseline, report it, fix it on an appropriate feature branch with TDD and a new version identity, and explicitly identify the corrected baseline. Never move an old tag or silently measure a different implementation.
+Merge the completed benchmark feature into develop and push after verification. Do not change the frozen release/v0.2 branch/tag, or prematurely publish v0.3.
+
+DECLARE THE EXPERIMENT BEFORE RUNNING
+Assumption: two million numbers PER DATASET.
+Record CPU model/core count, RAM, OS, JDK, JVM heap/options, source/build identity, benchmark parameters and resource limits.
+The owner has not specified an absolute latency SLO or concurrency target. Do not invent these as owner requirements or declare "production-ready" from arbitrary thresholds.
+Define a bounded experiment matrix that the machine can safely execute. At minimum cover:
+- IQR and Z_SCORE.
+- Increasing sizes, including 10,000, 100,000, 1,000,000 and 2,000,000.
+- Reproducible seeded fixtures: ordinary mixed/outlier data, many duplicates, and an ordered/adverse arrangement where relevant.
+- A single 2,000,000-number real-API request for each algorithm.
+Prefer reducing nonessential combinations over omitting both large-dataset cases without explanation.
+
+CORRECTNESS BEFORE SPEED
+Validate fixtures and outputs before accepting timings. Check expected quartiles/statistics and anomaly/normal partitions against independent expectations/reference data, with a documented floating-point tolerance where appropriate.
+Keep the exact agreed median-of-halves quartile convention.
+Use the existing core/unit/integration tests as regression gates; do not replace them with a benchmark that merely returns successfully.
+Confirm total classified count, duplicate handling and non-mutation.
+
+JMH MEASUREMENTS
+Use documented warmup, multiple measurement iterations and fork(s). Record their actual settings/sample counts.
+Consume outputs appropriately so computation is not optimized away.
+Avoid accidentally reusing an already-sorted mutated working array. Verify input lifecycle and describe whether copy/result allocation is included.
+Measure time per operation and allocation/GC where feasible, for example using JMH's GC profiler.
+Separate data generation/setup from the measured operation; report it if end-to-end timing intentionally includes them.
+Save machine-readable raw output and the exact reproducible command.
+Do not infer theoretical complexity solely from noisy timing curves. Explain it by reviewing the real implementation's loops/sort.
+
+REAL API MEASUREMENTS
+Run the actual v0.2 application on an available local port and send actual HTTP requests.
+Measure request size, response size, end-to-end duration and successful response correctness. Distinguish JSON/transport/serialization costs from in-process JMH time.
+Include normalValues in the existing FULL response; do not quietly switch to an easier output contract.
+Use bounded repetitions and report sample count. Do not present unstable p99 estimates from only a few samples as established tail latency.
+Do not log or commit the entire two-million-number bodies/results.
+Start and stop only processes belonging to this project.
+
+ANALYSIS AND ARCHITECTURE DECISION
+Write docs/benchmarks/v0.2/report.md plus compact raw results and a run guide. Keep generated massive fixtures under ignored paths.
+Report:
+- What was actually measured, correctness evidence, time/allocation/heap observations, API payload costs, limitations and reproducibility.
+- IQR sort baseline O(n log n); Z_SCORE O(n), with total input/output memory accounted for.
+- Observed bottleneck(s), supported by measurements/profiling where available.
+- Distinguish faster processing of ONE dataset from more concurrent datasets.
+- Do not claim microservices reduce algorithmic complexity.
+- Do not average chunk quartiles to obtain global quartiles or classify chunks against unrelated local statistics.
+
+Create docs/decisions/v0.3-architecture.md:
+1. State evidence, missing SLO/concurrency information and assumptions.
+2. Recommend the MINIMUM complexity justified now.
+3. Identify one primary measurable improvement for v0.3.
+4. Explain whether a stateless modular application/worker pool suffices or independent algorithm services are justified.
+5. Evaluate Docker/resource limits, load tests, optional payload/output improvements and overload handling.
+6. Treat RabbitMQ, dataset/result storage, gRPC, auth and per-algorithm deployments as conditional additions; do not select all merely to demonstrate pattern names.
+7. If microservices are recommended, explain independent scaling needs and the extra operational/testing cost. Do not imply they are required just because n=2,000,000.
+8. Clearly distinguish required work, optional follow-ups and what can fit the remaining execution budget.
+
+FINISH
+Run full Maven verify, including integration tests and format/lint checks, after harness additions. Keep all previously released behavior intact.
+Commit/push the completed feature through develop, without hook bypasses.
+Write docs/results/AD-RES-20261110-003.md.
+Return a concise measured comparison table, exact baseline/harness SHAs, separate unit/integration counts, real commands/raw-result paths, architecture recommendation, elapsed time and limitations.
+If measurements could not run, mark BENCHMARK_NOT_EXECUTED/PARTIAL with the actual reason. Never manufacture timings, label a plan an executed benchmark, or pass the v0.3 evidence gate without results.
