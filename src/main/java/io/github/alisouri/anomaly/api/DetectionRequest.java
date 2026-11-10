@@ -12,12 +12,14 @@ import java.util.List;
  */
 @Schema(additionalProperties = Schema.AdditionalPropertiesValue.FALSE)
 public record DetectionRequest(
-    @Schema(requiredMode = Schema.RequiredMode.REQUIRED, allowableValues = "IQR") String algorithm,
+    @Schema(
+            requiredMode = Schema.RequiredMode.REQUIRED,
+            allowableValues = {"IQR", "Z_SCORE"})
+        String algorithm,
     @Schema(
             minimum = "0",
-            defaultValue = "1.5",
             description =
-                "Finite non-negative IQR multiplier. Omit for default; explicit null is invalid.")
+                "Finite non-negative sensitivity. IQR default 1.5; Z_SCORE default 3.0. Omit for the selected default; explicit null is invalid.")
         Double threshold,
     @Schema(
             requiredMode = Schema.RequiredMode.REQUIRED,

@@ -6,6 +6,7 @@ import io.github.alisouri.anomaly.core.AlgorithmRegistry;
 import io.github.alisouri.anomaly.core.AnomalyDetector;
 import io.github.alisouri.anomaly.core.DetectionService;
 import io.github.alisouri.anomaly.core.IqrDetector;
+import io.github.alisouri.anomaly.core.ZScoreDetector;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import java.util.List;
@@ -21,6 +22,11 @@ public class DetectionConfiguration {
   @Bean
   IqrDetector iqrDetector() {
     return new IqrDetector();
+  }
+
+  @Bean
+  ZScoreDetector zScoreDetector() {
+    return new ZScoreDetector();
   }
 
   @Bean
@@ -49,8 +55,8 @@ public class DetectionConfiguration {
         .info(
             new Info()
                 .title("Anomaly detection")
-                .version("0.1.1")
+                .version("0.2.0")
                 .description(
-                    "Finite JSON numbers; ordered partitions; IQR median-of-halves. See docs/api.md for numerical conventions and stable Problem Details codes."));
+                    "Finite JSON numbers; ordered partitions; IQR median-of-halves or population Z-Score. See docs/api.md for numerical conventions and stable Problem Details codes."));
   }
 }

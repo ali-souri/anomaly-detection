@@ -1,7 +1,7 @@
 # Anomaly detection
 
 A small Java/Spring Boot application with an independent statistical core. It classifies a
-numeric sequence using IQR while retaining duplicates and original order. Read
+numeric sequence using IQR or population Z-Score while retaining duplicates and original order. Read
 [the architecture and class diagram](docs/architecture.md) first, then the detectors and tests.
 
 ## Quick start
@@ -41,6 +41,19 @@ curl.exe -X POST http://localhost:8080/api/v1/anomaly-detection -H 'Content-Type
 Expect Q1=11, Q3=13, IQR=2, bounds [8,16], anomaly [100]. Empty data succeeds with `NO_DATA`;
 one to three values succeed with `SMALL_DATASET`.
 
+Z-Score uses population standard deviation (variance divisor n), default threshold 3.0. For a
+hand-calculated example, override it to 1.5:
+
+```sh
+curl -X POST http://localhost:8080/api/v1/anomaly-detection \
+  -H 'Content-Type: application/json' \
+  -d '{"algorithm":"Z_SCORE","threshold":1.5,"data":[2,4,4,4,5,5,7,9]}'
+```
+
+This gives mean=5, standardDeviation=2, anomalies=[9]. Z-Score and IQR may disagree: the original
+ten-value IQR example has no Z-Score anomaly at threshold 3.0. Zero variance succeeds with all
+values normal and `ZERO_VARIANCE`.
+
 Swagger UI and OpenAPI JSON are disabled by default. Enable both only with the dev profile
 and explicit flag:
 
@@ -64,6 +77,7 @@ Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev
 - Generated JavaDoc: `target/reports/apidocs/index.html` after `verify` (strict doclint).
 - [v0.1 release](docs/releases/v0.1.md): `release/v0.1`, annotated tag `v0.1.0`.
 - Corrected v0.1 patch: annotated tag `v0.1.1` closes direct Swagger static-resource access; v0.1.0 is preserved.
+- [v0.2 release](docs/releases/v0.2.md): `release/v0.2`, annotated tag `v0.2.0` (current application).
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`

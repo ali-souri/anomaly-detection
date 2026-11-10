@@ -2,7 +2,7 @@
 
 `POST /api/v1/anomaly-detection`, `Content-Type: application/json`. The request must be an object
 with exactly the documented fields. `algorithm` is a required case-sensitive canonical identifier:
-`IQR`. `data` is a required array of finite JSON numbers; `[]` is valid. `threshold` is an optional
+`IQR` or `Z_SCORE`. `data` is a required array of finite JSON numbers; `[]` is valid. `threshold` is an optional
 finite, non-negative JSON number. Omission selects the algorithm default; explicit null is invalid.
 Null elements, strings (including numeric strings), booleans, nested objects/arrays, unknown fields,
 missing/null data and wrong shapes return 400. JSON has no valid NaN/Infinity literals.
@@ -38,6 +38,47 @@ IQR=0, normalValues=[5], anomalies=[]. Sizes two and three have the same warning
 successful result is `COMPLETED`, even with no anomalies. Partitions preserve original order and
 duplicates; input lists are never mutated. Common lists and all published results are immutable.
 
+## Z_SCORE
+
+Default threshold **3.0**, in population standard deviations. Welford's running mean and sum of
+squared deviations avoid the cancellation of `mean(x*x) - mean(x)^2`. Population variance is the
+sum of squared deviations divided by **n**, not n-1. A second pass classifies original values with
+`abs((value - mean) / standardDeviation) > threshold`. Equality is normal; no rounding occurs
+before comparison. A zero threshold keeps only values whose score is exactly zero.
+
+```json
+{"algorithm":"Z_SCORE","threshold":1.5,"data":[2,4,4,4,5,5,7,9]}
+```
+
+```json
+{"algorithm":"Z_SCORE","threshold":1.5,"status":"COMPLETED","warnings":[],"anomalies":[9.0],"normalValues":[2.0,4.0,4.0,4.0,5.0,5.0,7.0],"mean":5.0,"standardDeviation":2.0}
+```
+
+The response has the same common fields as IQR, followed only by `mean` and `standardDeviation`.
+It contains no IQR statistics. The original ten-value IQR sample has no Z_SCORE anomaly at the
+default threshold 3.0; the score for 100 is below 3. Different algorithms answer different questions.
+
+Empty data returns 200:
+
+```json
+{"algorithm":"Z_SCORE","threshold":3.0,"status":"NO_DATA","warnings":[],"anomalies":[],"normalValues":[],"mean":null,"standardDeviation":null}
+```
+
+Zero variance returns all values as normal, standardDeviation=0 and `ZERO_VARIANCE`, without
+division. At n=1..3, `SMALL_DATASET` also applies; `[7]` has mean=7, standardDeviation=0 and
+warnings `["SMALL_DATASET","ZERO_VARIANCE"]`. Four equal values have only ZERO_VARIANCE.
+Nonempty successful calculations always use COMPLETED.
+
+Intermediate Welford arithmetic is checked for overflow; variance underflow must not silently
+turn distinct values into a zero-variance result. Such cases return 422. This is deliberately
+conservative: arbitrary-precision/scaled methods could handle some rejected extreme inputs.
+Ordinary floating-point last-bit error remains possible; tests use tight tolerances for statistics
+and exactly representable values for exact-boundary checks.
+
+OpenAPI describes the success response as `DetectionResponse.oneOf` with `IqrResponse` and
+`ZScoreResponse`. The `algorithm` discriminator maps IQR and Z_SCORE explicitly, and each variant
+requires its unique algorithm enum value. This prevents an ambiguous all-statistics response shape.
+
 ## Errors
 
 Errors use RFC 9457 `application/problem+json`, with `type`, `title`, numeric `status`, safe
@@ -72,3 +113,5 @@ Both `/v3/api-docs` (including YAML) and Swagger UI are disabled in base configu
 profile enables them only when `SWAGGER_ENABLED=true`; dev without the flag defaults to false.
 The same flag outside dev has no effect. The HTTP integration suite checks these modes using
 actual servers and real HTTP requests. No authentication is implemented in these releases.
+The API-only base configuration also disables general static-resource mappings, blocking direct
+Swagger WebJar URLs. Dev enables those mappings only with the same explicit flag.

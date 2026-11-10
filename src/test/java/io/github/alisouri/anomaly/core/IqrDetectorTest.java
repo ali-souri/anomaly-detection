@@ -78,6 +78,9 @@ class IqrDetectorTest {
     assertThat(result.summary().anomalies()).isEmpty();
     var zero = detector.detect(List.of(0., 0., 1., 1., 2., 2.), 0);
     assertThat(zero.summary().anomalies()).isEmpty();
+    var zeroWithTails = detector.detect(List.of(1., 2., 3., 4.), 0);
+    assertThat(zeroWithTails.summary().anomalies()).containsExactly(1., 4.);
+    assertThat(zeroWithTails.summary().normalValues()).containsExactly(2., 3.);
   }
 
   @Test

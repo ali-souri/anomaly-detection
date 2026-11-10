@@ -12,6 +12,37 @@ import org.springframework.test.context.ActiveProfiles;
     properties = "SWAGGER_ENABLED=true")
 class DevDocsEnabledIT extends HttpTestSupport {
   @Test
+  void algorithmAlternativesHaveAnUnambiguousDiscriminator() throws Exception {
+    var document = json(get("/v3/api-docs"));
+    var schemas = document.path("components").path("schemas");
+    var response = schemas.path("DetectionResponse");
+    assertThat(response.path("oneOf").size()).isEqualTo(2);
+    assertThat(response.path("discriminator").path("propertyName").asText()).isEqualTo("algorithm");
+    assertThat(response.path("discriminator").path("mapping").path("IQR").asText())
+        .endsWith("/IqrResponse");
+    assertThat(response.path("discriminator").path("mapping").path("Z_SCORE").asText())
+        .endsWith("/ZScoreResponse");
+    assertThat(
+            schemas
+                .path("IqrResponse")
+                .path("properties")
+                .path("algorithm")
+                .path("enum")
+                .toString())
+        .isEqualTo("[\"IQR\"]");
+    assertThat(
+            schemas
+                .path("ZScoreResponse")
+                .path("properties")
+                .path("algorithm")
+                .path("enum")
+                .toString())
+        .isEqualTo("[\"Z_SCORE\"]");
+    assertThat(schemas.path("ZScoreResponse").path("properties").has("q1")).isFalse();
+    assertThat(schemas.path("IqrResponse").path("properties").has("mean")).isFalse();
+  }
+
+  @Test
   void generatedContractDocumentsRequestsAndAllResponses() throws Exception {
     var document = json(get("/v3/api-docs"));
     var operation = document.path("paths").path("/api/v1/anomaly-detection").path("post");
@@ -40,6 +71,7 @@ class DevDocsEnabledIT extends HttpTestSupport {
     var response = get("/v3/api-docs");
     assertThat(response.statusCode()).isEqualTo(200);
     assertThat(json(response).path("paths").has("/api/v1/anomaly-detection")).isTrue();
+    assertThat(get("/v3/api-docs.yaml").statusCode()).isEqualTo(200);
     assertThat(get("/swagger-ui/index.html").statusCode()).isEqualTo(200);
     assertThat(get("/swagger-ui.html").statusCode()).isIn(302, 301);
   }
