@@ -1,7 +1,7 @@
 # Architecture
 
 One Maven application keeps the interview reading path short:
-`DetectionController` → `RequestParser` → `DetectionService` → `AlgorithmRegistry` → `AnomalyDetector`.
+`DetectionController` â†’ `RequestParser` â†’ `DetectionService` â†’ `AlgorithmRegistry` â†’ `AnomalyDetector`.
 `ResponseMapper` converts typed core results into flat API responses. `ProblemHandler` owns all
 HTTP errors. `DetectionConfiguration` wires these objects with constructor injection. The core
 package imports neither Spring nor Jackson and can run directly in JUnit.
@@ -18,47 +18,77 @@ statistics without placing algorithm-specific fields on the common contract. API
 wire layout never leak into the statistical core. Mapping each result type at the API boundary
 is deliberate: adding an algorithm needs an explicit documented wire shape.
 
+## Package and source navigation
+
+All production paths start at `src/main/java/io/anomaly/`; the application scans io.anomaly.
+The Maven groupId is io.anomaly. Java import compatibility changed; the HTTP contract did not.
+
+| Relative package | Production classes |
+| --- | --- |
+| root | AnomalyApplication |
+| config | DetectionConfiguration |
+| api.controller | DetectionController |
+| api.dto | DetectionRequest, DetectionResponse, IqrResponse, ZScoreResponse |
+| api.mapper / api.parser | ResponseMapper / RequestParser |
+| api.exception | InvalidRequestException, ProblemHandler |
+| core.algorithm | AnomalyDetector, IqrDetector, ZScoreDetector |
+| core.service / core.registry | DetectionService / AlgorithmRegistry |
+| core.model | DetectionResult, DetectionSummary, DetectionStatus, WarningCode, IqrResult, ZScoreResult |
+| core.validation / core.exception | Inputs / NumericalRangeException, UnsupportedAlgorithmException |
+
+Start with [IQR](../src/main/java/io/anomaly/core/algorithm/IqrDetector.java),
+[Z-Score](../src/main/java/io/anomaly/core/algorithm/ZScoreDetector.java),
+[service](../src/main/java/io/anomaly/core/service/DetectionService.java), then
+[controller](../src/main/java/io/anomaly/api/controller/DetectionController.java).
+Unit packages mirror roles; real HTTP *IT tests use io.anomaly.integration.api and shared support
+uses io.anomaly.support. Inputs and DetectionSummary.forData are public only for cross-role use,
+with documented contracts; no new helper interface or module is introduced.
+
 ## Class diagram
 
 ```mermaid
 classDiagram
-    class DetectionController {
+    class DetectionController["api.controller.DetectionController"] {
       +detect(JsonNode) DetectionResponse
     }
-    class RequestParser {
+    class RequestParser["api.parser.RequestParser"] {
       +parse(JsonNode) DetectionRequest
     }
-    class DetectionRequest
-    class ResponseMapper {
+    class DetectionRequest["api.dto.DetectionRequest"]
+    class ResponseMapper["api.mapper.ResponseMapper"] {
       +toResponse(DetectionResult) DetectionResponse
     }
-    class DetectionResponse {
+    class DetectionResponse["api.dto.DetectionResponse"] {
       <<interface>>
     }
-    class IqrResponse
-    class ZScoreResponse
-    class DetectionService {
+    class IqrResponse["api.dto.IqrResponse"]
+    class ZScoreResponse["api.dto.ZScoreResponse"]
+    class DetectionService["core.service.DetectionService"] {
       +detect(String, List, Double) DetectionResult
     }
-    class AlgorithmRegistry {
+    class AlgorithmRegistry["core.registry.AlgorithmRegistry"] {
       +require(String) AnomalyDetector
     }
-    class AnomalyDetector {
+    class AnomalyDetector["core.algorithm.AnomalyDetector"] {
       <<interface>>
       +algorithm() String
       +defaultThreshold() double
       +detect(List, double) DetectionResult
     }
-    class IqrDetector
-    class ZScoreDetector
-    class DetectionResult {
+    class IqrDetector["core.algorithm.IqrDetector"]
+    class ZScoreDetector["core.algorithm.ZScoreDetector"]
+    class DetectionResult["core.model.DetectionResult"] {
       <<interface>>
       +summary() DetectionSummary
     }
-    class IqrResult
-    class ZScoreResult
-    class DetectionSummary
-    class ProblemHandler
+    class IqrResult["core.model.IqrResult"]
+    class ZScoreResult["core.model.ZScoreResult"]
+    class DetectionSummary["core.model.DetectionSummary"]
+    class Inputs["core.validation.Inputs"] {
+      +copy(List, double) List
+      +finite(double) double
+    }
+    class ProblemHandler["api.exception.ProblemHandler"]
     DetectionController --> RequestParser
     RequestParser ..> DetectionRequest
     DetectionController --> DetectionService
@@ -71,6 +101,8 @@ classDiagram
     AlgorithmRegistry o-- AnomalyDetector
     AnomalyDetector <|.. IqrDetector
     AnomalyDetector <|.. ZScoreDetector
+    IqrDetector ..> Inputs
+    ZScoreDetector ..> Inputs
     IqrDetector ..> IqrResult
     ZScoreDetector ..> ZScoreResult
     DetectionResult <|.. IqrResult
@@ -81,7 +113,7 @@ classDiagram
 ```
 
 The diagram shows the meaningful production relationships, omitting configuration, enums and
-arithmetic/validation helpers. It is a Mermaid **class diagram**, with no planned future classes.
+small exceptions. Diagram labels show packages relative to io.anomaly. It is a Mermaid **class diagram**, with no planned future classes.
 
 ## Why these choices
 
