@@ -13,7 +13,7 @@ Windows PowerShell:
 
 ```powershell
 ./scripts/install-hooks.ps1
-./mvnw.cmd verify
+./mvnw.cmd clean verify
 ./mvnw.cmd spring-boot:run
 ```
 
@@ -21,7 +21,7 @@ Unix:
 
 ```sh
 bash scripts/install-hooks.sh
-./mvnw verify
+./mvnw clean verify
 ./mvnw spring-boot:run
 ```
 
@@ -68,6 +68,43 @@ SWAGGER_ENABLED=true ./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
 
 Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev does not enable them.
 
+## Testing and Coverage
+
+Unit tests exercise small contracts; `*IT` tests start real random-port HTTP servers. The release
+gate combines both suites and enforces **100% LINE and 100% BRANCH** coverage for all handwritten
+production code. No handwritten exclusions are allowed. Missing coverage data or any failed check
+returns a nonzero exit code. Full coverage does not prove the absence of defects.
+
+Windows PowerShell:
+
+```powershell
+.\mvnw.cmd test                                      # unit tests only
+.\mvnw.cmd test-compile failsafe:integration-test failsafe:verify  # integration only; no Surefire
+.\mvnw.cmd clean verify                              # full combined release gate
+Start-Process .\target\site\jacoco\index.html           # fresh combined HTML report
+.\mvnw.cmd javadoc:javadoc                            # explicit JavaDoc
+.\mvnw.cmd spotless:apply                             # review changes, then stage yourself
+```
+
+Unix:
+
+```sh
+./mvnw test
+./mvnw test-compile failsafe:integration-test failsafe:verify
+./mvnw clean verify
+./mvnw javadoc:javadoc
+./mvnw spotless:apply
+# Optional desktop report opener: macOS uses open; Linux desktops often use xdg-open.
+# open target/site/jacoco/index.html
+# xdg-open target/site/jacoco/index.html
+```
+
+Unit-only, integration-only and selected runs are conveniences, not the combined 100% gate.
+Run **clean verify** before interpreting coverage. Reports: `target/surefire-reports`,
+`target/failsafe-reports`, `target/site/jacoco/index.html`, `target/site/jacoco/jacoco.xml`
+(also CSV), and `target/reports/apidocs/index.html`. See [coverage details](docs/coverage.md)
+for instrumentation, exact counters, filtering and failure-fixture evidence.
+
 ## Reading and verification
 
 - [API contract](docs/api.md): exact JSON shapes, defaults, numerical policy and Problem Details.
@@ -77,13 +114,18 @@ Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev
 - Generated JavaDoc: `target/reports/apidocs/index.html` after `verify` (strict doclint).
 - [v0.1 release](docs/releases/v0.1.md): `release/v0.1`, annotated tag `v0.1.0`.
 - Corrected v0.1 patch: annotated tag `v0.1.1` closes direct Swagger static-resource access; v0.1.0 is preserved.
-- [v0.2 release](docs/releases/v0.2.md): `release/v0.2`, annotated tag `v0.2.0` (current application).
+- [v0.2 release](docs/releases/v0.2.md): frozen `release/v0.2`, annotated tag `v0.2.0`.
+- [v0.2.1 maintenance](docs/releases/v0.2.1.md): io.anomaly packages, exact coverage gate and benchmark baseline.
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
-- [Execution result](docs/results/AD-RES-20261110-002.md): exact tested SHAs, counts, Git/TDD/hook evidence and remote CI.
+- [Initial execution result](docs/results/AD-RES-20261110-002.md): preserved v0.1/v0.2 evidence.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.
 
-Work request [AD-PRM-20261110-002](docs/prompts/AD-PRM-20261110-002.txt) supersedes
+Initial work request [AD-PRM-20261110-002](docs/prompts/AD-PRM-20261110-002.txt) supersedes
 `AD-PRM-20261110-001`. The result is `AD-RES-20261110-002`; revisions require new IDs and
 explicit PARENT/SUPERSEDES links.
+
+Maintenance [AD-PRM-20261111-005](docs/prompts/AD-PRM-20261111-005.txt) has parent 002 and
+supersedes none. Its result is AD-RES-20261111-005. The selected benchmark baseline is v0.2.1;
+see [continuing project rules](AGENTS.md) before prompt 003.

@@ -32,3 +32,11 @@ application class made clean verify fail and blocked a real push to a local bare
 remained absent. Separate mandatory guard checks rejected missing exec, empty exec, missing XML,
 and an XML fixture with no analyzed classes. Invalid fixture data stayed in that ignored clone.
 The script explicitly returns success only after all expected failures are observed.
+
+PowerShell convenience commands were executed without test-skipping flags: `mvnw.cmd test`
+(46 units only), `mvnw.cmd test-compile failsafe:integration-test failsafe:verify` (47 integration
+cases, no Surefire goal), `mvnw.cmd javadoc:javadoc`, `mvnw.cmd spotless:apply`, and the exact
+`mvnw.cmd clean verify` (fresh 246/0 LINE, 112/0 BRANCH). Start-Process opened the freshly
+generated HTML. Logs: .cache/logs/005-command-*.log and 005-documented-clean-verify.log.
+Unix commands are independently repeated by CI, followed by a final clean combined gate so
+convenience execution data cannot inflate the accepted coverage.
