@@ -1,0 +1,157 @@
+PROMPT_ID: AD-PRM-20261111-005
+REQUIRED_RESULT_ID: AD-RES-20261111-005
+PARENT: AD-PRM-20261110-002
+SUPERSEDES: NONE
+
+TASK
+Before benchmark prompt 003, reorganize the completed application, migrate its Java base package to io.anomaly, measure and achieve genuine 100% line AND branch coverage, and complete README testing instructions.
+
+This is a new maintenance task, not a replacement or rewrite of earlier prompts/results.
+The owner has a tight overall four-hour interview-preparation budget; aim for a focused approximately 30-minute correction, with short progress checkpoints. Do not fabricate completion or weaken coverage to fit a time target.
+
+WORKSPACE AND EXISTING BASELINE
+Canonical folder: F:\projects\anomaly-detection
+Remote: git@github.com:ali-souri/anomaly-detection.git
+Existing tested v0.2.0 source: 240d5403a2475711861af8c5041f7a6da35684ce
+Read actual Git state, AGENTS.md if present, current code, README, Maven configuration and docs/results/AD-RES-20261110-002.md.
+Preserve user changes, existing release branches/tags, final result records and issued prompt files.
+Use the approved feature -> develop -> master -> release workflow, with meaningful feature branches such as feature/package-structure, feature/coverage-gate and feature/testing-documentation.
+The owner authorizes ordinary project changes, tests, commits, green merges, and pushes within this task. No repeated confirmation is required for those routine actions.
+Do not reset/clean the Git working tree, force-push, move tags, bypass hooks or change global settings.
+Keep generated dependencies, wrapper caches, temporary files, logs and outputs on F: under the project. Existing installed tools on C: may be executed/read; do not create project-caused writes there.
+
+1. CLEAR FOLDER/PACKAGE STRUCTURE
+Every production Java class must be under the root package io.anomaly, physically below src/main/java/io/anomaly.
+Use lowercase Java package directories. Keep the statistical core independent of Spring/Jackson and keep the code simple enough to explain quickly.
+Move existing classes into these role-based packages:
+
+- io.anomaly: AnomalyApplication.
+- io.anomaly.config: DetectionConfiguration.
+- io.anomaly.api.controller: DetectionController.
+- io.anomaly.api.dto: DetectionRequest, DetectionResponse, IqrResponse, ZScoreResponse.
+- io.anomaly.api.mapper: ResponseMapper.
+- io.anomaly.api.parser: RequestParser.
+- io.anomaly.api.exception: InvalidRequestException, ProblemHandler.
+- io.anomaly.core.algorithm: AnomalyDetector, IqrDetector, ZScoreDetector.
+- io.anomaly.core.service: DetectionService.
+- io.anomaly.core.registry: AlgorithmRegistry.
+- io.anomaly.core.model: DetectionResult, DetectionSummary, DetectionStatus, WarningCode, IqrResult, ZScoreResult.
+- io.anomaly.core.validation: Inputs or a clearly named equivalent shared validation utility.
+- io.anomaly.core.exception: NumericalRangeException, UnsupportedAlgorithmException.
+
+Use only the visibility needed for cross-package access. For example, moving a package-private shared validation utility may require a public class/public static methods; add meaningful JavaDoc rather than inventing a helper interface/framework.
+Retain existing useful class names unless a small rename improves clarity. Do not create empty layers or multiple Maven modules for this reorganization.
+
+TESTS
+Keep Maven's standard src/test/java root:
+- Unit tests mirror the corresponding production packages, such as io.anomaly.core.algorithm and io.anomaly.core.service.
+- Put full real-HTTP integration tests under io.anomaly.integration.api, keeping their *IT naming for Failsafe discovery.
+- Put genuinely shared test utilities under io.anomaly.support.
+Adjust test-helper visibility only as necessary.
+Keep test fixtures/resources under appropriate test folders, not production source.
+
+Update imports, package declarations, component scanning, application/plugin references, resource references, source links, JavaDoc and the Mermaid class diagram.
+Align the Maven groupId with io.anomaly for consistent project naming. Retain the artifactId anomaly-detection.
+Search the current source/configuration for stale io.github.alisouri.anomaly references. Historical immutable prompts/results and old release docs must retain their accurate historical content; do not rewrite them to pretend they used the new packages.
+Run clean builds to remove stale compiled classes from the old package.
+
+2. MEASURE AND ACHIEVE REAL COVERAGE
+The previous 39 unit / 47 integration count is NOT a coverage percentage. No previous measured coverage percentage is established.
+Use JaCoCo, pinning stable version 0.8.16 unless actual verified compatibility/access requires a documented stable alternative.
+Official references:
+https://www.jacoco.org/jacoco/trunk/doc/prepare-agent-mojo.html
+https://www.jacoco.org/jacoco/trunk/doc/check-mojo.html
+https://www.jacoco.org/jacoco/trunk/doc/changes.html
+The documentation site's own snapshot version is not a recommendation to use a snapshot.
+
+First measure the existing suite and record the actual initial LINE/BRANCH missed and covered counts, without inventing a baseline percentage.
+The release requirement is:
+- 100% LINE coverage.
+- 100% BRANCH coverage.
+- Combined coverage from BOTH unit and genuine integration test execution.
+- All handwritten production application classes in scope, including configuration, HTTP parsing/mapping/errors, statistical core and application startup.
+Standard JaCoCo filtering of compiler-generated bytecode is acceptable and must be documented. Do not add exclusions, @Generated markers, ignore annotations, fake probes or lower thresholds to hide handwritten uncovered code.
+Report instruction/method/class metrics as additional information; do not mislabel line/branch percentages as every possible kind of coverage.
+
+CORRECT MAVEN INSTRUMENTATION
+The existing Surefire/Failsafe argLine explicitly sets java.io.tmpdir. Preserve that setting AND the JaCoCo agent.
+Use a dedicated agent property with correct late evaluation in BOTH plugins, plus an empty default when the agent is not active. Do not overwrite the agent argument with the existing temp-directory argument.
+Collect and combine unit/integration execution data without one suite overwriting the other. Appending to one execution file within a clean build is acceptable; separate execution files plus an explicit merge is also acceptable. Choose the simpler correct setup.
+Run/report/check after the integration-test phase, so the final metric includes the real HTTP tests.
+Generate:
+- target/site/jacoco/index.html
+- target/site/jacoco/jacoco.xml
+- CSV if useful.
+Use strict exact checks, such as zero missed LINE/BRANCH counters or covered ratios exactly 1.0, not rounded display percentages.
+A missing/empty execution file, missing XML or no analyzed application classes must fail verification, not produce a misleading successful skip.
+Ensure clean, current data: use clean verify for final acceptance, pre-push verification and CI. Do not accumulate stale coverage across builds to manufacture 100%.
+
+MEANINGFUL TESTS
+Keep all existing unit and real random-port HTTP integration behavior.
+Add focused tests for actual uncovered contracts, validation/error paths, registry behavior, mapping, numeric edge cases, immutability and configuration modes.
+Exercise the real application startup path where needed.
+Do not add assertions-free tests, duplicate the implementation as the expected result, mock entire application flows just to color lines green, use reflection to force impossible states, or insert production test switches.
+When a defensive branch is demonstrably redundant/unreachable, a small documented semantics-preserving simplification is acceptable after reasoning and regression checks. Do not remove protections for reachable inputs just to reach a number.
+Package moves are refactoring of existing behavior; validate them against existing tests. For new behavior use real RED-GREEN-REFACTOR. Record the initial failing 100% coverage gate and its subsequent GREEN separately; do not invent test-first history for code that already existed.
+If 100% cannot honestly be reached, report actual counts and concrete gaps as PARTIAL and do not publish a falsely ready release.
+
+3. COMPLETE README TESTING INSTRUCTIONS
+The current README has verify in Quick start, but it needs a clear dedicated Testing and Coverage section.
+Explain test types and provide separately labeled, VERIFIED commands for Windows PowerShell and Unix.
+
+Windows commands to support and verify:
+- Unit tests only:
+  .\mvnw.cmd test
+- Integration tests only, compiling test sources without invoking Surefire:
+  .\mvnw.cmd test-compile failsafe:integration-test failsafe:verify
+- Full clean quality gate, BOTH suites, coverage report/check, lint, formatting and JavaDoc:
+  .\mvnw.cmd clean verify
+- Open the freshly generated combined coverage report:
+  Start-Process .\target\site\jacoco\index.html
+- Generate JavaDoc explicitly:
+  .\mvnw.cmd javadoc:javadoc
+- Apply formatting:
+  .\mvnw.cmd spotless:apply
+
+Unix equivalents use ./mvnw; give a suitable optional browser-open command without assuming every platform has the same launcher.
+Test the documented commands against the actual Maven setup; adjust any command that does not genuinely provide its stated behavior.
+Explain that selected/unit-only/integration-only runs are convenience commands, not the combined 100% release gate. Run clean verify before interpreting the combined report.
+State where Surefire, Failsafe, HTML/XML coverage and JavaDoc reports live, what line/branch coverage means, the 100% enforcement policy, and how failures affect exit status.
+100% exercised lines/branches does not replace meaningful assertions or prove the absence of defects.
+Keep the README short, with links to detailed guides. Update class diagram, source navigation and JavaDoc links to actual new package paths.
+
+4. PRESERVE BEHAVIOR AND RELEASE IDENTITIES
+Preserve POST /api/v1/anomaly-detection, both algorithm identifiers, JSON shapes, defaults, warnings, numerical conventions, status codes, ordering, duplicates and Swagger isolation.
+No algorithm optimization, benchmark or v0.3 infrastructure belongs in this task.
+Do not rewrite or move v0.1.0, v0.1.1 or v0.2.0 tags or the existing frozen release branches.
+After all checks are genuinely green:
+- Set application/version metadata consistently to 0.2.1.
+- Merge completed features into develop and the tested maintenance release into master.
+- Create release/v0.2.1 from master and annotate tag v0.2.1.
+- Add docs/releases/v0.2.1.md with actual changes, coverage evidence, commands and limitations.
+- Record that Java package/import coordinates changed; do not confuse internal Java import compatibility with preservation of the HTTP contract.
+- Push completed refs without force or hook bypasses.
+- Verify actual remote CI for the exact release SHA, including coverage artifacts. Dispatch the existing workflow explicitly if needed; do not claim CI success while pending/failed.
+
+BENCHMARK HANDOFF
+The next benchmark prompt remains AD-PRM-20261110-003, but its exact v0.2-line baseline is now the new tested v0.2.1 tag, not historical v0.2.0.
+Record this baseline selection in AGENTS.md/current roadmap so the next prompt reads it. Include this result as a prerequisite without altering the text/identity of old issued prompts.
+Record the new package conventions and 100% combined coverage gate as continuing project rules.
+The later benchmark must time uninstrumented production/JMH processes: no active JaCoCo agent in timed JVMs. Coverage verification is a separate mandatory quality gate; do not bypass pre-push/CI gates to benchmark.
+If this task is incomplete, do not automatically start prompt 003.
+
+RESULT
+Save the exact executed prompt under docs/prompts/AD-PRM-20261111-005.txt.
+Write docs/results/AD-RES-20261111-005.md without overwriting earlier immutable results.
+Return a short report with:
+- COMPLETE/PARTIAL and elapsed time.
+- New package/folder map and class-diagram/JavaDoc paths.
+- Separate unit/integration counts and actual test execution evidence.
+- Initial and final LINE/BRANCH covered/missed counts and exact percentages.
+- Coverage scope and every tool-generated filtering assumption; list any handwritten exclusion (expected: NONE).
+- Verified README commands and report locations.
+- Demonstration that an unmet coverage gate blocks verification/push and that missing coverage data is not accepted.
+- Tested source/release/tag SHAs, actual CI status, and exact v0.2.1 benchmark baseline.
+- Remaining gaps, if any.
+
+Do not call the project 100% covered until the fresh combined XML counters prove it.

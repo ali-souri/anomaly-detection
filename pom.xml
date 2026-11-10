@@ -7,7 +7,7 @@
     <version>3.5.16</version>
     <relativePath/>
   </parent>
-  <groupId>io.github.alisouri</groupId>
+  <groupId>io.anomaly</groupId>
   <artifactId>anomaly-detection</artifactId>
   <version>0.2.0</version>
   <name>Anomaly detection</name>
