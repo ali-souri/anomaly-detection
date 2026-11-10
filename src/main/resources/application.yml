@@ -1,6 +1,9 @@
 spring:
   application:
     name: anomaly-detection
+  web:
+    resources:
+      add-mappings: false
   jackson:
     deserialization:
       fail-on-unknown-properties: true

@@ -16,3 +16,13 @@ Log: `.cache/logs/swagger-resource-check.log`.
 This is an API-only application, so base configuration should not publish general static resources.
 The dev profile can opt into those resources using the same explicit SWAGGER_ENABLED flag as
 Swagger UI and OpenAPI. A backport must preserve the existing v0.1.0 tag and use a new patch tag.
+
+GREEN, 2026-11-10 20:43 UTC:
+
+```powershell
+./mvnw.cmd -B spotless:apply verify
+```
+
+Exit 0, **39 unit tests and 47 integration tests, no failures/errors/skips**. Direct WebJar
+URLs now return 404 outside dev; both enabled dev documentation endpoints remain available.
+Log: `.cache/logs/swagger-resources-green.log`.
