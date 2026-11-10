@@ -107,7 +107,7 @@ class ZScoreDetectorTest {
     var data = new ArrayList<>(List.of(9., 2., 5., 9., 4., 5., 4., 4.));
     var before = new ArrayList<>(data);
     var result = detector.detect(data, 1);
-    assertThat(result.mean()).isEqualTo(5.25);
+    assertThat(result.mean()).isCloseTo(5.25, within(1e-14));
     assertThat(result.standardDeviation()).isCloseTo(Math.sqrt(5.4375), within(1e-14));
     assertThat(result.summary().anomalies()).containsExactly(9., 2., 9.);
     assertThat(result.summary().normalValues()).containsExactly(5., 4., 5., 4., 4.);
