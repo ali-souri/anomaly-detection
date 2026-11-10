@@ -79,6 +79,7 @@ Then open `/swagger-ui/index.html` or `/v3/api-docs`. The flag alone outside dev
 - Corrected v0.1 patch: annotated tag `v0.1.1` closes direct Swagger static-resource access; v0.1.0 is preserved.
 - [v0.2 release](docs/releases/v0.2.md): `release/v0.2`, annotated tag `v0.2.0` (current application).
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
+- [Execution result](docs/results/AD-RES-20261110-002.md): exact tested SHAs, counts, Git/TDD/hook evidence and remote CI.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.
