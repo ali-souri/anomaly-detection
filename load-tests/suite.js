@@ -1,6 +1,7 @@
 import http from 'k6/http';
 import { Counter, Trend, Rate } from 'k6/metrics';
 import exec from 'k6/execution';
+import { sleep } from 'k6';
 import { validSummary } from './contract.mjs';
 
 const size = Number(__ENV.SIZE || 2000000);
@@ -69,4 +70,5 @@ export default function () {
   }
   // Compact timestamps establish completion-window and backlog behavior. No huge response retained.
   console.log(JSON.stringify({ iteration: exec.scenario.iterationInTest, algorithm: name, started, completed, status: response.status, errorCode: response.error_code || 0, sampled: sampled && valid, responseBodyBytes: response.body === null ? null : response.body.length }));
+  if (mode === 'clients') sleep(0.1);
 }

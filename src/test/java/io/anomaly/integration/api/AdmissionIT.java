@@ -12,7 +12,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -27,8 +28,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 class AdmissionIT extends HttpTestSupport {
   @Autowired Gate gate;
 
-  @Test
-  void occupiedSlotRejectsWithoutWaitingThenRecovers() throws Exception {
+  @ParameterizedTest
+  @ValueSource(ints = {0, 10_000_000})
+  void occupiedSlotRejectsWithoutWaitingThenRecovers(int padding) throws Exception {
+    gate.entered = new CountDownLatch(1);
+    gate.release = new CountDownLatch(1);
     var first =
         client.sendAsync(
             HttpRequest.newBuilder(uri("/api/v1/anomaly-detection"))
@@ -47,7 +51,7 @@ class AdmissionIT extends HttpTestSupport {
                       .header("Content-Type", "application/json")
                       .POST(
                           HttpRequest.BodyPublishers.ofString(
-                              "{\"algorithm\":\"Z_SCORE\",\"data\":[7]}"))
+                              "{\"algorithm\":\"Z_SCORE\",\"data\":[7]}" + " ".repeat(padding)))
                       .build(),
                   HttpResponse.BodyHandlers.ofString())
               .get(2, TimeUnit.SECONDS);
@@ -65,8 +69,8 @@ class AdmissionIT extends HttpTestSupport {
   }
 
   static class Gate extends OncePerRequestFilter {
-    final CountDownLatch entered = new CountDownLatch(1);
-    final CountDownLatch release = new CountDownLatch(1);
+    CountDownLatch entered = new CountDownLatch(1);
+    CountDownLatch release = new CountDownLatch(1);
 
     @Override
     protected void doFilterInternal(

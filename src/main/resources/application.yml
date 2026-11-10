@@ -10,6 +10,8 @@ spring:
 server:
   port: ${PORT:8080}
   shutdown: graceful
+  tomcat:
+    max-swallow-size: ${DETECTION_LIMITS_MAX_BODY_BYTES:67108864}
   error:
     include-message: never
     include-stacktrace: never
