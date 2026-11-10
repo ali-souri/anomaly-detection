@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: anomaly-detection
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
