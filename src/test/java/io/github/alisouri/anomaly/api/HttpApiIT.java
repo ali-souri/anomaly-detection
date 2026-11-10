@@ -140,6 +140,16 @@ class HttpApiIT extends HttpTestSupport {
     assertThat(get("/v3/api-docs").statusCode()).isEqualTo(404);
     assertThat(get("/swagger-ui/index.html").statusCode()).isEqualTo(404);
     assertThat(get("/swagger-ui.html").statusCode()).isEqualTo(404);
+    var properties = new java.util.Properties();
+    try (var metadata =
+        getClass().getResourceAsStream("/META-INF/maven/org.webjars/swagger-ui/pom.properties")) {
+      properties.load(metadata);
+    }
+    assertThat(get("/webjars/swagger-ui/index.html").statusCode()).isEqualTo(404);
+    assertThat(
+            get("/webjars/swagger-ui/" + properties.getProperty("version") + "/index.html")
+                .statusCode())
+        .isEqualTo(404);
   }
 
   @Test

@@ -49,7 +49,7 @@ public class DetectionConfiguration {
         .info(
             new Info()
                 .title("Anomaly detection")
-                .version("0.1.0")
+                .version("0.1.1")
                 .description(
                     "Finite JSON numbers; ordered partitions; IQR median-of-halves. See docs/api.md for numerical conventions and stable Problem Details codes."));
   }
