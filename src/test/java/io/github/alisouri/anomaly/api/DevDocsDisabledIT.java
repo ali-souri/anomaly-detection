@@ -12,6 +12,7 @@ class DevDocsDisabledIT extends HttpTestSupport {
   @Test
   void devStillDefaultsToDisabled() throws Exception {
     assertThat(get("/v3/api-docs").statusCode()).isEqualTo(404);
+    assertThat(get("/v3/api-docs.yaml").statusCode()).isEqualTo(404);
     assertThat(get("/swagger-ui/index.html").statusCode()).isEqualTo(404);
   }
 }

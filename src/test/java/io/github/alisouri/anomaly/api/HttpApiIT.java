@@ -121,7 +121,9 @@ class HttpApiIT extends HttpTestSupport {
         send("POST", "/api/v1/anomaly-detection", "text/plain", "hello"),
         415,
         "UNSUPPORTED_MEDIA_TYPE");
-    assertProblem(get("/api/v1/anomaly-detection"), 405, "METHOD_NOT_ALLOWED");
+    var wrongMethod = get("/api/v1/anomaly-detection");
+    assertProblem(wrongMethod, 405, "METHOD_NOT_ALLOWED");
+    assertThat(wrongMethod.headers().firstValue("Allow").orElse("")).contains("POST");
     assertProblem(
         post("{\"algorithm\":\"IQR\",\"data\":[-1.7976931348623157e308,1.7976931348623157e308]}"),
         422,
@@ -138,6 +140,7 @@ class HttpApiIT extends HttpTestSupport {
   @Test
   void swaggerAndJsonStayDisabledOutsideDevEvenWithTheFlag() throws Exception {
     assertThat(get("/v3/api-docs").statusCode()).isEqualTo(404);
+    assertThat(get("/v3/api-docs.yaml").statusCode()).isEqualTo(404);
     assertThat(get("/swagger-ui/index.html").statusCode()).isEqualTo(404);
     assertThat(get("/swagger-ui.html").statusCode()).isEqualTo(404);
   }
