@@ -18,6 +18,7 @@ const unexpected = new Counter('unexpected_requests');
 const successLatency = new Trend('successful_latency_ms', true);
 const requestBytes = new Counter('successful_request_body_bytes');
 const correctness = new Rate('sampled_full_correctness');
+const validated = { IQR: false, Z_SCORE: false };
 
 export const options = {
   discardResponseBodies: true,
@@ -47,7 +48,7 @@ export function setup() {
 export default function () {
   const name = algorithm === 'MIXED' ? (exec.scenario.iterationInTest % 2 === 0 ? 'IQR' : 'Z_SCORE') : algorithm;
   const started = Date.now();
-  const sampled = exec.scenario.iterationInTest % 101 === 0;
+  const sampled = !validated[name] || exec.scenario.iterationInTest % 101 === 0;
   const response = http.post(`${base}/api/v1/anomaly-detection`, body[name], {
     headers: { 'Content-Type': 'application/json', 'Accept-Encoding': 'identity' }, timeout: '30s',
     tags: { algorithm: name },
@@ -58,6 +59,7 @@ export default function () {
   if (valid && sampled) {
     valid = validSummary(response.json(), name, size);
     correctness.add(valid);
+    validated[name] = valid;
   }
   if (valid) {
     successful.add(1, { algorithm: name });
