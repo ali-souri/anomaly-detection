@@ -16,6 +16,7 @@
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.test.plugin.version>3.5.4</maven.test.plugin.version>
+    <jacocoAgentArgLine></jacocoAgentArgLine>
   </properties>
   <dependencies>
     <dependency><groupId>org.springframework.boot</groupId><artifactId>spring-boot-starter-web</artifactId></dependency>
@@ -38,12 +39,36 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>${maven.test.plugin.version}</version>
-        <configuration><argLine>-Djava.io.tmpdir=${project.basedir}/.cache/tmp</argLine><failIfNoTests>true</failIfNoTests></configuration>
+        <configuration><argLine>@{jacocoAgentArgLine} -Djava.io.tmpdir=${project.basedir}/.cache/tmp</argLine><failIfNoTests>true</failIfNoTests></configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-failsafe-plugin</artifactId><version>${maven.test.plugin.version}</version>
-        <configuration><argLine>-Djava.io.tmpdir=${project.basedir}/.cache/tmp</argLine><failIfNoTests>true</failIfNoTests></configuration>
+        <configuration><argLine>@{jacocoAgentArgLine} -Djava.io.tmpdir=${project.basedir}/.cache/tmp</argLine><failIfNoTests>true</failIfNoTests></configuration>
         <executions><execution><goals><goal>integration-test</goal><goal>verify</goal></goals></execution></executions>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId><artifactId>jacoco-maven-plugin</artifactId><version>0.8.16</version>
+        <configuration><propertyName>jacocoAgentArgLine</propertyName><append>true</append></configuration>
+        <executions>
+          <execution><id>coverage-agent</id><goals><goal>prepare-agent</goal></goals></execution>
+          <execution><id>combined-report</id><phase>verify</phase><goals><goal>report</goal></goals></execution>
+          <execution><id>exact-coverage-gate</id><phase>verify</phase><goals><goal>check</goal></goals><configuration><rules><rule><element>BUNDLE</element><limits>
+            <limit><counter>LINE</counter><value>MISSEDCOUNT</value><maximum>0</maximum></limit>
+            <limit><counter>BRANCH</counter><value>MISSEDCOUNT</value><maximum>0</maximum></limit>
+          </limits></rule></rules></configuration></execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId><artifactId>maven-antrun-plugin</artifactId><version>3.2.0</version>
+        <executions><execution><id>coverage-data-required</id><phase>verify</phase><goals><goal>run</goal></goals><configuration><target>
+          <condition property="coverage.data.valid"><and>
+            <available file="${project.build.directory}/jacoco.exec"/>
+            <length file="${project.build.directory}/jacoco.exec" length="0" when="greater"/>
+            <available file="${project.build.directory}/site/jacoco/jacoco.xml"/>
+            <resourcecontains resource="${project.build.directory}/site/jacoco/jacoco.xml" substring="&lt;class name="/>
+          </and></condition>
+          <fail unless="coverage.data.valid" message="Coverage requires nonempty execution data, XML, and analyzed application classes."/>
+        </target></configuration></execution></executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId><artifactId>maven-javadoc-plugin</artifactId><version>3.11.2</version>

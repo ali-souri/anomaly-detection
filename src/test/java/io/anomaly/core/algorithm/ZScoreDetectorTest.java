@@ -16,6 +16,21 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ZScoreDetectorTest {
+  @Test
+  void distinctAdjacentValuesMustNotCollapseToZeroVariance() {
+    assertThatThrownBy(() -> new ZScoreDetector().detect(List.of(Math.nextUp(1.0), 1.0), 3))
+        .isInstanceOf(NumericalRangeException.class)
+        .hasMessage("Variance cannot be represented safely.");
+  }
+
+  @Test
+  void dividingATinyNonzeroSquaredDeviationMustNotUnderflowToZeroVariance() {
+    double value = Math.sqrt(2 * Double.MIN_VALUE);
+    assertThatThrownBy(() -> new ZScoreDetector().detect(List.of(0., 0., value), 3))
+        .isInstanceOf(NumericalRangeException.class)
+        .hasMessage("Variance cannot be represented safely.");
+  }
+
   private final ZScoreDetector detector = new ZScoreDetector();
 
   @Test

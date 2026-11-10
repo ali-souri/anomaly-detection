@@ -49,7 +49,9 @@ public final class ZScoreDetector implements AnomalyDetector {
       mean = Inputs.finite(mean + delta / count);
       double deltaAfter = Inputs.finite(value - mean);
       double contribution = Inputs.finite(delta * deltaAfter);
-      if (contribution < 0 || (delta != 0 && deltaAfter != 0 && contribution == 0)) {
+      // The updated mean lies between the previous mean and value: both deltas share a sign.
+      // Non-finite multiplication is already rejected; guard reachable underflow explicitly.
+      if (delta != 0 && deltaAfter != 0 && contribution == 0) {
         throw new NumericalRangeException("Variance cannot be represented safely.");
       }
       sumSquaredDeviations = Inputs.finite(sumSquaredDeviations + contribution);

@@ -1,6 +1,8 @@
 package io.anomaly.core.service;
 
 import io.anomaly.core.algorithm.AnomalyDetector;
+import io.anomaly.core.exception.NumericalRangeException;
+import io.anomaly.core.exception.UnsupportedAlgorithmException;
 import io.anomaly.core.model.DetectionResult;
 import io.anomaly.core.registry.AlgorithmRegistry;
 import java.util.List;
