@@ -118,6 +118,7 @@ for instrumentation, exact counters, filtering and failure-fixture evidence.
 - [v0.2.1 maintenance](docs/releases/v0.2.1.md): io.anomaly packages, exact coverage gate and benchmark baseline.
 - [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
 - [Initial execution result](docs/results/AD-RES-20261110-002.md): preserved v0.1/v0.2 evidence.
+- [Maintenance result](docs/results/AD-RES-20261111-005.md): measured coverage, exact v0.2.1 source and CI artifacts.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.
