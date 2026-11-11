@@ -1,0 +1,171 @@
+PROMPT_ID: AD-PRM-20261111-008
+REQUIRED_RESULT_ID: AD-RES-20261111-008
+PARENT_PROMPT: AD-PRM-20261111-007
+PARENT_RESULT: AD-RES-20261111-007
+SUPERSEDES: NONE
+
+OBJECTIVE
+Continue the verified but capacity-incomplete v0.3 increment: profile the actual bottleneck, make at most one small evidence-supported optimization, and repeat the unchanged 10-RPS FULL-output target.
+Target about 35-40 minutes. Prioritize executed profiling, one readable improvement and honest before/after evidence. Do not start another broad infrastructure phase.
+
+WORKSPACE AND STARTING STATE
+Canonical folder: F:\projects\anomaly-detection
+Remote: git@github.com:ali-souri/anomaly-detection.git
+Read AGENTS.md, current Git status, result 007, its load/benchmark raw data and the actual source.
+Verified starting publication on feature/v0.3-evidence:
+33d4e2f3936723cbc4ec28cd03e4428944cecc60
+If the owner has added newer changes, preserve them and record the actual starting state; do not reset to this SHA.
+Frozen release v0.2.1:
+0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7
+
+007 remains PARTIAL / CAPACITY_TARGET_NOT_MET; never edit its issued prompt/result or accepted evidence.
+The four prior priorities remain: measured allocation improvement, bounded admission/input, real Docker/load execution, and exact coverage/integration/documentation gates.
+Use a new feature/v0.3-profile-optimization branch based on the preserved 007 increment. Its base is the existing incomplete feature rather than develop, which does not contain that increment. Keep incomplete continuation work off develop/master.
+
+Within this task, routine scoped code/config/test/docs changes, local experiments, commits and pushes are authorized when this prompt is executed. Preserve other projects and existing services.
+No force push, Git clean/reset, history rewrite, hook bypass, visibility changes, paid infrastructure or global configuration changes.
+Keep generated artifacts/caches/logs/temp files on F: inside the project. Read/run existing installed tools on C: if needed. Use existing Docker storage without relocation or a new project data root on C:.
+
+UNCHANGED TARGET
+10 successful complete requests/second, 2,000,000 values per request, tested separately as:
+1. IQR-only.
+2. Z_SCORE-only.
+3. 50/50 mixed, 10 total requests/second.
+Use the same seed/histogram fixtures, thresholds and FULL output; each 2M response includes 40,000 anomalies and 1,960,000 normal values.
+Preserve global statistics, original order, duplicates, signed-zero/numerical behavior, immutable snapshots/results, strict validation, empty/small/zero-variance conventions and error contracts.
+503/413/invalid requests never count toward successful capacity.
+No owner latency SLO exists; report measured successful latency without inventing one.
+
+FIXED COMPARISON BUDGET
+The best 007 container profile:
+- 3 application replicas, 3.75 CPU units / 3 GiB container / 2 GiB heap each.
+- 3 active permits per replica.
+- nginx 1 CPU / 128 MiB.
+- k6 2 CPUs / 2 GiB, GOMAXPROCS=2, maximum 20 VUs.
+Total ceiling: 14.25 CPU units / 11.125 GiB.
+Demo defaults remain separately documented: active=1, inclusive 2M values and 64 MiB body.
+Container Java 21.0.11 and native Java 21.0.10 are separate environments; do not mix them in an unqualified timing comparison.
+
+007 observed successful count/60s: IQR 5.65, Z_SCORE 6.966667, mixed 6.15.
+Exact-window completion rates were 5.516667 / 6.833333 / 6.0.
+Apps were near CPU quotas; no exact phase attribution was captured.
+007's 39.48% / 45.55% lower core B/op did not establish lower peak live heap or general latency gains.
+
+Do not silently add replicas, RAM, CPU, compression, smaller responses or a lower arrival rate to claim success.
+Tuning permits within this fixed budget is allowed only after measured concurrent-memory/CPU checks; keep its effect separate from a code improvement.
+Never assume raising permits alone increases capacity: longer in-flight lifetime, GC and CPU throttling may offset it.
+Capture current host/container availability first. If the same budget cannot run safely, record the limitation and do not exhaust the host.
+
+A. PROFILE BEFORE CHANGING PRODUCTION CODE
+Capture real CPU-stack/allocation/GC evidence for the current 007 implementation.
+Use JDK Flight Recorder with a bounded short profile recording, or an already available equivalent that supplies actual stack evidence.
+Existing JDK tools/startup flags are preferred; do not install an unrelated profiler globally or add a monitoring framework.
+
+Official JDK 21 references:
+https://docs.oracle.com/en/java/javase/21/docs/specs/man/java.html
+https://docs.oracle.com/en/java/javase/21/docs/specs/man/jfr.html
+
+JFR supports -XX:StartFlightRecording with settings=profile, bounded duration/maxsize, and an explicit output file; jfr print can export selected events in JSON.
+Verify the actual runtime flags/tool availability. Profile settings add overhead, so profiling runs are diagnostic, not the final capacity pass.
+Write raw recordings to ignored project storage, with bounded size (for example 128 MiB per recording). Keep compact extracted summaries and recording hashes in Git; do not commit large recordings or request/response bodies.
+Ensure the recording covers warmed steady load rather than only application startup.
+Use appropriate stack depth when exporting samples and preserve the effective recording settings.
+
+Start with 2M FULL IQR and Z_SCORE at controlled 1/2/3 active requests on one instance. Short 15-30 second diagnostic windows are enough to locate a material hotspot; label durations/sample counts.
+Where budget permits, profile a representative scaled failure using the unchanged three-replica configuration too.
+Keep the existing generator budget. A separate generator host is useful if already available, but do not assume one exists, require new infrastructure, or block all progress waiting for it. Identify same-host generator limitations.
+
+Report evidence for:
+- Raw body reading/copying.
+- Jackson tree creation and conversion to the numeric list.
+- Detector validation/copies and IQR sorting or Welford statistics.
+- Result construction and JSON serialization.
+- Allocation/GC, CPU quota throttling and request/response transport where observable.
+Include important unclassified/native/blocked work rather than forcing all samples into those buckets.
+State inclusive/exclusive sample grouping. Sample percentages are estimates, not precise wall-clock phase durations; sampled allocation weights are not exact object counts.
+Record cgroup cpu.stat deltas, GC observations and heap/process memory separately.
+Do not infer a hotspot solely by subtracting JMH time from API time.
+
+Current source contains a bounded raw-body buffer, a JsonNode tree and then a List<Double>. IQR sorts a boxed list. These are hypotheses to investigate, not permission to declare a bottleneck without stack evidence.
+Do not run builds, coverage instrumentation or JMH alongside diagnostic/capacity load.
+
+B. SELECT ONE SMALL OPTIMIZATION
+After profiling, state:
+1. The material observed hotspot and actual evidence.
+2. The smallest change likely to reduce its measured cost.
+3. The measurable prediction and compatibility risks.
+
+Keep one modular application, io.anomaly role packages, Strategy and the independent core.
+Do not add microservices, RabbitMQ, gRPC, persistence, auth, a new application module or a general streaming/execution framework.
+Do not preselect a whole primitive-model rewrite, parallel streams or a replacement statistical algorithm.
+A narrow temporary representation change inside an existing component is acceptable if evidence supports it and the implementation remains short/readable.
+If JSON-tree overhead dominates, consider a bounded direct parsing approach only if strict documented validation can stay simple and tested.
+If sorting dominates, consider a small local sort-workspace change without changing global quartile conventions.
+Choose one approach from evidence; these examples are not a checklist to implement.
+
+Preserve FULL eager results and the 007 Double-reference allocation benefit.
+No fixture-specific fast path, hardcoded histogram, result cache, lazy List evaluation, dropped normalValues, relaxed validation, skipped arithmetic guards or moved work outside measured detect.
+Never average chunk quartiles or use unrelated chunk-level classification.
+
+Use TDD honestly:
+- Add meaningful behavior/regression tests before modifying the corresponding behavior.
+- Run existing relevant tests before a representation-only performance refactor; preserve their GREEN result through the refactor.
+- Declare and measure the performance hypothesis before accepting the refactor.
+- Do not fabricate a functional RED for behavior that is intentionally unchanged or write identity-only tests solely to mirror storage choices.
+- Record actual ordering/commands. Never retrospectively claim all work was test-first.
+If no small change is justified, publish the profile and a precise next experiment rather than adding complexity.
+
+C. VERIFY THE CHANGE
+Preserve all existing tests and add relevant numerical/ordering/immutability/HTTP regressions.
+If parsing changes, cover required/omitted/null fields, numeric strings, wrong shapes, non-finite values, unknown fields, property order, limits, malformed input and documented status behavior using real HTTP.
+Keep byte limits effective for unknown/chunked lengths, count limits, early admission and permit release through synchronous response success/failure.
+A streaming approach must not quietly remove the raw-body limit or turn invalid input into 500.
+
+All handwritten application code must still have zero missed LINE and BRANCH counters in combined unit + real random-port HTTP integration coverage.
+No handwritten exclusions, generated markers, ignored tests, reduced thresholds or missing/stale coverage acceptance.
+Preserve test-agent/tmpdir configuration, strict JavaDoc, formatting/lint, pre-commit and pre-push clean verify.
+Keep existing harness, Node and Python checks; add meaningful tests for changed tooling.
+Do not present root JaCoCo coverage as coverage of separate scripts/harnesses.
+
+D. MEASURE BEFORE/AFTER WITHOUT PROFILING OVERHEAD
+Use explicit 007 baseline and new candidate artifacts; record source/harness commits, class origins, executed JAR/image hashes and effective configuration.
+Reuse verified local baseline artifacts if present and identity-checked; otherwise reconstruct them in an isolated project-local checkout.
+Do not accidentally use historical v0.2.1 as the primary 008 before/after comparator. It remains the older release reference.
+Run separate timed JVMs, matching JDK, heap, collector, seed, data shape, output and thread settings.
+No JaCoCo agent or active profile recording in final performance/capacity runs.
+
+Repeat paired 2M MIXED core measurements for both algorithms with GC B/op and at least the existing two-fork/multiple-iteration method.
+Use longer warmup if budget permits. Keep full real detect work inside timing and validators outside.
+Capture full API before/after evidence as well; do not present a core-only gain as an established end-to-end gain.
+Verify complete output statistics/counts/values/order outside timing and meaningful sampled checks during load.
+
+Rerun unprofiled 60-second 10-RPS open-arrival tests after warmup for IQR, Z_SCORE and 50/50 mixed through the real nginx entry point.
+Keep fixed resources and exact FULL request/response shape. Fully receive bodies; local post-reception discarding is allowed when disclosed.
+Do not use fast 503s to improve successful latency metrics.
+Report offered/scheduled/completed-successful/rejected/unexpected/timeout/dropped counts, successful p50/p95/p99 with sample counts, exact completion-window rates, drain/backlog timestamps, bytes, GC and resource observations.
+Preserve all failed attempts with clear status. Do not overwrite 007 evidence.
+If a variant regresses correctness or adds complexity without measurable benefit, remove only this task's own prototype edits safely and retain diagnostic evidence.
+
+E. DOCUMENT, PUBLISH AND STOP
+Save new compact evidence under docs/performance/008/ with fresh run labels.
+Update the current architecture decision, readable JavaDoc/class diagram if changed, load commands and Persian interview script to match delivered facts.
+Retain the README's complete Swagger URLs and all prior test/coverage/container instructions.
+Keep immutable 007 reports/raw files and all older releases intact.
+Save this prompt verbatim at docs/prompts/AD-PRM-20261111-008.txt.
+
+If all three target scenarios and all quality gates pass, merge through develop to tested master using the agreed Git flow, create release/v0.3 and annotated v0.3.0, and verify CI on the exact release SHA.
+A short local pass is bounded capacity evidence, not production endurance or universal p99 proof.
+If target or required verification remains unmet, keep the verified increment on the feature branch, push its evidence, and do not create a v0.3 release.
+Do not alter the target or increase the resource ceiling without a separately agreed experiment.
+Stop only project-owned containers started for this task; leave existing services untouched.
+
+RESULT
+Write docs/results/AD-RES-20261111-008.md.
+Report overall COMPLETE/PARTIAL separately from:
+- PROFILING_COMPLETE / PROFILING_INCOMPLETE.
+- OPTIMIZATION_VERIFIED / NO_JUSTIFIED_OPTIMIZATION / OPTIMIZATION_NOT_ACCEPTED.
+- CAPACITY_TARGET_MET / CAPACITY_TARGET_NOT_MET / CAPACITY_NOT_EXECUTED.
+
+Include exact identities, profile settings/sample evidence, selected hotspot, readable code change, measured before/after allocation and timing, real load/container outcomes, fixed resources, test counts/coverage counters, TDD/CI evidence, elapsed time and remaining limitations.
+If incomplete, identify one concrete next step supported by the profile; do not promise that microservices or more permits will automatically meet the target.
+
