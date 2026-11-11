@@ -2,6 +2,8 @@ package io.anomaly.integration.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import io.anomaly.core.algorithm.AnomalyDetector;
+import io.anomaly.core.model.DetectionResult;
 import io.anomaly.support.HttpTestSupport;
 import java.io.ByteArrayInputStream;
 import java.net.http.HttpRequest;
@@ -9,6 +11,9 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
@@ -17,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
       "detection.limits.max-numbers=3",
       "detection.limits.max-body-bytes=128"
     })
+@Import(RequestLimitsIT.ApplicationFailure.class)
 class RequestLimitsIT extends HttpTestSupport {
   private static final String VALID = "{\"algorithm\":\"IQR\",\"data\":[1,2,3]}";
 
@@ -59,6 +65,15 @@ class RequestLimitsIT extends HttpTestSupport {
     assertThat(post(VALID).statusCode()).isEqualTo(200);
   }
 
+  @Test
+  void applicationFailureAlsoReleasesTheOccupiedSlot() throws Exception {
+    var failed = post("{\"algorithm\":\"FAIL\",\"data\":[1]}");
+    assertThat(failed.statusCode()).isEqualTo(500);
+    assertThat(json(failed).path("code").asText()).isEqualTo("INTERNAL_ERROR");
+    assertThat(failed.body()).doesNotContain("private application failure");
+    assertThat(post(VALID).statusCode()).isEqualTo(200);
+  }
+
   private HttpResponse<String> chunked(String body) throws Exception {
     byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
     var publisher = HttpRequest.BodyPublishers.ofInputStream(() -> new ByteArrayInputStream(bytes));
@@ -77,5 +92,25 @@ class RequestLimitsIT extends HttpTestSupport {
         .contains("application/problem+json");
     assertThat(json(response).path("code").asText()).isEqualTo("INPUT_TOO_LARGE");
     assertThat(json(response).path("instance").asText()).isEqualTo("/api/v1/anomaly-detection");
+  }
+
+  @TestConfiguration(proxyBeanMethods = false)
+  static class ApplicationFailure {
+    @Bean
+    AnomalyDetector failingStrategy() {
+      return new AnomalyDetector() {
+        public String algorithm() {
+          return "FAIL";
+        }
+
+        public double defaultThreshold() {
+          return 1;
+        }
+
+        public DetectionResult detect(java.util.List<Double> data, double threshold) {
+          throw new IllegalStateException("private application failure");
+        }
+      };
+    }
   }
 }
