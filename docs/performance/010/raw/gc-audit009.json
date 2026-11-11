@@ -1,0 +1,620 @@
+{
+  "A-IQR": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 315,
+        "stwSumMs": 26559.052,
+        "stwMaxMs": 291.52,
+        "stwByType": {
+          "young": {
+            "count": 183,
+            "sumMs": 19756.607
+          },
+          "mixed": {
+            "count": 55,
+            "sumMs": 6333.445
+          },
+          "remark": {
+            "count": 38,
+            "sumMs": 242.808
+          },
+          "cleanup": {
+            "count": 38,
+            "sumMs": 27.084
+          },
+          "full": {
+            "count": 1,
+            "sumMs": 199.108
+          }
+        },
+        "concurrentCycleSummaries": 39,
+        "concurrentCycleElapsedSumMs": 35073.467
+      },
+      "app-2": {
+        "distinctStwPauses": 331,
+        "stwSumMs": 25899.148,
+        "stwMaxMs": 308.452,
+        "stwByType": {
+          "young": {
+            "count": 189,
+            "sumMs": 18881.653
+          },
+          "mixed": {
+            "count": 60,
+            "sumMs": 6715.889
+          },
+          "remark": {
+            "count": 41,
+            "sumMs": 272.331
+          },
+          "cleanup": {
+            "count": 41,
+            "sumMs": 29.275
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 41,
+        "concurrentCycleElapsedSumMs": 33881.578
+      },
+      "app-3": {
+        "distinctStwPauses": 314,
+        "stwSumMs": 26944.209,
+        "stwMaxMs": 345.449,
+        "stwByType": {
+          "young": {
+            "count": 184,
+            "sumMs": 17905.07
+          },
+          "mixed": {
+            "count": 63,
+            "sumMs": 8368.397
+          },
+          "remark": {
+            "count": 33,
+            "sumMs": 229.72
+          },
+          "cleanup": {
+            "count": 32,
+            "sumMs": 24.63
+          },
+          "full": {
+            "count": 2,
+            "sumMs": 416.392
+          }
+        },
+        "concurrentCycleSummaries": 35,
+        "concurrentCycleElapsedSumMs": 30161.303
+      }
+    },
+    "distinctStwPauses": 960,
+    "crossReplicaStwSumMs": 79402.409,
+    "maximumIndividualStwMs": 345.449,
+    "concurrentCycleElapsedSumMs": 99116.348,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 960,
+      "sumAcrossReplicasMs": 79402.409,
+      "maximumPauseMs": 345.449
+    },
+    "sameCountAndSum": true
+  },
+  "A-MIXED": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 320,
+        "stwSumMs": 27579.165,
+        "stwMaxMs": 292.181,
+        "stwByType": {
+          "young": {
+            "count": 185,
+            "sumMs": 18111.276
+          },
+          "mixed": {
+            "count": 64,
+            "sumMs": 9027.852
+          },
+          "remark": {
+            "count": 35,
+            "sumMs": 246.931
+          },
+          "cleanup": {
+            "count": 35,
+            "sumMs": 27.145
+          },
+          "full": {
+            "count": 1,
+            "sumMs": 165.961
+          }
+        },
+        "concurrentCycleSummaries": 39,
+        "concurrentCycleElapsedSumMs": 31540.147
+      },
+      "app-2": {
+        "distinctStwPauses": 323,
+        "stwSumMs": 27088.022,
+        "stwMaxMs": 314.641,
+        "stwByType": {
+          "young": {
+            "count": 190,
+            "sumMs": 18840.44
+          },
+          "mixed": {
+            "count": 59,
+            "sumMs": 7835.682
+          },
+          "remark": {
+            "count": 37,
+            "sumMs": 250.974
+          },
+          "cleanup": {
+            "count": 36,
+            "sumMs": 28.015
+          },
+          "full": {
+            "count": 1,
+            "sumMs": 132.911
+          }
+        },
+        "concurrentCycleSummaries": 40,
+        "concurrentCycleElapsedSumMs": 31951.068
+      },
+      "app-3": {
+        "distinctStwPauses": 315,
+        "stwSumMs": 27630.85,
+        "stwMaxMs": 280.507,
+        "stwByType": {
+          "young": {
+            "count": 186,
+            "sumMs": 19235.397
+          },
+          "mixed": {
+            "count": 57,
+            "sumMs": 7684.9220000000005
+          },
+          "remark": {
+            "count": 35,
+            "sumMs": 274.775
+          },
+          "cleanup": {
+            "count": 35,
+            "sumMs": 27.801
+          },
+          "full": {
+            "count": 2,
+            "sumMs": 407.95500000000004
+          }
+        },
+        "concurrentCycleSummaries": 37,
+        "concurrentCycleElapsedSumMs": 34368.784
+      }
+    },
+    "distinctStwPauses": 958,
+    "crossReplicaStwSumMs": 82298.037,
+    "maximumIndividualStwMs": 314.641,
+    "concurrentCycleElapsedSumMs": 97859.999,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 958,
+      "sumAcrossReplicasMs": 82298.037,
+      "maximumPauseMs": 314.641
+    },
+    "sameCountAndSum": true
+  },
+  "A-Z_SCORE": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 327,
+        "stwSumMs": 27792.776,
+        "stwMaxMs": 269.734,
+        "stwByType": {
+          "young": {
+            "count": 200,
+            "sumMs": 19372.016
+          },
+          "mixed": {
+            "count": 59,
+            "sumMs": 8031.461
+          },
+          "remark": {
+            "count": 34,
+            "sumMs": 226.195
+          },
+          "cleanup": {
+            "count": 33,
+            "sumMs": 25.186
+          },
+          "full": {
+            "count": 1,
+            "sumMs": 137.918
+          }
+        },
+        "concurrentCycleSummaries": 36,
+        "concurrentCycleElapsedSumMs": 32995.339
+      },
+      "app-2": {
+        "distinctStwPauses": 335,
+        "stwSumMs": 29029.224,
+        "stwMaxMs": 266.222,
+        "stwByType": {
+          "young": {
+            "count": 199,
+            "sumMs": 19064.425
+          },
+          "mixed": {
+            "count": 68,
+            "sumMs": 9393.661
+          },
+          "remark": {
+            "count": 33,
+            "sumMs": 291.371
+          },
+          "cleanup": {
+            "count": 33,
+            "sumMs": 23.022
+          },
+          "full": {
+            "count": 2,
+            "sumMs": 256.745
+          }
+        },
+        "concurrentCycleSummaries": 35,
+        "concurrentCycleElapsedSumMs": 32175.623
+      },
+      "app-3": {
+        "distinctStwPauses": 343,
+        "stwSumMs": 28632.821,
+        "stwMaxMs": 351.675,
+        "stwByType": {
+          "young": {
+            "count": 208,
+            "sumMs": 20361.776
+          },
+          "mixed": {
+            "count": 59,
+            "sumMs": 7646.306
+          },
+          "remark": {
+            "count": 37,
+            "sumMs": 239.67
+          },
+          "cleanup": {
+            "count": 37,
+            "sumMs": 26.96
+          },
+          "full": {
+            "count": 2,
+            "sumMs": 358.10900000000004
+          }
+        },
+        "concurrentCycleSummaries": 39,
+        "concurrentCycleElapsedSumMs": 35099.577
+      }
+    },
+    "distinctStwPauses": 1005,
+    "crossReplicaStwSumMs": 85454.821,
+    "maximumIndividualStwMs": 351.675,
+    "concurrentCycleElapsedSumMs": 100270.539,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 1005,
+      "sumAcrossReplicasMs": 85454.821,
+      "maximumPauseMs": 351.675
+    },
+    "sameCountAndSum": true
+  },
+  "B-IQR": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 300,
+        "stwSumMs": 25999.659,
+        "stwMaxMs": 356.72,
+        "stwByType": {
+          "young": {
+            "count": 148,
+            "sumMs": 15617.302
+          },
+          "mixed": {
+            "count": 71,
+            "sumMs": 10129.352
+          },
+          "remark": {
+            "count": 41,
+            "sumMs": 227.89
+          },
+          "cleanup": {
+            "count": 40,
+            "sumMs": 25.115
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 48,
+        "concurrentCycleElapsedSumMs": 20923.741
+      },
+      "app-2": {
+        "distinctStwPauses": 295,
+        "stwSumMs": 26506.762,
+        "stwMaxMs": 396.345,
+        "stwByType": {
+          "young": {
+            "count": 141,
+            "sumMs": 15127.029
+          },
+          "mixed": {
+            "count": 76,
+            "sumMs": 11141.57
+          },
+          "remark": {
+            "count": 39,
+            "sumMs": 215.218
+          },
+          "cleanup": {
+            "count": 39,
+            "sumMs": 22.945
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 40,
+        "concurrentCycleElapsedSumMs": 22675.471
+      },
+      "app-3": {
+        "distinctStwPauses": 315,
+        "stwSumMs": 26385.6,
+        "stwMaxMs": 376.788,
+        "stwByType": {
+          "young": {
+            "count": 158,
+            "sumMs": 17071.501
+          },
+          "mixed": {
+            "count": 67,
+            "sumMs": 9048.725
+          },
+          "remark": {
+            "count": 45,
+            "sumMs": 237.953
+          },
+          "cleanup": {
+            "count": 45,
+            "sumMs": 27.421
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 50,
+        "concurrentCycleElapsedSumMs": 24229.678
+      }
+    },
+    "distinctStwPauses": 910,
+    "crossReplicaStwSumMs": 78892.021,
+    "maximumIndividualStwMs": 396.345,
+    "concurrentCycleElapsedSumMs": 67828.89,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 910,
+      "sumAcrossReplicasMs": 78892.021,
+      "maximumPauseMs": 396.345
+    },
+    "sameCountAndSum": true
+  },
+  "B-MIXED": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 310,
+        "stwSumMs": 27414.283,
+        "stwMaxMs": 423.366,
+        "stwByType": {
+          "young": {
+            "count": 157,
+            "sumMs": 17996.519
+          },
+          "mixed": {
+            "count": 69,
+            "sumMs": 9154.025
+          },
+          "remark": {
+            "count": 42,
+            "sumMs": 238.778
+          },
+          "cleanup": {
+            "count": 42,
+            "sumMs": 24.961
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 46,
+        "concurrentCycleElapsedSumMs": 23930.72
+      },
+      "app-2": {
+        "distinctStwPauses": 317,
+        "stwSumMs": 27185.987,
+        "stwMaxMs": 344.426,
+        "stwByType": {
+          "young": {
+            "count": 162,
+            "sumMs": 17177.655
+          },
+          "mixed": {
+            "count": 71,
+            "sumMs": 9751.407
+          },
+          "remark": {
+            "count": 42,
+            "sumMs": 225.808
+          },
+          "cleanup": {
+            "count": 42,
+            "sumMs": 31.117
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 47,
+        "concurrentCycleElapsedSumMs": 22810.588
+      },
+      "app-3": {
+        "distinctStwPauses": 300,
+        "stwSumMs": 27463.502,
+        "stwMaxMs": 412.486,
+        "stwByType": {
+          "young": {
+            "count": 142,
+            "sumMs": 16003.292
+          },
+          "mixed": {
+            "count": 80,
+            "sumMs": 11217.28
+          },
+          "remark": {
+            "count": 39,
+            "sumMs": 218.239
+          },
+          "cleanup": {
+            "count": 39,
+            "sumMs": 24.691
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 41,
+        "concurrentCycleElapsedSumMs": 21456.874
+      }
+    },
+    "distinctStwPauses": 927,
+    "crossReplicaStwSumMs": 82063.772,
+    "maximumIndividualStwMs": 423.366,
+    "concurrentCycleElapsedSumMs": 68198.182,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 927,
+      "sumAcrossReplicasMs": 82063.772,
+      "maximumPauseMs": 423.366
+    },
+    "sameCountAndSum": true
+  },
+  "B-Z_SCORE": {
+    "perJvm": {
+      "app-1": {
+        "distinctStwPauses": 322,
+        "stwSumMs": 28328.256,
+        "stwMaxMs": 376.216,
+        "stwByType": {
+          "young": {
+            "count": 163,
+            "sumMs": 18079.469
+          },
+          "mixed": {
+            "count": 71,
+            "sumMs": 9965.47
+          },
+          "remark": {
+            "count": 44,
+            "sumMs": 258.091
+          },
+          "cleanup": {
+            "count": 44,
+            "sumMs": 25.226
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 46,
+        "concurrentCycleElapsedSumMs": 24446.732
+      },
+      "app-2": {
+        "distinctStwPauses": 330,
+        "stwSumMs": 27783.394,
+        "stwMaxMs": 467.699,
+        "stwByType": {
+          "young": {
+            "count": 170,
+            "sumMs": 17954.021
+          },
+          "mixed": {
+            "count": 70,
+            "sumMs": 9559.428
+          },
+          "remark": {
+            "count": 45,
+            "sumMs": 243.745
+          },
+          "cleanup": {
+            "count": 45,
+            "sumMs": 26.2
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 49,
+        "concurrentCycleElapsedSumMs": 24090.33
+      },
+      "app-3": {
+        "distinctStwPauses": 322,
+        "stwSumMs": 27917.831,
+        "stwMaxMs": 471.759,
+        "stwByType": {
+          "young": {
+            "count": 165,
+            "sumMs": 17769.46
+          },
+          "mixed": {
+            "count": 73,
+            "sumMs": 9908.826
+          },
+          "remark": {
+            "count": 42,
+            "sumMs": 216.84
+          },
+          "cleanup": {
+            "count": 42,
+            "sumMs": 22.705
+          },
+          "full": {
+            "count": 0,
+            "sumMs": 0
+          }
+        },
+        "concurrentCycleSummaries": 46,
+        "concurrentCycleElapsedSumMs": 23075.085
+      }
+    },
+    "distinctStwPauses": 974,
+    "crossReplicaStwSumMs": 84029.481,
+    "maximumIndividualStwMs": 471.759,
+    "concurrentCycleElapsedSumMs": 71612.147,
+    "ignoredDuplicatePauseSummaries": 0,
+    "unknownPauseSummaries": [],
+    "previousAggregate": {
+      "count": 974,
+      "sumAcrossReplicasMs": 84029.481,
+      "maximumPauseMs": 471.759
+    },
+    "sameCountAndSum": true
+  }
+}

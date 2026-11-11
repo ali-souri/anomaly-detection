@@ -1,0 +1,26 @@
+{
+  "A": {
+    "G1New": {
+      "count": 85,
+      "durationSeconds": 6.419553587,
+      "sumOfPausesSeconds": 6.419553587
+    },
+    "G1Old": {
+      "count": 18,
+      "durationSeconds": 7.083144316,
+      "sumOfPausesSeconds": 0.053158365000000006
+    }
+  },
+  "B": {
+    "G1New": {
+      "count": 87,
+      "durationSeconds": 6.2867351020000015,
+      "sumOfPausesSeconds": 6.2867351020000015
+    },
+    "G1Old": {
+      "count": 22,
+      "durationSeconds": 4.4134718479999995,
+      "sumOfPausesSeconds": 0.063142919
+    }
+  }
+}

@@ -1,0 +1,162 @@
+PROMPT_ID: AD-PRM-20261111-010
+REQUIRED_RESULT_ID: AD-RES-20261111-010
+PARENT_PROMPT: AD-PRM-20261111-009
+PARENT_RESULT: AD-RES-20261111-009
+SUPERSEDES: NONE
+
+OWNER DECISION AND HARD SCOPE
+The owner permits exactly ONE final optimization prompt, then wants to move to the interview voice report.
+Execute a short, bounded JVM heap/G1 configuration experiment on the verified 009 application.
+Do not change application logic, algorithms, parsing, serialization, models or API behavior.
+Stop optimization after this task WHETHER OR NOT ten RPS is achieved. Do not propose or automatically start another optimization.
+Finish with a factual interview/voice handoff.
+
+Target 25-30 minutes; aim to finish within 35 minutes including required checks/publication. If the budget or runtime prevents proof, report the missing work honestly. Never bypass hooks/checks or label unfinished work successful.
+
+WORKSPACE, BASELINE AND AUTHORITY
+Canonical folder: F:\projects\anomaly-detection
+Remote: git@github.com:ali-souri/anomaly-detection.git
+Read AGENTS.md, current Git status, result 009 and its accepted API/load/resource evidence.
+Current preserved publication:
+bc18d635bcf8359794b0f75aaedbf63d57f481fa
+Its exact-code successful CI:
+ebf432f4a72325aa0504a183b571dabf782d47c0
+Executed 009 image:
+sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e
+Executed JAR:
+de69e4871d3b94605bb436aca49ff10dfd42684f110316ed21ad0aab2f082aac
+
+Use this SAME identity-checked image/JAR for baseline and tuning variants. Avoid an accidental rebuild/pull or stale 007 image tag from base Compose.
+Record newer owner changes without discarding them. Use feature/v0.3-jvm-tuning based on the preserved 009 increment; incomplete capacity work is not on develop.
+Routine scoped Compose/scripts/docs changes, tests, bounded experiments, commits and green pushes are authorized by executing this prompt.
+No Git clean/reset, force push, history rewrite, hook bypass, old-ref movement, repository visibility change, paid resources, global installations/settings or unrelated-service changes.
+Keep generated local logs/caches/temp/fixtures on F: inside this project. Existing tools installed on C: may be read/executed. Use existing Docker storage without relocating it or creating project data on C:.
+Keep issued prompts/results and accepted 007/008/009 evidence immutable. Corrections belong in this new record, not rewritten history.
+
+PRESERVED APPLICATION AND RESOURCE CONTRACT
+One modular Java/Spring application, io.anomaly packages, independent core, Strategy/registry, constructor injection and all 009 behavior remain.
+Verify src/main/java is unchanged across the experiment.
+Demo policies remain active=1, inclusive 2M numbers and 64MiB body; strict validation, charset compatibility, signed zero, order/duplicates, snapshots, numerical guards, empty/small/zero-variance behavior, admission/recovery and Swagger isolation remain.
+No new classes, endpoints, response modes, compression, caches, microservices, RabbitMQ, gRPC, persistence or auth.
+
+Unchanged capacity deployment:
+- Three app replicas: 3.75 CPUs / 3 GiB container each, active=3 each.
+- nginx: 1 CPU / 128 MiB.
+- k6: 2 CPUs / 2 GiB, GOMAXPROCS=2, maximum20 VUs.
+Outer ceiling remains 14.25 CPU units / 11.125 GiB.
+Do not add replicas, permits, CPU, container RAM or swap. Leave PID/shutdown/readiness limits intact.
+ONLY JVM heap/G1 settings inside those same app containers may vary.
+The baseline is G1, Xms512m/Xmx2g; container runtime remains the exact Java21.0.11 image.
+A larger heap uses more of the existing container budget; this is deliberate runtime tuning, not a new application optimization or an identical-heap comparison.
+
+Owner target remains 10 successful complete requests/second, each with 2,000,000 numbers, separately IQR-only, Z_SCORE-only and 50/50 mixed.
+Use seed20261110, identical inputs/default thresholds and FULL outputs, including40,000 anomalies +1,960,000 normal values.
+503/413 do not count toward success; no owner latency SLO exists. Report tail-latency tradeoffs without inventing one.
+009 exact-window candidate rates were6.70 /7.133333 /6.966667. They remain historical context; use a fresh contemporaneous baseline here.
+
+1. VERIFY THE GC EVIDENCE AND DECLARE THE EXPERIMENT
+Before claiming GC is the limiting cause, audit the existing GC analysis against actual log/event types:
+- Count distinct STOP-THE-WORLD pause events once.
+- Separate young/mixed/remark/cleanup/full pauses from concurrent-cycle elapsed time.
+- Do not count a Concurrent Mark Cycle's entire duration as a stop-the-world pause.
+- Distinguish per-JVM pause sums from cross-replica sums, which may overlap in time.
+- Keep CPU quota throttling and GC pause duration separate.
+If a prior aggregate was mislabeled, document an erratum in 010 without changing issued historical records. Do not tune from a false pause assumption.
+
+Write docs/performance/010/experiment.md before trials, with hypothesis, actual starting flags, selected maximum heap/region size, resource/headroom guards, trial order and pass criteria.
+Hypothesis: additional heap room and, if supported by evidence, a relaxed G1 pause-time goal may reduce collection overhead and improve successful throughput. This is unproven; no promise of 10 RPS.
+Use the actual JDK21 G1 guidance:
+https://docs.oracle.com/en/java/javase/21/gctuning/garbage-first-garbage-collector-tuning.html
+G1 pause targets are soft goals, not hard response-time guarantees.
+
+2. AT MOST TWO CONFIGURATION CANDIDATES
+A: unchanged 009 runtime: -Xms512m -Xmx2048m -XX:+UseG1GC, with the actual baseline pause goal.
+B: change ONLY maximum heap: -Xms512m -Xmx2560m -XX:+UseG1GC (2.5 GiB max heap); keep other settings.
+C: ONLY if B is safe, one additional trial: -Xms512m -Xmx2560m -XX:+UseG1GC -XX:MaxGCPauseMillis=500.
+C is a combined heap/pause-goal configuration; compare its additional effect with B and do not attribute the whole result to a single flag.
+If B is unsafe, skip C and retain A. If no candidate has supported benefit, retain A.
+No region-size/thread-count/collector sweep, adaptive retry loop or further candidate grid.
+
+Capture actual effective JVM options, selected collector, initial/max heap, ergonomic region size, cgroup limits and immutable image/JAR identity per variant.
+Changing Xmx may also change ergonomic region size; report what actually happened.
+Do not set JAVA_TOOL_OPTIONS globally or contaminate Maven/hooks, generator or unrelated processes. Scope overrides to this task's app containers.
+Preserve project tmpdir and use equivalent logging across matched final runs.
+Diagnostic verbose GC logs may run separately; final performance must not include active JFR, JaCoCo or unequal diagnostic overhead.
+
+For safety, test a single app with three actual active 2M requests before scaling a larger-heap variant to three replicas.
+2.5 GiB heap leaves only0.5 GiB of the 3 GiB container for native/thread/code/other memory; that remaining budget is not proof of safety.
+Monitor actual cgroup/process memory, native headroom and OOM/max/kill counters. Keep the 1.5 GiB host-headroom guard.
+Stop a trial promptly if it approaches the container ceiling (for example95% sustained use), loses headroom, fails readiness or shows OOM/transport errors. Collect failure state before removal; do not erase an exit137 diagnosis with --rm.
+Leave all unrelated services untouched.
+
+Use short matched20-30 second mixed diagnostic screens to select at most ONE promising candidate for final comparison. Screens are not capacity passes.
+Assess completed-successful work, GC/CPU observations, errors, memory and latency together. Do not pick a winner solely from an isolated p99 or a declared JVM goal.
+
+3. ONE FAIR FINAL COMPARISON
+If no safe promising candidate exists, preserve the baseline and document TUNING_NOT_ACCEPTED; do not continue searching indefinitely.
+Otherwise compare fresh A and the selected configuration in the same session, never running both full deployments together.
+Use matched warmup, generator/resources, input bytes, response bytes and measurement windows.
+Run interleaved A/B pairs for IQR, Z_SCORE and mixed at 10 total arrivals/second and 60 steady seconds per case through nginx.
+Declare the window before results. Report exact starts/completions, count/60 including drain separately from completions inside the window, backlog/in-flight bins and drain.
+Use continuous arrivals around a settled window where practical; do not redefine windows or round a near miss into success.
+If all scenarios pass, repeat at least the hardest scenario once within budget before making a readiness claim.
+Record trial order/time, current host availability and any drift. A single pair is not a general production-performance guarantee.
+
+Receive full bodies; discard locally only AFTER reception when disclosed.
+Run exhaustive outside-timing FULL validation for both algorithms/configurations plus meaningful sampled semantics during load and post-overload recovery.
+Report scheduled/success/rejection/unexpected/timeout/drop counts and successful latency only; fast 503s must not improve success latency.
+Keep measured request/response bytes, GC pause counts/sums/maxima per JVM, CPU/throttling, memory and generator limitations.
+Do not claim aggregate three-JVM GC time is one request's delay or convert allocation samples into exact B/op/live heap.
+No builds, JMH or coverage runs alongside measured load. No rerun of unchanged core JMH is needed.
+
+4. QUALITY, DOCUMENTATION AND RELEASE BOUNDARY
+Preserve 67 unit / 101 real HTTP behavior and all existing harness/Node/Python checks.
+Run the required clean verify, strict JavaDoc/format/lint and appropriate existing tooling checks; CI/pre-push/hook gates remain active.
+Keep exact zero missed LINE and BRANCH counters, required fresh/nonempty data and both test agents/tmpdirs.
+No exclusions, ignored tests or weakened checks.
+Only add tests for meaningful nontrivial new runner/analysis logic. Do not create application classes or mirror-the-configuration tests for JVM flags.
+Record hypothesis/baseline-before-change ordering honestly; no fabricated functional RED for this runtime-only experiment.
+
+Preserve code readability: configuration/docs/tooling only. Update current README/runtime commands with accepted settings and scope.
+An experimental capacity configuration must be clearly separate from single-instance demo defaults; never present multi-replica throughput as one-instance capacity.
+Retain the full Swagger URLs, dev+flag isolation, API versions/contracts, JavaDoc and actual class diagram. Do not redraw unchanged architecture just to create activity.
+
+Save fresh compact evidence under docs/performance/010/; logs/recordings/large bodies remain ignored on F:.
+Copy this prompt verbatim to docs/prompts/AD-PRM-20261111-010.txt.
+Use exact runtime/source/image identities and do not relabel a later documentation commit as measured code.
+No setting is accepted merely because it increases memory consumption or changes a JVM flag; retain it only if the paired evidence supports a useful result and safety/compatibility remain green.
+
+If all three target scenarios and required quality gates genuinely pass, follow the authorized feature → develop → tested master → release/v0.3 / annotated v0.3.0 process and verify actual CI on the exact release SHA.
+Version/release metadata is the only permitted application-source exception after the runtime experiment; verify/package any such change normally and identify measured versus final release artifacts accurately.
+If target or required proof remains unmet, keep the verified candidate/configuration on its feature branch, with NO v0.3 release. Do not lower the target or claim an exception without owner instruction.
+
+5. FINAL VOICE-REPORT HANDOFF, REGARDLESS OF PERFORMANCE OUTCOME
+The owner is ending optimization after 010. Do not start or recommend prompt 011 for performance.
+Prepare docs/interview/final-handoff.md containing:
+- Stable released version/URL and current candidate branch/URL with their distinct readiness states.
+- Exact final source/CI identities, test counts and coverage counters.
+- Actual delivered architecture/reading path, algorithms/edge cases and important classes.
+- Verified improvements from 007/008/009 and 010, each with its own comparator and limitations.
+- Final actual capacity/resource configuration and whether 10 RPS passed.
+- Known limits, TDD chronology and the simple reasons microservices were deferred.
+- Short commands for running tests, viewing coverage, starting the API/Swagger and reproducing the accepted load configuration.
+- Repository visibility/access information for owner review only; do not change visibility, invite anyone or contact the interviewer.
+
+Consolidate the existing docs/interview/voice-script-fa.md into one coherent factual outline/script for roughly 4-5 minutes of the owner's own speech.
+Use simple natural Persian, first person and a short reading order. Explain IQR/Z_SCORE, complexity, Strategy, Spring injection, HTTP validation, TDD/testing/Git, measured optimizations and the honest final capacity outcome.
+Avoid chronological append-only experiment paragraphs, dense SHAs, inflated scale claims or claiming 100% coverage proves correctness.
+Use only final verified facts; if 10 RPS is still unmet, say so plainly. Clearly distinguish shipped releases from feature candidates.
+This is preparation for the next voice-report discussion. Do not generate audio or send messages automatically.
+
+RESULT AND STOP
+Write docs/results/AD-RES-20261111-010.md.
+Report overall COMPLETE/PARTIAL separately from:
+TUNING_VERIFIED / TUNING_NOT_ACCEPTED / TUNING_NOT_EXECUTED
+CAPACITY_TARGET_MET / CAPACITY_TARGET_NOT_MET / CAPACITY_NOT_EXECUTED
+VOICE_HANDOFF_READY / VOICE_HANDOFF_INCOMPLETE
+
+Include elapsed time, exact identities/flags, correct GC accounting, safe/failed/skipped trials, selected configuration, paired actual results, tests/coverage/CI and release state.
+If the required capacity target remains unmet, overall status stays PARTIAL. Independently report a completed experiment and a ready voice handoff; no further optimization is required by that PARTIAL status.
+Stop all and only task-owned containers/networks and confirm unrelated services remain untouched.
+Then STOP optimization. The next activity is the interview voice report.
+

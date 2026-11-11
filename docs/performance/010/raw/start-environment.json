@@ -1,0 +1,11 @@
+{
+  "utc": "2026-11-11T05:09:21.0454247Z",
+  "hostTotalKiB": 33231280,
+  "hostAvailableKiB": 9348280,
+  "dockerInfo": {
+    "NCPU": 20,
+    "MemTotal": 16605085696,
+    "ServerVersion": "29.6.2",
+    "KernelVersion": "6.18.58.1-microsoft-standard-WSL2"
+  }
+}
