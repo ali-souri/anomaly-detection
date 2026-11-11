@@ -31,3 +31,9 @@
   change is IQR primitive scratch sorting; strict parsing/FULL output and 007 reference reuse stay.
   Capacity still failed. The profile supports a future bounded-parser experiment, not automatic
   work, extra resources, microservices or more permits as an assumed fix.
+
+- 010 is the final authorized optimization experiment, on feature/v0.3-jvm-tuning. Read result010
+  and docs/interview/final-handoff.md. Both larger-heap candidates failed to improve the short
+  matched screen; retain009 runtime A. No scaled010 capacity comparison or v0.3 release.
+  Optimization is CLOSED regardless of PARTIAL status. The next activity is the interview voice
+  report; do not propose or start another performance prompt, sweep or optimization.

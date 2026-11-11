@@ -1,0 +1,9 @@
+{
+  "selectedVariant": null,
+  "retainedVariant": "A",
+  "tuning": "TUNING_NOT_ACCEPTED",
+  "capacity": "CAPACITY_NOT_EXECUTED",
+  "reason": "Both safe candidates complete fewer requests and have worse mean latency than contemporaneous A; isolated lower tails are insufficient.",
+  "screenRuleRefinement": "5% work/mean criterion fixed after A and before B/C results; qualitative useful-benefit criterion declared before all trials.",
+  "scaledFinalComparison": "SKIPPED_NO_PROMISING_CANDIDATE"
+}

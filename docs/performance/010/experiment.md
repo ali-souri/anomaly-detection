@@ -49,3 +49,8 @@ unchanged core JMH. No fabricated functional RED for this configuration-only tas
 
 STOP optimization after010 regardless of result; final-handoff.md and a coherent4–5minute Persian
 voice script are required. No audio/contact or further performance prompt. Keep007/008/009 immutable.
+
+Quantitative refinement fixed after A completed81 requests and before B/C results: a promising candidate completes at least5% more
+work thanA with no errors/safety issue and no worse mean successful latency. If both qualify,
+prefer more completed work while inspecting GC/memory/tails; compare C's extra effect withB.
+Final retention requires safe useful paired results, rather than merely a larger heap or one p99.

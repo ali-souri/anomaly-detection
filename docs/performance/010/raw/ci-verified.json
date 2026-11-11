@@ -1,0 +1,104 @@
+{
+  "run": 42964647730,
+  "source": "0fc287b648f52f8c269d891ea6ae987a0fa28f53",
+  "url": "https://github.com/ali-souri/anomaly-detection/actions/runs/42964647730",
+  "conclusion": "success",
+  "tests": {
+    "unit": {
+      "tests": 67,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "http": {
+      "tests": 101,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "harness": {
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": [
+    {
+      "type": "INSTRUCTION",
+      "missed": "0",
+      "covered": "1600"
+    },
+    {
+      "type": "BRANCH",
+      "missed": "0",
+      "covered": "172"
+    },
+    {
+      "type": "LINE",
+      "missed": "0",
+      "covered": "364"
+    },
+    {
+      "type": "COMPLEXITY",
+      "missed": "0",
+      "covered": "166"
+    },
+    {
+      "type": "METHOD",
+      "missed": "0",
+      "covered": "77"
+    },
+    {
+      "type": "CLASS",
+      "missed": "0",
+      "covered": "29"
+    }
+  ],
+  "nonemptyExecBytes": [
+    505538
+  ],
+  "jacocoXmlSha256": "79d807eacc8c23cfe0b44aaa1b96bafd1adaaf0c954698061926a21748dd4d84",
+  "qualitySteps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/setup-java@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify documented convenience commands",
+      "conclusion": "success"
+    },
+    {
+      "name": "Clean combined coverage quality gate",
+      "conclusion": "success"
+    },
+    {
+      "name": "Verify separate candidate benchmark and load tooling",
+      "conclusion": "success"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/setup-java@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "conclusion": "success"
+    },
+    {
+      "name": "Complete job",
+      "conclusion": "success"
+    }
+  ]
+}

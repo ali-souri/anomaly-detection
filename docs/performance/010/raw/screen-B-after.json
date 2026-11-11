@@ -1,0 +1,84 @@
+{
+  "utc": "2026-11-11T05:18:05.9273331Z",
+  "availableHostKiB": 8706516,
+  "apps": [
+    {
+      "name": "anomaly-010-app-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 19215,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-11-11T05:17:14.590381615Z",
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-11-11T05:17:20.293292172Z",
+              "End": "2026-11-11T05:17:20.486101867Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-11-11T05:17:30.486711472Z",
+              "End": "2026-11-11T05:17:30.563488543Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-11-11T05:17:40.563015179Z",
+              "End": "2026-11-11T05:17:40.644391748Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-11-11T05:17:50.645310109Z",
+              "End": "2026-11-11T05:17:50.697174291Z",
+              "ExitCode": 0,
+              "Output": ""
+            },
+            {
+              "Start": "2026-11-11T05:18:00.698712082Z",
+              "End": "2026-11-11T05:18:00.771050165Z",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      },
+      "cpu": [
+        "usage_usec 108800622",
+        "user_usec 101193967",
+        "system_usec 7606654",
+        "nice_usec 0",
+        "nr_periods 434",
+        "nr_throttled 160",
+        "throttled_usec 4246281",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "currentBytes": "1093140480",
+      "peakBytes": "2261843968",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ],
+      "commands": [
+        "PID                 COMMAND",
+        "19215               /sbin/docker-init -- java -jar /app/app.jar",
+        "19277               java -jar /app/app.jar"
+      ]
+    }
+  ]
+}

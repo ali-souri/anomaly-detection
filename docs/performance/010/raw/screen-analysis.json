@@ -1,0 +1,576 @@
+{
+  "A": {
+    "diagnosticScreenNotCapacity": true,
+    "runtime": {
+      "run": "screen-A",
+      "variant": "A",
+      "replicas": 1,
+      "image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+      "jarSha256": "de69e4871d3b94605bb436aca49ff10dfd42684f110316ed21ad0aab2f082aac",
+      "jvmOptions": "-Xms512m -Xmx2048m -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:+PrintFlagsFinal -Xlog:gc,gc+init:stdout:time,uptime,level,tags",
+      "experimentSource": "0fc287b648f52f8c269d891ea6ae987a0fa28f53",
+      "applicationPublication": "bc18d635bcf8359794b0f75aaedbf63d57f481fa",
+      "actualCommands": [
+        "PID                 COMMAND",
+        "17335               /sbin/docker-init -- java -jar /app/app.jar",
+        "17397               java -jar /app/app.jar"
+      ]
+    },
+    "effectiveFlags": {
+      "UseG1GC": {
+        "value": "true",
+        "origin": "environment"
+      },
+      "InitialHeapSize": {
+        "value": "536870912",
+        "origin": "command line"
+      },
+      "MaxHeapSize": {
+        "value": "2147483648",
+        "origin": "command line"
+      },
+      "G1HeapRegionSize": {
+        "value": "1048576",
+        "origin": "ergonomic"
+      },
+      "MaxGCPauseMillis": {
+        "value": "200",
+        "origin": "default"
+      },
+      "ParallelGCThreads": {
+        "value": "4",
+        "origin": "default"
+      },
+      "ConcGCThreads": {
+        "value": "1",
+        "origin": "ergonomic"
+      }
+    },
+    "load": {
+      "startedEpochMs": 1794374196589,
+      "steadyWindowEndEpochMs": 1794374221589,
+      "firstCompletionEpochMs": 1794374197363,
+      "lastCompletionEpochMs": 1794374221964,
+      "durationSeconds": 25,
+      "scheduledAndCompleted": 81,
+      "successful": 81,
+      "rejected503": 0,
+      "unexpected": 0,
+      "timeouts": 0,
+      "droppedIterations": 0,
+      "successfulScheduledRate": 3.24,
+      "successfulCompletedInWindowRate": 3.12,
+      "drainMs": 375,
+      "averageMs": 827.1851851851852,
+      "p50Ms": 802.0,
+      "p95Ms": 1118.0,
+      "p99Ms": 1239.8000000000006,
+      "completedSuccessfulPer10s": [
+        29,
+        34,
+        18
+      ],
+      "inFlightAt10sBoundaries": [
+        2,
+        3,
+        3
+      ],
+      "actualK6DataSentBytesIncludingWarmupAndHeaders": 821717013,
+      "actualK6DataReceivedBytesIncludingWarmupAndHeaders": 823234255,
+      "successfulRequestBodyBytes": 801902428,
+      "sampledFullChecks": 1,
+      "sampledFullCheckFailures": 0,
+      "sampledActualResponseBodyBytes": [
+        9900170
+      ],
+      "allScheduledSucceeded": false
+    },
+    "safety": {
+      "run": "screen-A",
+      "safe": true,
+      "maximumActualOverlappingRequests": 3,
+      "successful": 81,
+      "maximumCgroupPeakBytes": 2091921408,
+      "minimumHostAvailableKiB": 8421024
+    },
+    "gc": {
+      "perJvm": {
+        "app-1": {
+          "distinctStwPauses": 178,
+          "stwSumMs": 11420.117,
+          "stwMaxMs": 496.002,
+          "stwByType": {
+            "young": {
+              "count": 85,
+              "sumMs": 6836.611
+            },
+            "mixed": {
+              "count": 36,
+              "sumMs": 4478.827
+            },
+            "remark": {
+              "count": 29,
+              "sumMs": 95.257
+            },
+            "cleanup": {
+              "count": 28,
+              "sumMs": 9.422
+            },
+            "full": {
+              "count": 0,
+              "sumMs": 0
+            }
+          },
+          "concurrentCycleSummaries": 29,
+          "concurrentCycleElapsedSumMs": 7288.815
+        }
+      },
+      "distinctStwPauses": 178,
+      "crossReplicaStwSumMs": 11420.117,
+      "maximumIndividualStwMs": 496.002,
+      "concurrentCycleElapsedSumMs": 7288.815,
+      "ignoredDuplicatePauseSummaries": 0,
+      "unknownPauseSummaries": []
+    },
+    "wholeValidationAndLoadCallCpuStatDelta": {
+      "usage_usec": 98996015,
+      "user_usec": 92146036,
+      "system_usec": 6849978,
+      "nice_usec": 0,
+      "nr_periods": 366,
+      "nr_throttled": 137,
+      "throttled_usec": 3643148,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "javaRssKiBObserved": [
+      302040,
+      1536852,
+      703444,
+      858388,
+      680092,
+      1458120,
+      918176,
+      1170328,
+      1357832,
+      1749004,
+      1273624,
+      1648884,
+      1364928,
+      1119656,
+      1495100,
+      1984348,
+      1533708
+    ],
+    "javaHighWaterKiBObserved": [
+      325916,
+      1536852,
+      1601948,
+      1601948,
+      1601948,
+      1601948,
+      1611520,
+      1901520,
+      1901520,
+      1901520,
+      1901520,
+      1901520,
+      1901520,
+      1901520,
+      1901520,
+      1984348,
+      2055256
+    ],
+    "minimumContainerObservedHeadroomBytes": 1129304064,
+    "serverLogSha256": "b14d067d65f7437e7e0a1952b100f68109ef76cdf276eafa1bc4e61d5e4b6aa3",
+    "postLoadRecovery": {
+      "utc": "2026-11-11T05:17:05.8149352Z",
+      "status": 200,
+      "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+    }
+  },
+  "B": {
+    "diagnosticScreenNotCapacity": true,
+    "runtime": {
+      "run": "screen-B",
+      "variant": "B",
+      "replicas": 1,
+      "image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+      "jarSha256": "de69e4871d3b94605bb436aca49ff10dfd42684f110316ed21ad0aab2f082aac",
+      "jvmOptions": "-Xms512m -Xmx2560m -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:+PrintFlagsFinal -Xlog:gc,gc+init:stdout:time,uptime,level,tags",
+      "experimentSource": "0fc287b648f52f8c269d891ea6ae987a0fa28f53",
+      "applicationPublication": "bc18d635bcf8359794b0f75aaedbf63d57f481fa",
+      "actualCommands": [
+        "PID                 COMMAND",
+        "19215               /sbin/docker-init -- java -jar /app/app.jar",
+        "19277               java -jar /app/app.jar"
+      ]
+    },
+    "effectiveFlags": {
+      "UseG1GC": {
+        "value": "true",
+        "origin": "environment"
+      },
+      "InitialHeapSize": {
+        "value": "536870912",
+        "origin": "command line"
+      },
+      "MaxHeapSize": {
+        "value": "2684354560",
+        "origin": "command line"
+      },
+      "G1HeapRegionSize": {
+        "value": "2097152",
+        "origin": "ergonomic"
+      },
+      "MaxGCPauseMillis": {
+        "value": "200",
+        "origin": "default"
+      },
+      "ParallelGCThreads": {
+        "value": "4",
+        "origin": "default"
+      },
+      "ConcGCThreads": {
+        "value": "1",
+        "origin": "ergonomic"
+      }
+    },
+    "load": {
+      "startedEpochMs": 1794374256812,
+      "steadyWindowEndEpochMs": 1794374281812,
+      "firstCompletionEpochMs": 1794374257966,
+      "lastCompletionEpochMs": 1794374282101,
+      "durationSeconds": 25,
+      "scheduledAndCompleted": 79,
+      "successful": 79,
+      "rejected503": 0,
+      "unexpected": 0,
+      "timeouts": 0,
+      "droppedIterations": 0,
+      "successfulScheduledRate": 3.16,
+      "successfulCompletedInWindowRate": 3.12,
+      "drainMs": 289,
+      "averageMs": 845.0379746835443,
+      "p50Ms": 845.0,
+      "p95Ms": 1067.9999999999995,
+      "p99Ms": 1186.1,
+      "completedSuccessfulPer10s": [
+        29,
+        31,
+        19
+      ],
+      "inFlightAt10sBoundaries": [
+        2,
+        3,
+        3
+      ],
+      "actualK6DataSentBytesIncludingWarmupAndHeaders": 801916603,
+      "actualK6DataReceivedBytesIncludingWarmupAndHeaders": 803397291,
+      "successfulRequestBodyBytes": 782102368,
+      "sampledFullChecks": 1,
+      "sampledFullCheckFailures": 0,
+      "sampledActualResponseBodyBytes": [
+        9900170
+      ],
+      "allScheduledSucceeded": false
+    },
+    "safety": {
+      "run": "screen-B",
+      "safe": true,
+      "maximumActualOverlappingRequests": 3,
+      "successful": 79,
+      "maximumCgroupPeakBytes": 2261843968,
+      "minimumHostAvailableKiB": 8270228
+    },
+    "gc": {
+      "perJvm": {
+        "app-1": {
+          "distinctStwPauses": 175,
+          "stwSumMs": 11531.241,
+          "stwMaxMs": 319.891,
+          "stwByType": {
+            "young": {
+              "count": 82,
+              "sumMs": 7482.698
+            },
+            "mixed": {
+              "count": 36,
+              "sumMs": 3938.229
+            },
+            "remark": {
+              "count": 29,
+              "sumMs": 101.06700000000001
+            },
+            "cleanup": {
+              "count": 28,
+              "sumMs": 9.247
+            },
+            "full": {
+              "count": 0,
+              "sumMs": 0
+            }
+          },
+          "concurrentCycleSummaries": 28,
+          "concurrentCycleElapsedSumMs": 7504.152
+        }
+      },
+      "distinctStwPauses": 175,
+      "crossReplicaStwSumMs": 11531.241,
+      "maximumIndividualStwMs": 319.891,
+      "concurrentCycleElapsedSumMs": 7504.152,
+      "ignoredDuplicatePauseSummaries": 0,
+      "unknownPauseSummaries": []
+    },
+    "wholeValidationAndLoadCallCpuStatDelta": {
+      "usage_usec": 98925844,
+      "user_usec": 92264562,
+      "system_usec": 6661281,
+      "nice_usec": 0,
+      "nr_periods": 376,
+      "nr_throttled": 156,
+      "throttled_usec": 4046794,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "javaRssKiBObserved": [
+      311840,
+      1524064,
+      1977964,
+      845164,
+      920504,
+      1291892,
+      1321532,
+      1525544,
+      1360768,
+      1445836,
+      1502212,
+      1370044,
+      1161788,
+      1014124,
+      1183608,
+      1170932,
+      1081004,
+      1081004
+    ],
+    "javaHighWaterKiBObserved": [
+      334580,
+      1524064,
+      1977964,
+      2095080,
+      2095080,
+      2095080,
+      2095080,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112,
+      2220112
+    ],
+    "minimumContainerObservedHeadroomBytes": 959381504,
+    "serverLogSha256": "431e2aa5238069d4fed1d744950ff54625cabfb68690b02db09f44fea1cf6085",
+    "postLoadRecovery": {
+      "utc": "2026-11-11T05:18:06.1429911Z",
+      "status": 200,
+      "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+    }
+  },
+  "C": {
+    "diagnosticScreenNotCapacity": true,
+    "runtime": {
+      "run": "screen-C",
+      "variant": "C",
+      "replicas": 1,
+      "image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+      "jarSha256": "de69e4871d3b94605bb436aca49ff10dfd42684f110316ed21ad0aab2f082aac",
+      "jvmOptions": "-Xms512m -Xmx2560m -XX:MaxGCPauseMillis=500 -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:+PrintFlagsFinal -Xlog:gc,gc+init:stdout:time,uptime,level,tags",
+      "experimentSource": "0fc287b648f52f8c269d891ea6ae987a0fa28f53",
+      "applicationPublication": "bc18d635bcf8359794b0f75aaedbf63d57f481fa",
+      "actualCommands": [
+        "PID                 COMMAND",
+        "21132               /sbin/docker-init -- java -jar /app/app.jar",
+        "21175               java -jar /app/app.jar"
+      ]
+    },
+    "effectiveFlags": {
+      "UseG1GC": {
+        "value": "true",
+        "origin": "environment"
+      },
+      "InitialHeapSize": {
+        "value": "536870912",
+        "origin": "command line"
+      },
+      "MaxHeapSize": {
+        "value": "2684354560",
+        "origin": "command line"
+      },
+      "G1HeapRegionSize": {
+        "value": "2097152",
+        "origin": "ergonomic"
+      },
+      "MaxGCPauseMillis": {
+        "value": "500",
+        "origin": "environment"
+      },
+      "ParallelGCThreads": {
+        "value": "4",
+        "origin": "default"
+      },
+      "ConcGCThreads": {
+        "value": "1",
+        "origin": "ergonomic"
+      }
+    },
+    "load": {
+      "startedEpochMs": 1794374318279,
+      "steadyWindowEndEpochMs": 1794374343279,
+      "firstCompletionEpochMs": 1794374319063,
+      "lastCompletionEpochMs": 1794374343685,
+      "durationSeconds": 25,
+      "scheduledAndCompleted": 80,
+      "successful": 80,
+      "rejected503": 0,
+      "unexpected": 0,
+      "timeouts": 0,
+      "droppedIterations": 0,
+      "successfulScheduledRate": 3.2,
+      "successfulCompletedInWindowRate": 3.08,
+      "drainMs": 406,
+      "averageMs": 843.2375,
+      "p50Ms": 843.0,
+      "p95Ms": 996.6499999999999,
+      "p99Ms": 1127.4099999999992,
+      "completedSuccessfulPer10s": [
+        30,
+        32,
+        18
+      ],
+      "inFlightAt10sBoundaries": [
+        3,
+        3,
+        3
+      ],
+      "actualK6DataSentBytesIncludingWarmupAndHeaders": 811816810,
+      "actualK6DataReceivedBytesIncludingWarmupAndHeaders": 813315776,
+      "successfulRequestBodyBytes": 792002400,
+      "sampledFullChecks": 1,
+      "sampledFullCheckFailures": 0,
+      "sampledActualResponseBodyBytes": [
+        9900170
+      ],
+      "allScheduledSucceeded": false
+    },
+    "safety": {
+      "run": "screen-C",
+      "safe": true,
+      "maximumActualOverlappingRequests": 3,
+      "successful": 80,
+      "maximumCgroupPeakBytes": 2102702080,
+      "minimumHostAvailableKiB": 8346872
+    },
+    "gc": {
+      "perJvm": {
+        "app-1": {
+          "distinctStwPauses": 168,
+          "stwSumMs": 12077.757,
+          "stwMaxMs": 360.902,
+          "stwByType": {
+            "young": {
+              "count": 81,
+              "sumMs": 7009.726
+            },
+            "mixed": {
+              "count": 29,
+              "sumMs": 4950.031
+            },
+            "remark": {
+              "count": 29,
+              "sumMs": 110.116
+            },
+            "cleanup": {
+              "count": 29,
+              "sumMs": 7.884
+            },
+            "full": {
+              "count": 0,
+              "sumMs": 0
+            }
+          },
+          "concurrentCycleSummaries": 29,
+          "concurrentCycleElapsedSumMs": 7816.264
+        }
+      },
+      "distinctStwPauses": 168,
+      "crossReplicaStwSumMs": 12077.757,
+      "maximumIndividualStwMs": 360.902,
+      "concurrentCycleElapsedSumMs": 7816.264,
+      "ignoredDuplicatePauseSummaries": 0,
+      "unknownPauseSummaries": []
+    },
+    "wholeValidationAndLoadCallCpuStatDelta": {
+      "usage_usec": 99845904,
+      "user_usec": 93282486,
+      "system_usec": 6563417,
+      "nice_usec": 0,
+      "nr_periods": 377,
+      "nr_throttled": 137,
+      "throttled_usec": 2614976,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "javaRssKiBObserved": [
+      307600,
+      1433724,
+      1708796,
+      880760,
+      880760,
+      730424,
+      811952,
+      1045008,
+      1226840,
+      1152216,
+      1466184,
+      1775168,
+      1321660,
+      1541260,
+      1448316,
+      1661440,
+      1106684,
+      1106684
+    ],
+    "javaHighWaterKiBObserved": [
+      333824,
+      1433724,
+      1708796,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092,
+      2065092
+    ],
+    "minimumContainerObservedHeadroomBytes": 1118523392,
+    "serverLogSha256": "5fc0d0679f071aca08244d5adaa675e504246c393a33e9f3131cc8b35ffbf335",
+    "postLoadRecovery": {
+      "utc": "2026-11-11T05:19:07.6684751Z",
+      "status": 200,
+      "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "unchangedRefs": {
+    "develop": "d52fd009c346bc3a628157896283ba4abfea7a72",
+    "master": "ce56c29c2bb89187f0a8a87d4ba12a49bad6e07b",
+    "release/v0.1": "da1db7095d670cf69c1930a292a89d646d54afe5",
+    "release/v0.2": "240d5403a2475711861af8c5041f7a6da35684ce",
+    "release/v0.2.1": "0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7",
+    "v0.1.0": "1dd959cbd819f264715c984dbbee508aec8ca982",
+    "v0.1.1": "d73ac402305aeddd81233f18bf4840e1ad0a6a37",
+    "v0.2.0": "a560721ca56550e18b18fb11b275265c8516a21e",
+    "v0.2.1": "821c28defea41134b6c0f8ae34673c99c03a57d1",
+    "feature/v0.3-direct-json": "bc18d635bcf8359794b0f75aaedbf63d57f481fa"
+  },
+  "unchangedPaths": [
+    "docs/performance/008",
+    "docs/performance/009",
+    "docs/load-tests",
+    "docs/benchmarks",
+    "docs/results/AD-RES-20261111-009.md",
+    "docs/prompts/AD-PRM-20261111-009.txt",
+    "src/main/java"
+  ],
+  "sameSixUnrelatedContainers": true,
+  "releaseV03Created": false
+}

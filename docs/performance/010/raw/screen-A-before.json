@@ -1,0 +1,60 @@
+{
+  "utc": "2026-11-11T05:16:24.2273378Z",
+  "availableHostKiB": 9381884,
+  "apps": [
+    {
+      "name": "anomaly-010-app-1",
+      "state": {
+        "Status": "running",
+        "Running": true,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 17335,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-11-11T05:16:14.147493811Z",
+        "FinishedAt": "0001-01-01T00:00:00Z",
+        "Health": {
+          "Status": "healthy",
+          "FailingStreak": 0,
+          "Log": [
+            {
+              "Start": "2026-11-11T05:16:19.743215075Z",
+              "End": "2026-11-11T05:16:19.927148188Z",
+              "ExitCode": 0,
+              "Output": ""
+            }
+          ]
+        }
+      },
+      "cpu": [
+        "usage_usec 8561154",
+        "user_usec 7653274",
+        "system_usec 907880",
+        "nice_usec 0",
+        "nr_periods 48",
+        "nr_throttled 3",
+        "throttled_usec 198771",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "currentBytes": "291110912",
+      "peakBytes": "317362176",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ],
+      "commands": [
+        "PID                 COMMAND",
+        "17335               /sbin/docker-init -- java -jar /app/app.jar",
+        "17397               java -jar /app/app.jar"
+      ]
+    }
+  ]
+}

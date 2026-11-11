@@ -147,6 +147,29 @@ for the fixed-budget IQR/Z_SCORE/mixed runs, compatibility and profile evidence.
 are IQR395→411, Z_SCORE413→437 and mixed401→427 per60s, with sustained503s.
 No v0.3 release is created.
 
+## Final runtime decision and interview handoff
+
+010 closes optimization. Both permitted larger-heap/G1 variants were safe in short three-client
+screens, but completed79/80 requests versus baseline81 and had worse mean latency. Retain
+**G1, -Xms512m -Xmx2048m, default200ms pause goal**. No new tuning is accepted and no scaled010
+capacity comparison was warranted;009 remains historical evidence of an unmet ten-RPS target.
+The application source is unchanged, and there is no v0.3 release.
+
+Read the [final interview handoff](docs/interview/final-handoff.md),
+[coherent Persian voice script](docs/interview/voice-script-fa.md) and
+[010 audit/trials](docs/performance/010/README.md). The next activity is the voice report.
+
+To reproduce the retained experimental **three-replica** capacity configuration with the cached,
+identity-pinned009 image (not a single-instance capacity claim):
+
+```powershell
+docker compose -p anomaly-review -f compose.yaml -f compose.capacity.yaml -f compose.010.yaml -f compose.010.capacity.yaml up -d --no-build --pull never --scale app=3 --wait
+docker compose -p anomaly-review -f compose.yaml -f compose.capacity.yaml -f compose.010.yaml -f compose.010.capacity.yaml down
+```
+
+This uses3.75CPU/3GiB/active3 per app, nginx1CPU/128MiB, and retained2GiB heap. Single-instance
+demo defaults remain separate (active1); Swagger URLs and dev+flag requirements above remain.
+
 ## Testing and Coverage
 
 Unit tests exercise small contracts; `*IT` tests start real random-port HTTP servers. The release

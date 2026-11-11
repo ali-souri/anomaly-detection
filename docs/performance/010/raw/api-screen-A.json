@@ -1,0 +1,108 @@
+{
+  "jvmArguments" : [ "-Xms512m", "-Xmx2g", "-XX:+UseG1GC", "-Djava.io.tmpdir=F:\\projects\\anomaly-detection/.cache/tmp" ],
+  "timingScope" : "request-file read + loopback HTTP + complete response-file write; generation/validation excluded",
+  "clientMaxHeapBytes" : 2147483648,
+  "seed" : 20261110,
+  "samplesPerAlgorithm" : 3,
+  "warmupsPerAlgorithm" : 1,
+  "rows" : [ {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900028,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 1,
+    "durationMs" : 738.4818,
+    "anomalies" : 40000,
+    "algorithm" : "IQR",
+    "status" : 200,
+    "statistics" : {
+      "q1" : 23.5,
+      "q3" : 73.5,
+      "upperBound" : 148.5,
+      "lowerBound" : -51.5,
+      "iqr" : 50.0
+    }
+  }, {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900028,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 2,
+    "durationMs" : 737.9147,
+    "anomalies" : 40000,
+    "algorithm" : "IQR",
+    "status" : 200,
+    "statistics" : {
+      "q1" : 23.5,
+      "q3" : 73.5,
+      "upperBound" : 148.5,
+      "lowerBound" : -51.5,
+      "iqr" : 50.0
+    }
+  }, {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900028,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 3,
+    "durationMs" : 629.7493,
+    "anomalies" : 40000,
+    "algorithm" : "IQR",
+    "status" : 200,
+    "statistics" : {
+      "q1" : 23.5,
+      "q3" : 73.5,
+      "upperBound" : 148.5,
+      "lowerBound" : -51.5,
+      "iqr" : 50.0
+    }
+  }, {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900032,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 1,
+    "durationMs" : 779.3367,
+    "anomalies" : 40000,
+    "algorithm" : "Z_SCORE",
+    "status" : 200,
+    "statistics" : {
+      "mean" : 47.530000000000385,
+      "standardDeviation" : 144.32722923967495
+    }
+  }, {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900032,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 2,
+    "durationMs" : 772.4517,
+    "anomalies" : 40000,
+    "algorithm" : "Z_SCORE",
+    "status" : 200,
+    "statistics" : {
+      "mean" : 47.530000000000385,
+      "standardDeviation" : 144.32722923967495
+    }
+  }, {
+    "responseBytes" : 9900170,
+    "size" : 2000000,
+    "requestBytes" : 9900032,
+    "validated" : true,
+    "normalValues" : 1960000,
+    "sample" : 3,
+    "durationMs" : 525.7475,
+    "anomalies" : 40000,
+    "algorithm" : "Z_SCORE",
+    "status" : 200,
+    "statistics" : {
+      "mean" : 47.530000000000385,
+      "standardDeviation" : 144.32722923967495
+    }
+  } ]
+}

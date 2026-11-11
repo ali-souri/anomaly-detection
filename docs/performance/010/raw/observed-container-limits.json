@@ -1,0 +1,171 @@
+{
+  "utc": "2026-11-11T05:18:28.0222139Z",
+  "inspect": {
+    "Id": "83169db1a1096a864bb66bc0cf3c67810a1afd1eb0f8f016435d5fee8c3123d1",
+    "Image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+    "HostConfig": {
+      "Binds": null,
+      "ContainerIDFile": "",
+      "LogConfig": {
+        "Type": "json-file",
+        "Config": {}
+      },
+      "NetworkMode": "anomaly-010_default",
+      "PortBindings": {},
+      "RestartPolicy": {
+        "Name": "no",
+        "MaximumRetryCount": 0
+      },
+      "AutoRemove": false,
+      "VolumeDriver": "",
+      "VolumesFrom": null,
+      "ConsoleSize": [
+        0,
+        0
+      ],
+      "CapAdd": null,
+      "CapDrop": null,
+      "CgroupnsMode": "private",
+      "Dns": null,
+      "DnsOptions": null,
+      "DnsSearch": null,
+      "ExtraHosts": [],
+      "GroupAdd": null,
+      "IpcMode": "private",
+      "Cgroup": "",
+      "Links": null,
+      "OomScoreAdj": 0,
+      "PidMode": "",
+      "Privileged": false,
+      "PublishAllPorts": false,
+      "ReadonlyRootfs": false,
+      "SecurityOpt": [
+        "no-new-privileges:true"
+      ],
+      "UTSMode": "",
+      "UsernsMode": "",
+      "ShmSize": 67108864,
+      "Runtime": "runc",
+      "Isolation": "",
+      "CpuShares": 0,
+      "Memory": 3221225472,
+      "NanoCpus": 3750000128,
+      "CgroupParent": "",
+      "BlkioWeight": 0,
+      "BlkioWeightDevice": null,
+      "BlkioDeviceReadBps": null,
+      "BlkioDeviceWriteBps": null,
+      "BlkioDeviceReadIOps": null,
+      "BlkioDeviceWriteIOps": null,
+      "CpuPeriod": 0,
+      "CpuQuota": 0,
+      "CpuRealtimePeriod": 0,
+      "CpuRealtimeRuntime": 0,
+      "CpusetCpus": "",
+      "CpusetMems": "",
+      "Devices": null,
+      "DeviceCgroupRules": null,
+      "DeviceRequests": null,
+      "MemoryReservation": 0,
+      "MemorySwap": 3221225472,
+      "MemorySwappiness": null,
+      "OomKillDisable": null,
+      "PidsLimit": 256,
+      "Ulimits": null,
+      "CpuCount": 0,
+      "CpuPercent": 0,
+      "IOMaximumIOps": 0,
+      "IOMaximumBandwidth": 0,
+      "MaskedPaths": [
+        "/proc/acpi",
+        "/proc/asound",
+        "/proc/interrupts",
+        "/proc/kcore",
+        "/proc/keys",
+        "/proc/latency_stats",
+        "/proc/sched_debug",
+        "/proc/scsi",
+        "/proc/timer_list",
+        "/proc/timer_stats",
+        "/sys/devices/virtual/powercap",
+        "/sys/firmware"
+      ],
+      "ReadonlyPaths": [
+        "/proc/bus",
+        "/proc/fs",
+        "/proc/irq",
+        "/proc/sys",
+        "/proc/sysrq-trigger"
+      ],
+      "Init": true
+    },
+    "Config": {
+      "Hostname": "83169db1a109",
+      "Domainname": "",
+      "User": "anomaly",
+      "AttachStdin": false,
+      "AttachStdout": true,
+      "AttachStderr": true,
+      "ExposedPorts": {
+        "8080/tcp": {}
+      },
+      "Tty": false,
+      "OpenStdin": false,
+      "StdinOnce": false,
+      "Env": [
+        "SWAGGER_ENABLED=false",
+        "DETECTION_LIMITS_MAX_ACTIVE=3",
+        "DETECTION_LIMITS_MAX_BODY_BYTES=67108864",
+        "DETECTION_LIMITS_MAX_NUMBERS=2000000",
+        "JAVA_TOOL_OPTIONS=-Xms512m -Xmx2560m -XX:MaxGCPauseMillis=500 -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:+PrintFlagsFinal -Xlog:gc,gc+init:stdout:time,uptime,level,tags",
+        "PORT=8080",
+        "SPRING_PROFILES_ACTIVE=default",
+        "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "JAVA_HOME=/opt/java/openjdk",
+        "LANG=en_US.UTF-8",
+        "LANGUAGE=en_US:en",
+        "LC_ALL=en_US.UTF-8",
+        "JAVA_VERSION=jdk-21.0.11+10"
+      ],
+      "Cmd": null,
+      "Healthcheck": {
+        "Test": [
+          "CMD-SHELL",
+          "wget -q -O /dev/null \"http://127.0.0.1:${PORT}/actuator/health/readiness\" || exit 1"
+        ],
+        "Interval": 10000000000,
+        "Timeout": 3000000000,
+        "StartPeriod": 30000000000,
+        "Retries": 3
+      },
+      "Image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+      "Volumes": null,
+      "WorkingDir": "/app",
+      "Entrypoint": [
+        "java",
+        "-jar",
+        "/app/app.jar"
+      ],
+      "Labels": {
+        "com.docker.compose.config-hash": "2e5a553f9052f881ca5ed5aba9793135e845e0cef253cdbcf4ecfb4312217a99",
+        "com.docker.compose.container-number": "1",
+        "com.docker.compose.depends_on": "",
+        "com.docker.compose.image": "sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e",
+        "com.docker.compose.oneoff": "False",
+        "com.docker.compose.project": "anomaly-010",
+        "com.docker.compose.project.config_files": "F:\\projects\\anomaly-detection\\compose.yaml,F:\\projects\\anomaly-detection\\compose.capacity.yaml,F:\\projects\\anomaly-detection\\compose.010.yaml",
+        "com.docker.compose.project.working_dir": "F:\\projects\\anomaly-detection",
+        "com.docker.compose.service": "app",
+        "com.docker.compose.version": "5.3.1"
+      },
+      "StopTimeout": 25
+    }
+  },
+  "memoryMax": [
+    "3221225472"
+  ],
+  "cpuMax": [
+    "375000 100000"
+  ],
+  "capturedVariant": "C"
+}

@@ -1,0 +1,8 @@
+{
+  "run": "screen-C",
+  "safe": true,
+  "maximumActualOverlappingRequests": 3,
+  "successful": 80,
+  "maximumCgroupPeakBytes": 2102702080,
+  "minimumHostAvailableKiB": 8346872
+}

@@ -1,0 +1,86 @@
+{
+  "A": {
+    "peakObservedCpuPercent": 19.42,
+    "observedMemory": [
+      "0B / 0B",
+      "248MiB / 2GiB",
+      "254.8MiB / 2GiB",
+      "352.1MiB / 2GiB"
+    ],
+    "samples": 4,
+    "quotaCpuPercent": 200,
+    "memoryLimitBytes": 2147483648,
+    "gomaxprocs": 2,
+    "screenClients": 3,
+    "maximumAllowedVUs": 20,
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-11T05:16:34.541454955Z",
+      "FinishedAt": "2026-11-11T05:17:02.599832983Z"
+    }
+  },
+  "B": {
+    "peakObservedCpuPercent": 16.07,
+    "observedMemory": [
+      "246.2MiB / 2GiB",
+      "246.4MiB / 2GiB",
+      "248.8MiB / 2GiB",
+      "352.4MiB / 2GiB"
+    ],
+    "samples": 4,
+    "quotaCpuPercent": 200,
+    "memoryLimitBytes": 2147483648,
+    "gomaxprocs": 2,
+    "screenClients": 3,
+    "maximumAllowedVUs": 20,
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-11T05:17:35.060267759Z",
+      "FinishedAt": "2026-11-11T05:18:02.80575059Z"
+    }
+  },
+  "C": {
+    "peakObservedCpuPercent": 15.58,
+    "observedMemory": [
+      "245.9MiB / 2GiB",
+      "247.1MiB / 2GiB",
+      "247.9MiB / 2GiB",
+      "334.4MiB / 2GiB"
+    ],
+    "samples": 4,
+    "quotaCpuPercent": 200,
+    "memoryLimitBytes": 2147483648,
+    "gomaxprocs": 2,
+    "screenClients": 3,
+    "maximumAllowedVUs": 20,
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-11T05:18:36.368582301Z",
+      "FinishedAt": "2026-11-11T05:19:04.283145241Z"
+    }
+  }
+}

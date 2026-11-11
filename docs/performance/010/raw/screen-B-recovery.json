@@ -1,0 +1,5 @@
+{
+  "utc": "2026-11-11T05:18:06.1429911Z",
+  "status": 200,
+  "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+}

@@ -1,0 +1,8 @@
+services:
+  app:
+    cpus: 3.75
+    environment:
+      DETECTION_LIMITS_MAX_ACTIVE: 3
+      JAVA_TOOL_OPTIONS: -Xms512m -Xmx2048m -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -Xlog:gc:stdout:time,uptime,level,tags
+  proxy:
+    cpus: 1

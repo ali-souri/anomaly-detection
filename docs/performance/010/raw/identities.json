@@ -1,0 +1,22 @@
+{
+  "applicationPublication": "bc18d635bcf8359794b0f75aaedbf63d57f481fa",
+  "unchangedApplicationJavaTree": "d1a61c2235d9138c03b3e2dfd6554c912f767bbc",
+  "runnerCiSource": "0fc287b648f52f8c269d891ea6ae987a0fa28f53",
+  "promptSha256": "4de8a01eafefc97f28170cc65e31315957760170b2554a90a1c2a307639e9976",
+  "attachmentSha256": "4de8a01eafefc97f28170cc65e31315957760170b2554a90a1c2a307639e9976",
+  "applicationJarSha256": "de69e4871d3b94605bb436aca49ff10dfd42684f110316ed21ad0aab2f082aac",
+  "sharedApiHarnessSource": "331cb861ee6fbbbbae77aac4e82878647cb2eec4",
+  "sharedApiHarnessSha256": "95666b36a1d36b579969d8eb70f145a39e72fde96806f110345c02c14e6c9064",
+  "fixtures": [
+    {
+      "name": "IQR-2000000.json",
+      "bytes": 9900028,
+      "sha256": "86e991226274e3737117153cb51730586da02975d57a3ddf3d52e85ec1b09d4b"
+    },
+    {
+      "name": "Z_SCORE-2000000.json",
+      "bytes": 9900032,
+      "sha256": "5cedacdbcf2ffeaadc12f4577a66a9ecebd7842d748124a8ac31cc85124151bd"
+    }
+  ]
+}

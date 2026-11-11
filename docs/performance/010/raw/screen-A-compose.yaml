@@ -1,0 +1,53 @@
+name: anomaly-010
+services:
+  app:
+    build:
+      context: F:\projects\anomaly-detection
+      dockerfile: Dockerfile
+    cpus: 3.75
+    environment:
+      DETECTION_LIMITS_MAX_ACTIVE: "3"
+      DETECTION_LIMITS_MAX_BODY_BYTES: "67108864"
+      DETECTION_LIMITS_MAX_NUMBERS: "2000000"
+      JAVA_TOOL_OPTIONS: -Xms512m -Xmx2048m -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp
+        -XX:+PrintFlagsFinal -Xlog:gc,gc+init:stdout:time,uptime,level,tags
+      PORT: "8080"
+      SPRING_PROFILES_ACTIVE: default
+      SWAGGER_ENABLED: "false"
+    image: sha256:e886eab5769e756e3cd5b72d31453be51a9ee5e9ada6b9a215031dd1d3404a4e
+    init: true
+    mem_limit: "3221225472"
+    memswap_limit: "3221225472"
+    networks:
+      default: null
+    pids_limit: 256
+    pull_policy: never
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 25s
+  proxy:
+    cpus: 1
+    depends_on:
+      app:
+        condition: service_healthy
+        required: true
+    image: nginx:1.28.0-alpine3.21
+    mem_limit: "134217728"
+    memswap_limit: "134217728"
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "18080"
+        protocol: tcp
+    stop_grace_period: 25s
+    volumes:
+      - type: bind
+        source: F:\projects\anomaly-detection\load-tests\nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+        bind: {}
+networks:
+  default:
+    name: anomaly-010_default
