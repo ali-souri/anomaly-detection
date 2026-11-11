@@ -1,0 +1,20 @@
+{
+  "utc": "2026-11-11T00:15:42.8416242Z",
+  "hostCpu": {
+    "Name": "12th Gen Intel(R) Core(TM) i7-12700K",
+    "NumberOfCores": 12,
+    "NumberOfLogicalProcessors": 20
+  },
+  "hostMemory": {
+    "TotalVisibleMemorySize": 33231280,
+    "FreePhysicalMemory": 13305736
+  },
+  "docker": {
+    "ServerVersion": "29.6.2",
+    "NCPU": 20,
+    "MemTotal": 16605085696,
+    "DockerRootDir": "/var/lib/docker",
+    "OperatingSystem": "Docker Desktop (containerized)",
+    "KernelVersion": "6.18.58.1-microsoft-standard-WSL2"
+  }
+}

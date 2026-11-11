@@ -1,0 +1,33 @@
+name: anomaly-v03
+services:
+  app:
+    build:
+      context: F:\projects\anomaly-detection
+      dockerfile: Dockerfile
+    cpus: 4
+    environment:
+      DETECTION_LIMITS_MAX_ACTIVE: "3"
+      DETECTION_LIMITS_MAX_BODY_BYTES: "67108864"
+      DETECTION_LIMITS_MAX_NUMBERS: "2000000"
+      JAVA_TOOL_OPTIONS: -Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -Xlog:gc:stdout:time,uptime,level,tags
+      PORT: "8080"
+      SPRING_PROFILES_ACTIVE: default
+      SWAGGER_ENABLED: "false"
+    image: anomaly-detection:007
+    init: true
+    mem_limit: "3221225472"
+    memswap_limit: "3221225472"
+    networks:
+      default: null
+    pids_limit: 256
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "18080"
+        protocol: tcp
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 25s
+networks:
+  default:
+    name: anomaly-v03_default

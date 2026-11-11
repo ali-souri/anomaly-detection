@@ -1,0 +1,10 @@
+{
+  "implementation": "baseline",
+  "baselineCommit": "0bc6e1d2fa2c696ce050e82035e9b3f5b6d411e7",
+  "sourceAndHarnessCommit": "331cb861ee6fbbbbae77aac4e82878647cb2eec4",
+  "coreTree": "dd25bf3771f9caff665709518d96ba9862a8ba29",
+  "detectorJarSha256": "7925382D2385C234DA704A2EC3E442803266BE329739E5E4BF3D52A04C576AAF",
+  "harnessJarSha256": "95666B36A1D36B579969D8EB70F145A39E72FDE96806F110345C02C14E6C9064",
+  "classpath": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\baseline\\detector.jar;F:\\projects\\anomaly-detection\\.cache\\v0.3\\candidate\\benchmarks.jar",
+  "utc": "2026-11-10T23:42:09.9450165Z"
+}

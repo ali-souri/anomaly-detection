@@ -1,0 +1,54 @@
+
+         /\      Grafana   /‾‾/
+    /\  /  \     |\  __   /  /
+   /  \/    \    | |/ /  /   ‾‾\
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/
+
+
+     execution: local
+        script: /suite/validation.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 1 max VUs, 10m30s max duration (incl. graceful stop):
+              * default: 1 iterations shared among 1 VUs (maxDuration: 10m0s, gracefulStop: 30s)
+
+
+
+  █ THRESHOLDS
+
+    checks
+    ✓ 'rate==1' rate=100.00%
+
+
+  █ TOTAL RESULTS
+
+    checks_total.......: 5       59.013024/s
+    checks_succeeded...: 100.00% 5 out of 5
+    checks_failed......: 0.00%   0 out of 5
+
+    ✓ MALFORMED_JSON: status and stable code
+    ✓ INVALID_REQUEST: status and stable code
+    ✓ NUMERICAL_RANGE: status and stable code
+    ✓ INPUT_TOO_LARGE: status and stable code
+    ✓ recovered complete small output
+
+    HTTP
+    http_req_duration..............: avg=16.1ms min=1.28ms med=3.02ms max=62.67ms p(90)=42.37ms p(95)=52.52ms
+      { expected_response:true }...: avg=3.02ms min=3.02ms med=3.02ms max=3.02ms  p(90)=3.02ms  p(95)=3.02ms
+    http_req_failed................: 80.00% 4 out of 5
+    http_reqs......................: 5      59.013024/s
+
+    EXECUTION
+    iteration_duration.............: avg=84.6ms min=84.6ms med=84.6ms max=84.6ms  p(90)=84.6ms  p(95)=84.6ms
+    iterations.....................: 1      11.802605/s
+
+    NETWORK
+    data_received..................: 1.8 kB 21 kB/s
+    data_sent......................: 4.0 MB 47 MB/s
+
+
+
+
+running (00m00.1s), 0/1 VUs, 1 complete and 0 interrupted iterations
+default ✓ [ 100% ] 1 VUs  00m00.1s/10m0s  1/1 shared iters

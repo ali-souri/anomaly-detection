@@ -1,0 +1,186 @@
+{
+  "admission-three-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 6,
+      "maximumSampledCpuPercent": 193.92,
+      "maximumSampledMemory": "681.6MiB / 2GiB",
+      "peakSampleUtc": "2026-11-10T23:58:41.9692456Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 15,
+      "maximumSampledCpuPercent": 376.38,
+      "maximumSampledMemory": "1.763GiB / 3GiB",
+      "peakSampleUtc": "2026-11-10T23:58:29.9794344Z"
+    }
+  },
+  "default-single-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 23,
+      "maximumSampledCpuPercent": 110.02,
+      "maximumSampledMemory": "1.257GiB / 2GiB",
+      "peakSampleUtc": "2026-11-10T23:53:42.4151357Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 38,
+      "maximumSampledCpuPercent": 278.25,
+      "maximumSampledMemory": "1.281GiB / 3GiB",
+      "peakSampleUtc": "2026-11-10T23:53:22.3040660Z"
+    }
+  },
+  "final-scaled-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 44,
+      "maximumSampledCpuPercent": 83.89,
+      "maximumSampledMemory": "1.234GiB / 2GiB",
+      "peakSampleUtc": "2026-11-11T00:06:04.2325415Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 389.82,
+      "maximumSampledMemory": "1.959GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:05:29.6445925Z"
+    },
+    "anomaly-v03-app-2": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 390.28,
+      "maximumSampledMemory": "2.101GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:12.1781232Z"
+    },
+    "anomaly-v03-app-3": {
+      "sampleCount": 57,
+      "maximumSampledCpuPercent": 380.35,
+      "maximumSampledMemory": "2.066GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:24.3823622Z"
+    },
+    "anomaly-v03-proxy-1": {
+      "sampleCount": 55,
+      "maximumSampledCpuPercent": 27.41,
+      "maximumSampledMemory": "26MiB / 128MiB",
+      "peakSampleUtc": "2026-11-11T00:04:15.4177301Z"
+    }
+  },
+  "rebalanced-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 42,
+      "maximumSampledCpuPercent": 70.8,
+      "maximumSampledMemory": "1.253GiB / 2GiB",
+      "peakSampleUtc": "2026-11-11T00:10:18.1840167Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 375.18,
+      "maximumSampledMemory": "2.221GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:10:00.5650502Z"
+    },
+    "anomaly-v03-app-2": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 372.77,
+      "maximumSampledMemory": "2.17GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:07:44.7035631Z"
+    },
+    "anomaly-v03-app-3": {
+      "sampleCount": 57,
+      "maximumSampledCpuPercent": 377.45,
+      "maximumSampledMemory": "2.206GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:08:10.4452254Z"
+    },
+    "anomaly-v03-proxy-1": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 60.61,
+      "maximumSampledMemory": "15.4MiB / 128MiB",
+      "peakSampleUtc": "2026-11-11T00:08:36.6871676Z"
+    }
+  },
+  "scaled-binary-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 20,
+      "maximumSampledCpuPercent": 69.82,
+      "maximumSampledMemory": "1.25GiB / 2GiB",
+      "peakSampleUtc": "2026-11-11T00:02:43.4818486Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 24,
+      "maximumSampledCpuPercent": 382.86,
+      "maximumSampledMemory": "2.111GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:02:39.4321193Z"
+    },
+    "anomaly-v03-app-2": {
+      "sampleCount": 24,
+      "maximumSampledCpuPercent": 382.09,
+      "maximumSampledMemory": "2.101GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:12.1779920Z"
+    },
+    "anomaly-v03-app-3": {
+      "sampleCount": 24,
+      "maximumSampledCpuPercent": 376.94,
+      "maximumSampledMemory": "2.066GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:24.3823015Z"
+    },
+    "anomaly-v03-proxy-1": {
+      "sampleCount": 24,
+      "maximumSampledCpuPercent": 25.72,
+      "maximumSampledMemory": "24.82MiB / 128MiB",
+      "peakSampleUtc": "2026-11-11T00:02:39.4321193Z"
+    }
+  },
+  "scaled-three-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 28,
+      "maximumSampledCpuPercent": 155.47,
+      "maximumSampledMemory": "1.356GiB / 2GiB",
+      "peakSampleUtc": "2026-11-11T00:00:04.0303603Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 378.18,
+      "maximumSampledMemory": "2.005GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:26.4022737Z"
+    },
+    "anomaly-v03-app-2": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 386.6,
+      "maximumSampledMemory": "1.957GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:01:56.5167755Z"
+    },
+    "anomaly-v03-app-3": {
+      "sampleCount": 56,
+      "maximumSampledCpuPercent": 393.65,
+      "maximumSampledMemory": "2.072GiB / 3GiB",
+      "peakSampleUtc": "2026-11-11T00:03:18.2494957Z"
+    },
+    "anomaly-v03-proxy-1": {
+      "sampleCount": 55,
+      "maximumSampledCpuPercent": 25.79,
+      "maximumSampledMemory": "20.64MiB / 128MiB",
+      "peakSampleUtc": "2026-11-11T00:02:41.4668103Z"
+    }
+  },
+  "single-concurrency-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 10,
+      "maximumSampledCpuPercent": 147.24,
+      "maximumSampledMemory": "374.6MiB / 2GiB",
+      "peakSampleUtc": "2026-11-10T23:45:33.9707561Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 10,
+      "maximumSampledCpuPercent": 243.98,
+      "maximumSampledMemory": "934.8MiB / 3GiB",
+      "peakSampleUtc": "2026-11-10T23:45:21.5292521Z"
+    }
+  },
+  "tuned-single-resources": {
+    "anomaly-007-generator": {
+      "sampleCount": 20,
+      "maximumSampledCpuPercent": 154.1,
+      "maximumSampledMemory": "1.372GiB / 2GiB",
+      "peakSampleUtc": "2026-11-10T23:56:20.4105429Z"
+    },
+    "anomaly-v03-app-1": {
+      "sampleCount": 28,
+      "maximumSampledCpuPercent": 313.63,
+      "maximumSampledMemory": "1.818GiB / 3GiB",
+      "peakSampleUtc": "2026-11-10T23:56:40.4502986Z"
+    }
+  }
+}

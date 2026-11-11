@@ -115,6 +115,12 @@ containers (12 CPUs/9 GiB), nginx (0.25 CPU/128 MiB) and k6 (2 CPUs/2 GiB). Read
 [actual load results and run commands](docs/load-tests/README.md) before claiming capacity, and
 the [paired measurements](docs/benchmarks/v0.3/report.md) before claiming allocation/speed gains.
 The candidate is not a published v0.3.0 release unless every required capacity/release gate passes.
+Actual outcome: **CAPACITY_TARGET_NOT_MET**. The best tested configuration used three replicas,
+active=3 each, 3.75 CPUs/3 GiB/2 GiB heap each and a 1-CPU nginx proxy. Successful counts over
+60 seconds were IQR **339 (5.65/s)**, Z_SCORE **418 (6.966667/s)** and mixed **369 (6.15/s)**,
+with sustained 503s and no unexpected errors/timeouts/dropped iterations. Completion-window
+rates and latency sample counts are in the load report. Work remains on the feature branch;
+no v0.3.0 release is published.
 
 ## Testing and Coverage
 
@@ -172,6 +178,7 @@ for instrumentation, exact counters, filtering and failure-fixture evidence.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.
+Container images/build cache use the already configured Docker storage; it is not relocated.
 
 Initial work request [AD-PRM-20261110-002](docs/prompts/AD-PRM-20261110-002.txt) supersedes
 `AD-PRM-20261110-001`. The result is `AD-RES-20261110-002`; revisions require new IDs and

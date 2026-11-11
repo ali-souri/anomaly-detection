@@ -28,6 +28,18 @@ def rows_from_console(text):
     return rows
 
 
+def rows_from_csv(path):
+    rows = []
+    with path.open(newline='', encoding='utf-8-sig') as source:
+        for row in csv.DictReader(source):
+            for key in ['iteration', 'started', 'completed', 'status', 'errorCode']:
+                row[key] = int(row[key])
+            row['sampled'] = row.get('sampled') == 'True'
+            row['responseBodyBytes'] = int(row['responseBodyBytes']) if row.get('responseBodyBytes') else None
+            rows.append(row)
+    return rows
+
+
 def summarize(rows, metrics, duration_seconds=60):
     if not rows:
         raise ValueError("No actual request timestamps")
@@ -74,14 +86,26 @@ def main():
     for summary_path in sorted(raw.glob('*-summary.json')):
         name = summary_path.name.removesuffix('-summary.json')
         console = raw / f'{name}-console.txt'
-        if not console.exists():
+        cached_console = Path('.cache/v0.3/load-console') / console.name
+        csv_path = raw / f'{name}-requests.csv'
+        if console.exists():
+            rows = rows_from_console(console.read_text(encoding='utf-8-sig'))
+        elif cached_console.exists():
+            rows = rows_from_console(cached_console.read_text(encoding='utf-8-sig'))
+        elif csv_path.exists():
+            rows = rows_from_csv(csv_path)
+        else:
             continue
-        rows = rows_from_console(console.read_text(encoding='utf-8-sig'))
         if not rows:
             continue
         metrics = json.loads(summary_path.read_text(encoding='utf-8-sig'))['metrics']
         seconds = 60 if '-arrival-' in name else 10
-        reports[name] = summarize(rows, metrics, seconds)
+        try:
+            reports[name] = summarize(rows, metrics, seconds)
+        except ValueError as error:
+            reports[name] = {'acceptedForCapacityAnalysis': False, 'reason': str(error), 'observedTimestampRows': len(rows)}
+            print('REJECTED INCOMPLETE', name, str(error))
+            continue
         with (raw / f'{name}-requests.csv').open('w', newline='', encoding='utf-8') as output:
             fields = ['iteration', 'algorithm', 'started', 'completed', 'status', 'errorCode', 'sampled', 'responseBodyBytes']
             writer = csv.DictWriter(output, fieldnames=fields)
@@ -89,7 +113,8 @@ def main():
             writer.writerows(rows)
     (raw / 'analysis.json').write_text(json.dumps(reports, indent=2) + '\n', encoding='utf-8')
     for name, result in reports.items():
-        print(name, result['successful'], result['rejected503'], result['unexpected'], result['successfulScheduledRate'], result['allScheduledSucceeded'])
+        if 'successful' in result:
+            print(name, result['successful'], result['rejected503'], result['unexpected'], result['successfulScheduledRate'], result['allScheduledSucceeded'])
 
 
 if __name__ == '__main__':

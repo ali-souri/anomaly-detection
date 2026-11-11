@@ -2,7 +2,7 @@
 
 - Use one Maven application, Java 17+ source, constructor injection and readable small classes.
 - Production packages are rooted at `io.anomaly`, physically under `src/main/java/io/anomaly`.
-  Keep lowercase role directories: config; api.controller/dto/mapper/parser/exception;
+  Keep lowercase role directories: config; api.controller/dto/mapper/parser/filter/exception;
   core.algorithm/service/registry/model/validation/exception. The statistical core imports no
   Spring, Jackson or OpenAPI types. Tests mirror roles; real HTTP *IT tests belong in
   io.anomaly.integration.api and shared helpers in io.anomaly.support.
@@ -22,5 +22,7 @@
 - Benchmark 003 has executed on v0.2.1. Before any conditional v0.3 implementation, read
   docs/results/AD-RES-20261110-003.md, docs/benchmarks/v0.2/report.md and the architecture decision.
   The evidence recommends a stateless modular application, allocation reduction and bounded
-  admission/load validation. No owner SLO/concurrency target was supplied; distributed services
-  remain conditional. Do not start v0.3 without the next owner's explicit task.
+  admission/load validation. Prompt 007 later supplied a 10 successful 2M FULL requests/second
+  target (IQR, Z_SCORE and 50/50 mixed independently), without a latency SLO. Read result 007,
+  docs/load-tests/README.md and the updated decision before any follow-up. Keep incomplete
+  capacity work on its feature branch; no release or automatic next task until its gates pass.

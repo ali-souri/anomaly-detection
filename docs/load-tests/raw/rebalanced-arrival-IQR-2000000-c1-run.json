@@ -1,0 +1,17 @@
+{
+  "run": "rebalanced-arrival-IQR-2000000-c1",
+  "startedUtc": "2026-11-11T00:07:16.1092479Z",
+  "endedUtc": "2026-11-11T00:08:23.5276609Z",
+  "exitCode": 99,
+  "sourceCommit": "81b3a6bde5c38f6550058a45539a3006186ad3c1",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "IQR",
+  "mode": "arrival",
+  "size": 2000000,
+  "duration": "60s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://proxy:8080"
+}

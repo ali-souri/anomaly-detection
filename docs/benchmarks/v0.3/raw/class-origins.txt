@@ -1,0 +1,8 @@
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/baseline/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/baseline/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/baseline/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/baseline/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/candidate/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/candidate/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/candidate/detector.jar
+# Warmup Iteration   1: Measured detector loaded from file:/F:/projects/anomaly-detection/.cache/v0.3/candidate/detector.jar

@@ -1,0 +1,132 @@
+[
+  {
+    "name": "admission-three-clients-IQR-2000000-c3-console.txt",
+    "sha256": "505D8128438F20E2899659110088A9CD960B52FFB3B98456833270FD7DEA8A27",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\admission-three-clients-IQR-2000000-c3-console.txt"
+  },
+  {
+    "name": "admission-three-clients-IQR-2000000-c4-console.txt",
+    "sha256": "382E62D6ABD676B54B2F8BB96A1F6F6FEB602C3FCC6D902937BF5F1693D86005",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\admission-three-clients-IQR-2000000-c4-console.txt"
+  },
+  {
+    "name": "corrected-clients-MIXED-10000-c2-console.txt",
+    "sha256": "A0FC2400776CFB1B59402F32C9703881F53544941A01C7FA642D2D56DE8E891A",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\corrected-clients-MIXED-10000-c2-console.txt"
+  },
+  {
+    "name": "corrected-clients-MIXED-2000000-c1-console.txt",
+    "sha256": "8A5F1EA6055E17E1A781EB37143CAC0383CFF6B36E7F9A8212A3700AEBFED61B",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\corrected-clients-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "corrected-clients-MIXED-2000000-c2-console.txt",
+    "sha256": "AED0051A886097814D70B31EC0C9D7FB45E5FFFAFEAEC0C1887059A5AE722769",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\corrected-clients-MIXED-2000000-c2-console.txt"
+  },
+  {
+    "name": "corrected-clients-MIXED-2000000-c4-console.txt",
+    "sha256": "F4B1D379B2E08051E2B3AEBE0D2E8BDBEA37C443B70F9F77DE58371DBBBFFFEB",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\corrected-clients-MIXED-2000000-c4-console.txt"
+  },
+  {
+    "name": "default-single-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "9575480A2A1A253484B0C35C8EE62C6726E29795BF6DFC685F20589B618313AA",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\default-single-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "default-single-arrival-MIXED-2000000-c1-console.txt",
+    "sha256": "D21DE2DB0979E883C970CA3B028ED2635F74146CE8F2A52B642B80A292C18BB0",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\default-single-arrival-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "default-single-arrival-Z_SCORE-2000000-c1-console.txt",
+    "sha256": "BDEB7B079A6F1006EFB83EC499F16D43905D4A3416C496BE9B862203B9BD7A20",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\default-single-arrival-Z_SCORE-2000000-c1-console.txt"
+  },
+  {
+    "name": "final-scaled-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "87582A1E265FA92ADDF140C5C39F7895251DEBF6C0129D4485610B017EE75D2B",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\final-scaled-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "final-scaled-arrival-MIXED-2000000-c1-console.txt",
+    "sha256": "929C52D564BB4009717960C95568C35CD47E715CB2FA7A3E07EA057EDE4364A7",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\final-scaled-arrival-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "final-scaled-arrival-Z_SCORE-2000000-c1-console.txt",
+    "sha256": "A62FA7F7134194083C19532ADE71537D8AC56664A167708EBEB4FD9D7A3F17C0",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\final-scaled-arrival-Z_SCORE-2000000-c1-console.txt"
+  },
+  {
+    "name": "rebalanced-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "DC828C6443EF5E276A84032AC95E5259AA0F58D19E7CDDF54ADFD66838E4B25E",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\rebalanced-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "rebalanced-arrival-MIXED-2000000-c1-console.txt",
+    "sha256": "ECED7B3DD51BD8701C5BFAC234A7C237E6805DFB5CC647F6FF6F667150801AB5",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\rebalanced-arrival-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "rebalanced-arrival-Z_SCORE-2000000-c1-console.txt",
+    "sha256": "22F6654F2C8DFE9E04FBCF0873DFC8377D72B76F906E852798026E221DEBD2A3",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\rebalanced-arrival-Z_SCORE-2000000-c1-console.txt"
+  },
+  {
+    "name": "scaled-binary-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "E71ACA7A818CFFBDF0E8401E18E366E08DE8FBBE80AFA0A7C71D73731665C80F",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\scaled-binary-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "scaled-three-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "2D8A8CBB215C857A1E6F2AD61A10A8E44EB24EF506FC9BA29818A475928B44EE",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\scaled-three-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "scaled-three-arrival-MIXED-2000000-c1-console.txt",
+    "sha256": "E1D0BBB702E273ED89531683A51BABE6CF3FF703414FDC97C417E94EE7D2201B",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\scaled-three-arrival-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "scaled-three-arrival-Z_SCORE-2000000-c1-console.txt",
+    "sha256": "3E34B9BC57CF77A13BFF7F38F0F80081F78039DBE1EEB24C2CD004EA7C2BD927",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\scaled-three-arrival-Z_SCORE-2000000-c1-console.txt"
+  },
+  {
+    "name": "single-clients-MIXED-10000-c2-console.txt",
+    "sha256": "00559256B0FEB66BEB31F878F6494F0B83AA3160E65FA16F9D4A9C7D0B39AE8A",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\single-clients-MIXED-10000-c2-console.txt"
+  },
+  {
+    "name": "single-clients-MIXED-2000000-c1-console.txt",
+    "sha256": "9A1BFB9E84645DD424C53DA4A9486D15D07572E4D0BE8BE5B545A33BA0BE9456",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\single-clients-MIXED-2000000-c1-console.txt"
+  },
+  {
+    "name": "single-clients-MIXED-2000000-c2-console.txt",
+    "sha256": "9066E6D45E61302417BA3903A5F65BF20E0E53E2B4C40B19F78B0384F2D76C2F",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\single-clients-MIXED-2000000-c2-console.txt"
+  },
+  {
+    "name": "single-clients-MIXED-2000000-c4-console.txt",
+    "sha256": "38D2B510174E2F28F30E4A0D9A155882EEDBC45EEFE61607D608D121AC6ABF0F",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\single-clients-MIXED-2000000-c4-console.txt"
+  },
+  {
+    "name": "tuned-single-arrival-IQR-2000000-c1-console.txt",
+    "sha256": "7C4359355FAFA2B56450C4F3F3A2CD443DE6A51ECDC69334FC84D9718F5A763A",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\tuned-single-arrival-IQR-2000000-c1-console.txt"
+  },
+  {
+    "name": "tuned-single-clients-IQR-2000000-c2-console.txt",
+    "sha256": "A40DDD9ACB1178B9281AE3647B337297726430B78D9BE2CF53D5EE213D527C2A",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\tuned-single-clients-IQR-2000000-c2-console.txt"
+  },
+  {
+    "name": "tuned-single-clients-IQR-2000000-c4-console.txt",
+    "sha256": "38C85A188E79EED03E8D0B5D1AE7630B03218E89E04308FC5245A280E1B40E48",
+    "localArchive": "F:\\projects\\anomaly-detection\\.cache\\v0.3\\load-console\\tuned-single-clients-IQR-2000000-c4-console.txt"
+  }
+]

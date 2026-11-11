@@ -1,0 +1,17 @@
+{
+  "run": "final-scaled-arrival-MIXED-2000000-c1",
+  "startedUtc": "2026-11-11T00:05:13.3169185Z",
+  "endedUtc": "2026-11-11T00:06:19.7440197Z",
+  "exitCode": 99,
+  "sourceCommit": "b588bf7e7fcc60d0180f75ae7bb4e87e7f712957",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "MIXED",
+  "mode": "arrival",
+  "size": 2000000,
+  "duration": "60s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://proxy:8080"
+}

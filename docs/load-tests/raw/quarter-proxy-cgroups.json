@@ -1,0 +1,98 @@
+[
+  {
+    "name": "anomaly-v03-app-1",
+    "utc": "2026-11-11T00:06:47.9543838Z",
+    "memoryPeakBytes": "2271207424",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 689745971",
+      "user_usec 653464287",
+      "system_usec 36281683",
+      "nice_usec 0",
+      "nr_periods 3266",
+      "nr_throttled 506",
+      "throttled_usec 12679795",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-app-2",
+    "utc": "2026-11-11T00:06:48.5414304Z",
+    "memoryPeakBytes": "2259947520",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 690482107",
+      "user_usec 655014725",
+      "system_usec 35467382",
+      "nice_usec 0",
+      "nr_periods 3344",
+      "nr_throttled 588",
+      "throttled_usec 11041655",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-app-3",
+    "utc": "2026-11-11T00:06:49.1241492Z",
+    "memoryPeakBytes": "2329399296",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 697869106",
+      "user_usec 662101938",
+      "system_usec 35767167",
+      "nice_usec 0",
+      "nr_periods 3316",
+      "nr_throttled 532",
+      "throttled_usec 15065002",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-proxy-1",
+    "utc": "2026-11-11T00:06:49.7320426Z",
+    "memoryPeakBytes": "52068352",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 57106408",
+      "user_usec 4752103",
+      "system_usec 52354305",
+      "nice_usec 0",
+      "nr_periods 2614",
+      "nr_throttled 2025",
+      "throttled_usec 136394061",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  }
+]

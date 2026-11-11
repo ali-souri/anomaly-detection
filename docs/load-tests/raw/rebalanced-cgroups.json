@@ -1,0 +1,98 @@
+[
+  {
+    "name": "anomaly-v03-app-1",
+    "utc": "2026-11-11T00:11:10.1412680Z",
+    "memoryPeakBytes": "2389577728",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 668631398",
+      "user_usec 640487353",
+      "system_usec 28144045",
+      "nice_usec 0",
+      "nr_periods 2121",
+      "nr_throttled 1274",
+      "throttled_usec 47030874",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-app-2",
+    "utc": "2026-11-11T00:11:10.7690608Z",
+    "memoryPeakBytes": "2369810432",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 664519705",
+      "user_usec 634726117",
+      "system_usec 29793587",
+      "nice_usec 0",
+      "nr_periods 2071",
+      "nr_throttled 1275",
+      "throttled_usec 49035129",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-app-3",
+    "utc": "2026-11-11T00:11:11.7178452Z",
+    "memoryPeakBytes": "2383589376",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 666371640",
+      "user_usec 636134268",
+      "system_usec 30237372",
+      "nice_usec 0",
+      "nr_periods 2116",
+      "nr_throttled 1274",
+      "throttled_usec 52823075",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "name": "anomaly-v03-proxy-1",
+    "utc": "2026-11-11T00:11:12.4693243Z",
+    "memoryPeakBytes": "18599936",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ],
+    "cpuStat": [
+      "usage_usec 87230015",
+      "user_usec 7614043",
+      "system_usec 79615972",
+      "nice_usec 0",
+      "nr_periods 1875",
+      "nr_throttled 0",
+      "throttled_usec 0",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  }
+]
