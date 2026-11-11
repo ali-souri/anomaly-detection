@@ -1,0 +1,753 @@
+{
+  "A-IQR": {
+    "beforeUtc": "2026-11-11T04:18:10.9547128Z",
+    "afterUtc": "2026-11-11T04:19:21.2625059Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 221780413,
+          "user_usec": 211371806,
+          "system_usec": 10408607,
+          "nice_usec": 0,
+          "nr_periods": 642,
+          "nr_throttled": 461,
+          "throttled_usec": 19951900,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1832992768,
+        "cgroupPeakWholeContainerLifetimeBytes": 2334728192,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 219144137,
+          "user_usec": 208291292,
+          "system_usec": 10852845,
+          "nice_usec": 0,
+          "nr_periods": 645,
+          "nr_throttled": 434,
+          "throttled_usec": 17279519,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1866248192,
+        "cgroupPeakWholeContainerLifetimeBytes": 2329604096,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 218289263,
+          "user_usec": 207991324,
+          "system_usec": 10297939,
+          "nice_usec": 0,
+          "nr_periods": 639,
+          "nr_throttled": 441,
+          "throttled_usec": 20409116,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1762193408,
+        "cgroupPeakWholeContainerLifetimeBytes": 2335670272,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 30631604,
+          "user_usec": 2890607,
+          "system_usec": 27740997,
+          "nice_usec": 0,
+          "nr_periods": 627,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 6647808,
+        "cgroupPeakWholeContainerLifetimeBytes": 17903616,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 7535684,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 112.15,
+    "generatorObservedMemoryUsage": [
+      "0B / 0B",
+      "1.042GiB / 2GiB",
+      "1.047GiB / 2GiB",
+      "1.049GiB / 2GiB",
+      "1.056GiB / 2GiB",
+      "1.068GiB / 2GiB",
+      "1.072GiB / 2GiB",
+      "1.117GiB / 2GiB",
+      "1.125GiB / 2GiB",
+      "1.13GiB / 2GiB",
+      "1.149GiB / 2GiB",
+      "1.243GiB / 2GiB",
+      "868.6MiB / 2GiB",
+      "990.6MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 960,
+      "sumAcrossReplicasMs": 79402.409,
+      "maximumPauseMs": 345.449
+    }
+  },
+  "A-MIXED": {
+    "beforeUtc": "2026-11-11T04:24:37.6095937Z",
+    "afterUtc": "2026-11-11T04:25:48.1749019Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 221323100,
+          "user_usec": 211753409,
+          "system_usec": 9569691,
+          "nice_usec": 0,
+          "nr_periods": 642,
+          "nr_throttled": 443,
+          "throttled_usec": 19581316,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1826140160,
+        "cgroupPeakWholeContainerLifetimeBytes": 2329415680,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 220935365,
+          "user_usec": 210639268,
+          "system_usec": 10296098,
+          "nice_usec": 0,
+          "nr_periods": 642,
+          "nr_throttled": 450,
+          "throttled_usec": 20826096,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 2013081600,
+        "cgroupPeakWholeContainerLifetimeBytes": 2340421632,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 222223850,
+          "user_usec": 212172780,
+          "system_usec": 10051069,
+          "nice_usec": 0,
+          "nr_periods": 651,
+          "nr_throttled": 452,
+          "throttled_usec": 21584308,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 2218582016,
+        "cgroupPeakWholeContainerLifetimeBytes": 2323046400,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 30995153,
+          "user_usec": 2783225,
+          "system_usec": 28211928,
+          "nice_usec": 0,
+          "nr_periods": 629,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 6467584,
+        "cgroupPeakWholeContainerLifetimeBytes": 20811776,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 7595964,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 101.36,
+    "generatorObservedMemoryUsage": [
+      "1.064GiB / 2GiB",
+      "1.068GiB / 2GiB",
+      "1.072GiB / 2GiB",
+      "1.086GiB / 2GiB",
+      "1.088GiB / 2GiB",
+      "1.095GiB / 2GiB",
+      "1.103GiB / 2GiB",
+      "1.113GiB / 2GiB",
+      "1.119GiB / 2GiB",
+      "944.8MiB / 2GiB",
+      "979.3MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 958,
+      "sumAcrossReplicasMs": 82298.037,
+      "maximumPauseMs": 314.641
+    }
+  },
+  "A-Z_SCORE": {
+    "beforeUtc": "2026-11-11T04:21:24.5552976Z",
+    "afterUtc": "2026-11-11T04:22:35.0807915Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 220646076,
+          "user_usec": 210562457,
+          "system_usec": 10083619,
+          "nice_usec": 0,
+          "nr_periods": 639,
+          "nr_throttled": 450,
+          "throttled_usec": 23182196,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 2233798656,
+        "cgroupPeakWholeContainerLifetimeBytes": 2335539200,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 222721482,
+          "user_usec": 212342893,
+          "system_usec": 10378589,
+          "nice_usec": 0,
+          "nr_periods": 646,
+          "nr_throttled": 453,
+          "throttled_usec": 20443536,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1772695552,
+        "cgroupPeakWholeContainerLifetimeBytes": 2337280000,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 222767395,
+          "user_usec": 212090903,
+          "system_usec": 10676493,
+          "nice_usec": 0,
+          "nr_periods": 641,
+          "nr_throttled": 468,
+          "throttled_usec": 20396696,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1726337024,
+        "cgroupPeakWholeContainerLifetimeBytes": 2335105024,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 31906636,
+          "user_usec": 2909633,
+          "system_usec": 28997002,
+          "nice_usec": 0,
+          "nr_periods": 626,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 5132288,
+        "cgroupPeakWholeContainerLifetimeBytes": 18558976,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 7463580,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 105.77,
+    "generatorObservedMemoryUsage": [
+      "1.034GiB / 2GiB",
+      "1.067GiB / 2GiB",
+      "1.077GiB / 2GiB",
+      "1.087GiB / 2GiB",
+      "1.116GiB / 2GiB",
+      "1.123GiB / 2GiB",
+      "1.134GiB / 2GiB",
+      "1.145GiB / 2GiB",
+      "1.15GiB / 2GiB",
+      "1.178GiB / 2GiB",
+      "1.207GiB / 2GiB",
+      "1.212GiB / 2GiB",
+      "846.7MiB / 2GiB",
+      "964.8MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 1005,
+      "sumAcrossReplicasMs": 85454.821,
+      "maximumPauseMs": 351.675
+    }
+  },
+  "B-IQR": {
+    "beforeUtc": "2026-11-11T04:19:47.6445435Z",
+    "afterUtc": "2026-11-11T04:20:58.1967301Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217059611,
+          "user_usec": 205124170,
+          "system_usec": 11935441,
+          "nice_usec": 0,
+          "nr_periods": 642,
+          "nr_throttled": 394,
+          "throttled_usec": 15932930,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1676509184,
+        "cgroupPeakWholeContainerLifetimeBytes": 2057797632,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217448835,
+          "user_usec": 206037364,
+          "system_usec": 11411471,
+          "nice_usec": 0,
+          "nr_periods": 647,
+          "nr_throttled": 413,
+          "throttled_usec": 16575386,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1352916992,
+        "cgroupPeakWholeContainerLifetimeBytes": 2026676224,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217625304,
+          "user_usec": 206296490,
+          "system_usec": 11328815,
+          "nice_usec": 0,
+          "nr_periods": 646,
+          "nr_throttled": 390,
+          "throttled_usec": 13793038,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1067810816,
+        "cgroupPeakWholeContainerLifetimeBytes": 2139996160,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 31855511,
+          "user_usec": 2743673,
+          "system_usec": 29111837,
+          "nice_usec": 0,
+          "nr_periods": 629,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 6303744,
+        "cgroupPeakWholeContainerLifetimeBytes": 18866176,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 8617120,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 73.6,
+    "generatorObservedMemoryUsage": [
+      "1.029GiB / 2GiB",
+      "1.044GiB / 2GiB",
+      "1.048GiB / 2GiB",
+      "1.053GiB / 2GiB",
+      "1.054GiB / 2GiB",
+      "1.055GiB / 2GiB",
+      "1.058GiB / 2GiB",
+      "1.071GiB / 2GiB",
+      "1.074GiB / 2GiB",
+      "1.086GiB / 2GiB",
+      "1.087GiB / 2GiB",
+      "771.8MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 910,
+      "sumAcrossReplicasMs": 78892.021,
+      "maximumPauseMs": 396.345
+    }
+  },
+  "B-MIXED": {
+    "beforeUtc": "2026-11-11T04:26:14.2474854Z",
+    "afterUtc": "2026-11-11T04:27:24.8339830Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 219276564,
+          "user_usec": 207070560,
+          "system_usec": 12206004,
+          "nice_usec": 0,
+          "nr_periods": 649,
+          "nr_throttled": 418,
+          "throttled_usec": 17691566,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1354981376,
+        "cgroupPeakWholeContainerLifetimeBytes": 2094526464,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217262399,
+          "user_usec": 205636772,
+          "system_usec": 11625628,
+          "nice_usec": 0,
+          "nr_periods": 640,
+          "nr_throttled": 401,
+          "throttled_usec": 16222361,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1149485056,
+        "cgroupPeakWholeContainerLifetimeBytes": 2008784896,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217754367,
+          "user_usec": 207005939,
+          "system_usec": 10748427,
+          "nice_usec": 0,
+          "nr_periods": 644,
+          "nr_throttled": 407,
+          "throttled_usec": 16000469,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1626349568,
+        "cgroupPeakWholeContainerLifetimeBytes": 2162143232,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 32299089,
+          "user_usec": 2799594,
+          "system_usec": 29499494,
+          "nice_usec": 0,
+          "nr_periods": 629,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 5971968,
+        "cgroupPeakWholeContainerLifetimeBytes": 19095552,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 8410420,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 102.95,
+    "generatorObservedMemoryUsage": [
+      "1.022GiB / 2GiB",
+      "1.027GiB / 2GiB",
+      "1.028GiB / 2GiB",
+      "1.049GiB / 2GiB",
+      "1.056GiB / 2GiB",
+      "1.087GiB / 2GiB",
+      "1.108GiB / 2GiB",
+      "1.116GiB / 2GiB",
+      "1.118GiB / 2GiB",
+      "1.123GiB / 2GiB",
+      "1.138GiB / 2GiB",
+      "1.159GiB / 2GiB",
+      "1.255GiB / 2GiB",
+      "806.9MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 927,
+      "sumAcrossReplicasMs": 82063.772,
+      "maximumPauseMs": 423.366
+    }
+  },
+  "B-Z_SCORE": {
+    "beforeUtc": "2026-11-11T04:23:01.0071113Z",
+    "afterUtc": "2026-11-11T04:24:11.2939406Z",
+    "containers": [
+      {
+        "name": "anomaly-009-app-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 217443453,
+          "user_usec": 205613873,
+          "system_usec": 11829579,
+          "nice_usec": 0,
+          "nr_periods": 642,
+          "nr_throttled": 424,
+          "throttled_usec": 18570215,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 926068736,
+        "cgroupPeakWholeContainerLifetimeBytes": 1980002304,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-2",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 216228688,
+          "user_usec": 203823014,
+          "system_usec": 12405674,
+          "nice_usec": 0,
+          "nr_periods": 643,
+          "nr_throttled": 384,
+          "throttled_usec": 15220085,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1616343040,
+        "cgroupPeakWholeContainerLifetimeBytes": 2032226304,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-app-3",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 215242956,
+          "user_usec": 203081892,
+          "system_usec": 12161064,
+          "nice_usec": 0,
+          "nr_periods": 637,
+          "nr_throttled": 392,
+          "throttled_usec": 15000577,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 1431740416,
+        "cgroupPeakWholeContainerLifetimeBytes": 2107510784,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      },
+      {
+        "name": "anomaly-009-proxy-1",
+        "wholeLoadCallCpuStatDelta": {
+          "usage_usec": 32033683,
+          "user_usec": 2841570,
+          "system_usec": 29192114,
+          "nice_usec": 0,
+          "nr_periods": 623,
+          "nr_throttled": 0,
+          "throttled_usec": 0,
+          "nr_bursts": 0,
+          "burst_usec": 0
+        },
+        "cgroupCurrentAfterBytes": 6860800,
+        "cgroupPeakWholeContainerLifetimeBytes": 17346560,
+        "memoryEvents": {
+          "low": 0,
+          "high": 0,
+          "max": 0,
+          "oom": 0,
+          "oom_kill": 0,
+          "oom_group_kill": 0
+        }
+      }
+    ],
+    "minimumAvailableHostKiB": 8344888,
+    "safetyStops": 0,
+    "generatorCpuPeakPercent": 132.83,
+    "generatorObservedMemoryUsage": [
+      "1.027GiB / 2GiB",
+      "1.044GiB / 2GiB",
+      "1.067GiB / 2GiB",
+      "1.069GiB / 2GiB",
+      "1.085GiB / 2GiB",
+      "1.088GiB / 2GiB",
+      "1.089GiB / 2GiB",
+      "1.08GiB / 2GiB",
+      "1.093GiB / 2GiB",
+      "1.139GiB / 2GiB",
+      "1.207GiB / 2GiB",
+      "1.223GiB / 2GiB",
+      "1.22GiB / 2GiB",
+      "874.8MiB / 2GiB"
+    ],
+    "steadyWindowGcPauses": {
+      "count": 974,
+      "sumAcrossReplicasMs": 84029.481,
+      "maximumPauseMs": 471.759
+    }
+  }
+}

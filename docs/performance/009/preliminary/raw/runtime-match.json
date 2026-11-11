@@ -1,0 +1,13 @@
+{
+  "baselineImage": "sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5",
+  "candidateImage": "sha256:f297ecb56782aa9d28041b49494cd692ac3ce21a7cfa5047a8001c44a64d45e4",
+  "commonLeadingLayers": 7,
+  "runtimeLayers": [
+    "sha256:31ad4a471c6852bfec14d757cc75a566c82a9769f12c3918cf6bf52cc0eeb3d0",
+    "sha256:751fe7c90841e5c1a9f465ef72cd52a86d5b6ebaa5cd2491cac866d856e12c07",
+    "sha256:0e04bb53876f9341ace2969204c0e1dc5734c8a41c8f8cd14f4cbab0ce1941cd",
+    "sha256:a2796c74836f25d848070dc0ed6ba094489eb8675c6663543a7daf9e83469ffd",
+    "sha256:c5c1224a5e9eb511af186d12593c63651a8474042469712928e6f7739571f8ef"
+  ],
+  "sameRuntimeLayers": true
+}

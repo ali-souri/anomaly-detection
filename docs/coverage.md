@@ -68,3 +68,15 @@ this positive coverage evidence does not authorize a v0.3 release. See result 00
 case: **61 unit / 56 integration**. Exact fresh counters: LINE296/0, BRANCH134/0, INSTRUCTION1380/0,
 METHOD68/0, CLASS27/0 and COMPLEXITY137/0. Source/XML scope and built-in filters are unchanged;
 the additional loop contributes two branch outcomes. No handwritten exclusions or reduced gates.
+
+009 retains the same exact gates: **67 unit / 101 real HTTP** tests, LINE364/0, BRANCH172/0,
+INSTRUCTION1600/0, METHOD77/0, CLASS29/0, COMPLEXITY166/0. It has 30 handwritten production
+Java files, 32 XML class entries (including private Data and anonymous HttpInputMessage), and
+29 executable classes. No exclusions or generated markers were added. Characterization tests
+first passed on the unchanged 008 parser. Separate harness/tooling remain outside this denominator.
+
+009 retains the same exact gates: **67 unit / 101 real HTTP** tests, LINE364/0, BRANCH172/0,
+INSTRUCTION1600/0, METHOD77/0, CLASS29/0, COMPLEXITY166/0. It has 30 handwritten production
+Java files, 32 XML class entries (including private Data and anonymous HttpInputMessage), and
+29 executable classes. No exclusions or generated markers were added. Characterization tests
+first passed on the unchanged 008 parser. Separate harness/tooling remain outside this denominator.

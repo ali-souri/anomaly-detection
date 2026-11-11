@@ -1,0 +1,77 @@
+[
+    {
+        "Id": "sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5",
+        "RepoTags": [
+            "anomaly-detection:008"
+        ],
+        "RepoDigests": [
+            "anomaly-detection@sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-11-11T01:57:26.476468673Z",
+        "Config": {
+            "User": "anomaly",
+            "ExposedPorts": {
+                "8080/tcp": {}
+            },
+            "Env": [
+                "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "JAVA_HOME=/opt/java/openjdk",
+                "LANG=en_US.UTF-8",
+                "LANGUAGE=en_US:en",
+                "LC_ALL=en_US.UTF-8",
+                "JAVA_VERSION=jdk-21.0.11+10",
+                "PORT=8080",
+                "JAVA_TOOL_OPTIONS=-Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp"
+            ],
+            "Entrypoint": [
+                "java",
+                "-jar",
+                "/app/app.jar"
+            ],
+            "WorkingDir": "/app",
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "wget -q -O /dev/null \"http://127.0.0.1:${PORT}/actuator/health/readiness\" || exit 1"
+                ],
+                "Interval": 10000000000,
+                "Timeout": 3000000000,
+                "StartPeriod": 30000000000,
+                "Retries": 3
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 99730266,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:31ad4a471c6852bfec14d757cc75a566c82a9769f12c3918cf6bf52cc0eeb3d0",
+                "sha256:751fe7c90841e5c1a9f465ef72cd52a86d5b6ebaa5cd2491cac866d856e12c07",
+                "sha256:0e04bb53876f9341ace2969204c0e1dc5734c8a41c8f8cd14f4cbab0ce1941cd",
+                "sha256:a2796c74836f25d848070dc0ed6ba094489eb8675c6663543a7daf9e83469ffd",
+                "sha256:c5c1224a5e9eb511af186d12593c63651a8474042469712928e6f7739571f8ef",
+                "sha256:4dbf4d65f894308b80e882d49919a8fee670952105f6dbd6fe792699a80c2012",
+                "sha256:d75c10dae8d2e9bc59f88119ee629dd4000346e9c1ab0b3ae17b83aaf3e0941c",
+                "sha256:225919ea2a7785efe86637608710a45b32bba20ef38a7063e2ef926c8067d839"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-11T01:57:35.53589564Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "eqdjfqo9v1829g2vbkezthq9s",
+                    "CreatedAt": "2026-11-11T01:57:36.706827622Z"
+                }
+            ]
+        }
+    }
+]

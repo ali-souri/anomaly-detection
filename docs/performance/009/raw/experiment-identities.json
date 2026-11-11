@@ -1,0 +1,26 @@
+{
+  "experimentScriptCommit": "ebf432f4a72325aa0504a183b571dabf782d47c0",
+  "sharedJavaHarnessSource": "331cb861ee6fbbbbae77aac4e82878647cb2eec4",
+  "fixtures": [
+    {
+      "name": "IQR-2000000.json",
+      "bytes": 9900028,
+      "sha256": "86e991226274e3737117153cb51730586da02975d57a3ddf3d52e85ec1b09d4b"
+    },
+    {
+      "name": "Z_SCORE-2000000.json",
+      "bytes": 9900032,
+      "sha256": "5cedacdbcf2ffeaadc12f4577a66a9ecebd7842d748124a8ac31cc85124151bd"
+    }
+  ],
+  "scriptSha256": {
+    "load-tests\\suite.js": "d26b85e7d4eeef1d4cdc18cee7e205aea91b2c9a5956c51641cae8f3260599fd",
+    "scripts\\experiment009.ps1": "792aa212493ec02797ac96257cd5dd2faf7adaef96990c4ead353d98c4362bb6",
+    "scripts\\run009-load.ps1": "46626c4b73f291f79060807987fc5f63a007bd6163a536c1e2f11eb2fea074b4",
+    "scripts\\api009.ps1": "fe5b7746b33c5d9cff1ab5a898359f92f270d9462218827eba381de1fb370753"
+  },
+  "firstGreenPushFinishedUtc": "2026-11-11T04:16:14.748310+00:00",
+  "firstFreshProfileContainerStartUtc": "2026-11-11T04:16:23.323432978Z",
+  "promptSha256": "9a72dd13190262daabad37ed9fc5fb557036437b74ad86b2f56ef80332f92c1c",
+  "attachmentSha256": "9a72dd13190262daabad37ed9fc5fb557036437b74ad86b2f56ef80332f92c1c"
+}

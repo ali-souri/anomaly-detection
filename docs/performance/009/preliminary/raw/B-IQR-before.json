@@ -1,0 +1,102 @@
+{
+  "utc": "2026-11-11T04:07:49.3619468Z",
+  "availableHostKiB": 12168844,
+  "containers": [
+    {
+      "name": "anomaly-009-app-1",
+      "cpu": [
+        "usage_usec 9329010",
+        "user_usec 8366026",
+        "system_usec 962983",
+        "nice_usec 0",
+        "nr_periods 46",
+        "nr_throttled 5",
+        "throttled_usec 142330",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "294223872",
+      "memoryPeakBytes": "317435904",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-app-2",
+      "cpu": [
+        "usage_usec 9222442",
+        "user_usec 8427473",
+        "system_usec 794968",
+        "nice_usec 0",
+        "nr_periods 52",
+        "nr_throttled 6",
+        "throttled_usec 202977",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "290545664",
+      "memoryPeakBytes": "317177856",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-app-3",
+      "cpu": [
+        "usage_usec 8754687",
+        "user_usec 7825978",
+        "system_usec 928709",
+        "nice_usec 0",
+        "nr_periods 44",
+        "nr_throttled 3",
+        "throttled_usec 109347",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "308191232",
+      "memoryPeakBytes": "320925696",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-proxy-1",
+      "cpu": [
+        "usage_usec 70029",
+        "user_usec 28011",
+        "system_usec 42017",
+        "nice_usec 0",
+        "nr_periods 6",
+        "nr_throttled 0",
+        "throttled_usec 0",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "6332416",
+      "memoryPeakBytes": "6475776",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    }
+  ]
+}

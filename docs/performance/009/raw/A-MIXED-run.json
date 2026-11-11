@@ -1,0 +1,17 @@
+{
+  "run": "A-MIXED",
+  "startedUtc": "2026-11-11T04:24:37.7392970Z",
+  "endedUtc": "2026-11-11T04:25:44.9442555Z",
+  "exitCode": 99,
+  "sourceCommit": "ebf432f4a72325aa0504a183b571dabf782d47c0",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "MIXED",
+  "mode": "arrival",
+  "duration": "60s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://proxy:8080",
+  "network": "anomaly-009_default"
+}

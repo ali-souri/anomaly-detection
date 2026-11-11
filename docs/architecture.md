@@ -9,7 +9,7 @@ package imports neither Spring nor Jackson and can run directly in JUnit.
 The small Strategy contract isolates the algorithm. The immutable registry is built once from
 injected strategies and selects by exact identifier; adding a detector does not edit a selection
 switch. The additional test detector demonstrates this. The service owns selection/defaults;
-detectors own statistics/classification. API parsing checks JSON node types directly because
+detectors own statistics/classification. API parsing checks Jackson token types directly because
 default coercion would accept numeric strings and collapse omitted/null parameters.
 
 `DetectionSummary` shares status, warnings, effective threshold and immutable ordered partitions.
@@ -31,7 +31,7 @@ The Maven groupId is io.anomaly. Java import compatibility changed; the HTTP con
 | api.dto | DetectionRequest, DetectionResponse, IqrResponse, ZScoreResponse |
 | api.mapper / api.parser | ResponseMapper / RequestParser, BoundedRequestBodyAdvice |
 | api.filter | DetectionAdmissionFilter |
-| api.exception | InvalidRequestException, InputTooLargeException, ProblemHandler |
+| api.exception | InvalidRequestException, InputTooLargeException, MalformedJsonException, ProblemHandler |
 | core.algorithm | AnomalyDetector, IqrDetector, ZScoreDetector |
 | core.service / core.registry | DetectionService / AlgorithmRegistry |
 | core.model | DetectionResult, DetectionSummary, DetectionStatus, WarningCode, IqrResult, ZScoreResult |
@@ -53,10 +53,10 @@ classDiagram
     class BoundedRequestBodyAdvice["api.parser.BoundedRequestBodyAdvice"]
     class RequestLimits["config.RequestLimits"]
     class DetectionController["api.controller.DetectionController"] {
-      +detect(JsonNode) DetectionResponse
+      +detect(byte[], MediaType) DetectionResponse
     }
     class RequestParser["api.parser.RequestParser"] {
-      +parse(JsonNode) DetectionRequest
+      +parse(byte[], Charset) DetectionRequest
     }
     class DetectionRequest["api.dto.DetectionRequest"]
     class ResponseMapper["api.mapper.ResponseMapper"] {
@@ -149,13 +149,22 @@ The API is synchronous and in-memory, intentionally small enough to read and exp
 Double snapshot remains the source of ordered immutable partitions, preserving the 007 reference
 reuse benefit. Median-of-halves indices, overflow/subnormal arithmetic and signed-zero ordering
 remain unchanged. Profile/measurement evidence is in performance/008; the class relationships above
-remain actual and unchanged. Parsing, limits, admission and Z_SCORE were not refactored.
+remain actual and unchanged. That increment did not refactor parsing, limits, admission or Z_SCORE.
 
 v0.3 reuses immutable Double references in classification partitions, retaining primitive
 arithmetic, defensive snapshots and eager immutable FULL results. No primitive-model migration
 or deferred work is involved. A servlet filter takes an immediate semaphore permit before body
 binding and holds it through synchronous response writing. A Spring RequestBodyAdvice uses
-JDK readNBytes(limit + 1) before Jackson to bound actual raw bytes, then a positive configured
-number-count policy bounds conversion. This adds a bounded raw-body buffer; memory observations
-and concurrency tests must account for it. All request state remains local; the semaphore is
+JDK readNBytes(limit + 1) before message conversion to bound actual raw bytes. The byte[] bridge
+copies that bounded buffer once more. RequestParser uses the configured JsonFactory directly,
+checks token types and appends finite Double values only within the inclusive count limit. It
+never builds a JsonNode tree or preallocates the maximum list. Syntax is consumed before final
+semantic checks to preserve duplicate last-wins and error precedence. The first complete root
+retains the baseline ignored-trailing policy; the byte guard still counts all trailing bytes.
+Numeric lists, snapshots and bounded raw buffers still consume O(n) memory. Jackson read/encoding
+failures become MalformedJsonException and public 400 MALFORMED_JSON. The OpenAPI operation
+continues to expose DetectionRequest as a JSON object, despite the internal byte[] boundary. All request state remains local; the semaphore is
 only operational admission state. Docker/nginx scale copies of this same modular application.
+
+009 changes only this input path and its Spring bridge; the complete statistical core tree is
+identical to 008 (85c0601c28df59dd09bc02ab4eba4881d3bb6094). See [matched evidence](performance/009/README.md).

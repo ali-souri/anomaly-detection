@@ -110,9 +110,11 @@ API. v0.3 adds positive configurable per-instance demo policies: 1 active detect
 2,000,000 numbers and 64 MiB raw body, both size bounds inclusive. See README for exact property
 and environment names. These are operational limits, not numerical errors or a measured latency SLO.
 Oversize declared bodies are rejected before reading; a bounded JDK read checks actual bytes,
-including unknown/chunked length and trailing whitespace, before Jackson creates a tree. It uses
-a bounded additional raw-body buffer. Number count is checked before allocating the converted
-Double list, after tree creation. Admission is acquired before conversion, with no waiting queue,
+including unknown/chunked length and trailing whitespace, before JSON parsing. The existing advice buffers raw bytes; the byte[] message converter makes
+an additional raw copy. The direct token parser builds the ordinary numeric list without a
+JsonNode tree and checks the inclusive count before appending beyond it. It does not allocate
+the maximum capacity up front. Raw buffers and numeric snapshots remain O(n) memory. Admission
+is acquired before conversion, with no waiting queue,
 and released in finally after the synchronous filter chain returns (including response writing
 and failure paths). A per-instance bound is not a cluster-wide bound. HTTP 503/413 do not count
 toward the owner's ten successful complete requests/second target. Clients should honor the
@@ -128,3 +130,27 @@ Full default-port URLs: http://localhost:8080/swagger-ui/index.html and
 http://localhost:8080/v3/api-docs. `PORT` or `--server.port` changes 8080; update both URLs.
 The API-only base configuration also disables general static-resource mappings, blocking direct
 Swagger WebJar URLs. Dev enables those mappings only with the same explicit flag.
+
+## Input compatibility in 009
+
+Fields may appear in any order. As observed on 008, duplicate known members use their final
+value; semantic checks wait until that first root object is syntactically complete. Later malformed
+syntax therefore wins over an earlier semantic error. Final oversize arrays return 413 before
+element validation. Unknown fields remain invalid. Content after a complete first root is ignored
+by JSON parsing, while all bytes still count toward the body limit. This is retained compatibility,
+not a recommendation for clients to send duplicate members or extra roots. Integer -0 becomes
+positive zero, while floating -0.0 retains its sign. Declared encodings, finite bounds and configured
+Jackson read constraints remain enforced; syntax/encoding/constraint failures map to MALFORMED_JSON.
+The documented request/response object schemas and examples are unchanged.
+
+## Input compatibility in 009
+
+Fields may appear in any order. As observed on 008, duplicate known members use their final
+value; semantic checks wait until that first root object is syntactically complete. Later malformed
+syntax therefore wins over an earlier semantic error. Final oversize arrays return 413 before
+element validation. Unknown fields remain invalid. Content after a complete first root is ignored
+by JSON parsing, while all bytes still count toward the body limit. This is retained compatibility,
+not a recommendation for clients to send duplicate members or extra roots. Integer -0 becomes
+positive zero, while floating -0.0 retains its sign. Declared encodings, finite bounds and configured
+Jackson read constraints remain enforced; syntax/encoding/constraint failures map to MALFORMED_JSON.
+The documented request/response object schemas and examples are unchanged.

@@ -1,0 +1,88 @@
+[
+  {
+    "run": "A-profile-IQR",
+    "javaSamples": 1275,
+    "nativeSamples": 463,
+    "exclusiveJavaPercent": {
+      "input-parsing": 38.8235294117647,
+      "detector-statistics-classification": 5.333333333333333,
+      "detector-validation-copy": 6.666666666666667,
+      "result-construction": 4.1568627450980395,
+      "sort-workspace": 18.352941176470587,
+      "json-serialization": 26.11764705882353,
+      "unclassified": 0.3137254901960784,
+      "transport-native-io": 0.23529411764705882
+    },
+    "inclusiveJavaPercent": {
+      "input-parsing": 38.90196078431372,
+      "detector-statistics-classification": 34.509803921568626,
+      "detector-validation-copy": 6.666666666666667,
+      "result-construction": 4.1568627450980395,
+      "sort-workspace": 18.352941176470587,
+      "json-serialization": 26.11764705882353,
+      "transport-native-io": 0.23529411764705882
+    },
+    "cpuStatDeltaWholeLoadCall": {
+      "usage_usec": 106270773,
+      "user_usec": 99022779,
+      "system_usec": 7247994,
+      "nice_usec": 0,
+      "nr_periods": 335,
+      "nr_throttled": 161,
+      "throttled_usec": 4159037,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "sampleStartAfterContainerSeconds": 21.030654,
+    "sampleEndAfterContainerSeconds": 36.008852,
+    "recordingBytes": 2069001,
+    "recordingSha256": "55AF31C7BBD0FD11FF980BFAFDFF4C2114AB767267DAAF84ABB9C3BAA7EB0560",
+    "sampledAllocationWeightBytes": 69601993944,
+    "maximumObservedGcHeapBytes": 1795661144,
+    "wholeContainerMemoryPeakBytes": 2175778816
+  },
+  {
+    "run": "B-profile-IQR",
+    "javaSamples": 1324,
+    "nativeSamples": 471,
+    "exclusiveJavaPercent": {
+      "detector-statistics-classification": 8.534743202416918,
+      "sort-workspace": 19.561933534743204,
+      "json-serialization": 27.870090634441087,
+      "result-construction": 4.984894259818731,
+      "detector-validation-copy": 6.7975830815709966,
+      "input-parsing": 31.570996978851962,
+      "transport-native-io": 0.3021148036253776,
+      "unclassified": 0.3021148036253776,
+      "raw-body-buffer": 0.0755287009063444
+    },
+    "inclusiveJavaPercent": {
+      "detector-statistics-classification": 39.879154078549846,
+      "sort-workspace": 19.561933534743204,
+      "json-serialization": 28.021148036253777,
+      "result-construction": 4.984894259818731,
+      "detector-validation-copy": 6.7975830815709966,
+      "input-parsing": 31.570996978851962,
+      "transport-native-io": 0.3021148036253776,
+      "raw-body-buffer": 0.0755287009063444
+    },
+    "cpuStatDeltaWholeLoadCall": {
+      "usage_usec": 105101490,
+      "user_usec": 98226700,
+      "system_usec": 6874791,
+      "nice_usec": 0,
+      "nr_periods": 338,
+      "nr_throttled": 147,
+      "throttled_usec": 2536395,
+      "nr_bursts": 0,
+      "burst_usec": 0
+    },
+    "sampleStartAfterContainerSeconds": 20.969678,
+    "sampleEndAfterContainerSeconds": 35.954459,
+    "recordingBytes": 1897880,
+    "recordingSha256": "75C83774E82AB9DAF15FF10CBCD43E098E051B028CD25F8E83769F5E79AED81D",
+    "sampledAllocationWeightBytes": 70242208072,
+    "maximumObservedGcHeapBytes": 1456082536,
+    "wholeContainerMemoryPeakBytes": 1866215424
+  }
+]

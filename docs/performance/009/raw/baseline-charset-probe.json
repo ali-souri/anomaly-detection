@@ -1,0 +1,33 @@
+[
+  {
+    "charset": "US-ASCII",
+    "encoding": "utf-8",
+    "status": 400,
+    "response": {
+      "type": "urn:anomaly-detection:problem:invalid_request",
+      "title": "Bad Request",
+      "status": 400,
+      "detail": "Undocumented field: \u00e9.",
+      "instance": "/api/v1/anomaly-detection",
+      "code": "INVALID_REQUEST"
+    }
+  },
+  {
+    "charset": "UTF-16",
+    "encoding": "utf-16-le",
+    "status": 200,
+    "response": {
+      "algorithm": "IQR",
+      "threshold": 1.5,
+      "status": "NO_DATA",
+      "warnings": [],
+      "anomalies": [],
+      "normalValues": [],
+      "q1": null,
+      "q3": null,
+      "iqr": null,
+      "lowerBound": null,
+      "upperBound": null
+    }
+  }
+]

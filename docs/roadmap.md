@@ -15,3 +15,6 @@
 
 Timed JVMs have no active Java agent. Coverage remains a mandatory separate clean verify gate in
 pre-push/CI. Frozen releases and issued prompts/results stay intact. No next task starts automatically.
+
+- 009: bounded direct Jackson token reader with unchanged core and same-session baseline/candidate
+  API, JFR and interleaved 10-RPS comparisons. [Evidence](performance/009/README.md).

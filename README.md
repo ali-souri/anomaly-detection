@@ -110,12 +110,13 @@ Use `docker compose -f compose.yaml -f compose.capacity.yaml up -d --scale app=3
 the bounded three-copy experiment through nginx; this is horizontal scaling of the same app.
 
 The owner's target is **10 successful complete 2M FULL requests/second total**, separately IQR,
-Z_SCORE and 50/50 mixed. No latency SLO was supplied. The declared ceiling is three application
-containers (12 CPUs/9 GiB), nginx (0.25 CPU/128 MiB) and k6 (2 CPUs/2 GiB). Read the
+Z_SCORE and 50/50 mixed. No latency SLO was supplied. The unchanged 009 ceiling is three application
+containers (3.75 CPUs/3 GiB/2 GiB heap each, active=3), nginx (1 CPU/128 MiB) and
+k6 (2 CPUs/2 GiB, GOMAXPROCS=2, at most 20 VUs): 14.25 CPU units / 11.125 GiB total. Read the
 [actual load results and run commands](docs/load-tests/README.md) before claiming capacity, and
 the [paired measurements](docs/benchmarks/v0.3/report.md) before claiming allocation/speed gains.
 The candidate is not a published v0.3.0 release unless every required capacity/release gate passes.
-Actual outcome: **CAPACITY_TARGET_NOT_MET**. The best tested configuration used three replicas,
+Historical 007 outcome: **CAPACITY_TARGET_NOT_MET**. The best tested configuration used three replicas,
 active=3 each, 3.75 CPUs/3 GiB/2 GiB heap each and a 1-CPU nginx proxy. Successful counts over
 60 seconds were IQR **339 (5.65/s)**, Z_SCORE **418 (6.966667/s)** and mixed **369 (6.15/s)**,
 with sustained 503s and no unexpected errors/timeouts/dropped iterations. Completion-window
@@ -124,9 +125,27 @@ no v0.3.0 release is published.
 
 Continuation 008 profiles that increment and changes only IQR's temporary sorting workspace.
 Matched 2M core means are **657.289 → 201.915 ms/op**; the full deployment still misses ten RPS
-(339 IQR / 348 Z_SCORE / 335 mixed successes in separate 60-second runs). Current verification
-is **61 unit / 56 HTTP**, LINE296/0 and BRANCH134/0. See [008 profile, measurements and commands](docs/performance/008/README.md).
+(339 IQR / 348 Z_SCORE / 335 mixed successes in separate 60-second runs). 008 verification
+was **61 unit / 56 HTTP**, LINE296/0 and BRANCH134/0. See [008 profile, measurements and commands](docs/performance/008/README.md).
 The 007 evidence above is historical and preserved; no general end-to-end or capacity gain is claimed.
+
+009 removes the intermediate JSON tree using Jackson tokens and a bounded byte[] controller
+bridge. The core stays identical to 008. The bridge makes an extra raw byte copy; input lists
+and raw buffers still consume O(n) memory. Current verification is **67 unit / 101 HTTP**,
+LINE364/0 and BRANCH172/0. See [009 contemporaneous comparisons](docs/performance/009/README.md)
+for the fixed-budget IQR/Z_SCORE/mixed runs, compatibility and profile evidence.
+009 verifies the input optimization, but capacity still fails: baseline→candidate successes
+are IQR395→411, Z_SCORE413→437 and mixed401→427 per60s, with sustained503s.
+No v0.3 release is created.
+
+009 removes the intermediate JSON tree using Jackson tokens and a bounded byte[] controller
+bridge. The core stays identical to 008. The bridge makes an extra raw byte copy; input lists
+and raw buffers still consume O(n) memory. Current verification is **67 unit / 101 HTTP**,
+LINE364/0 and BRANCH172/0. See [009 contemporaneous comparisons](docs/performance/009/README.md)
+for the fixed-budget IQR/Z_SCORE/mixed runs, compatibility and profile evidence.
+009 verifies the input optimization, but capacity still fails: baseline→candidate successes
+are IQR395→411, Z_SCORE413→437 and mixed401→427 per60s, with sustained503s.
+No v0.3 release is created.
 
 ## Testing and Coverage
 

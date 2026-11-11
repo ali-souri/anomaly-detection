@@ -1,0 +1,60 @@
+{
+  "sourceCommit": "ebf432f4a72325aa0504a183b571dabf782d47c0",
+  "applicationTests": {
+    "unit": {
+      "tests": 67,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "http": {
+      "tests": 101,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": [
+    {
+      "type": "INSTRUCTION",
+      "missed": "0",
+      "covered": "1600"
+    },
+    {
+      "type": "BRANCH",
+      "missed": "0",
+      "covered": "172"
+    },
+    {
+      "type": "LINE",
+      "missed": "0",
+      "covered": "364"
+    },
+    {
+      "type": "COMPLEXITY",
+      "missed": "0",
+      "covered": "166"
+    },
+    {
+      "type": "METHOD",
+      "missed": "0",
+      "covered": "77"
+    },
+    {
+      "type": "CLASS",
+      "missed": "0",
+      "covered": "29"
+    }
+  ],
+  "productionJavaFiles": 30,
+  "xmlClassEntries": 32,
+  "coreTree008": "85c0601c28df59dd09bc02ab4eba4881d3bb6094",
+  "unchangedCoreSource": true,
+  "logs": {
+    "009-characterization-green.log": "5194a6644be9f42e261ebb1abdfa25a1f0f55d558052076876d8f488a64b06a2",
+    "009-green.log": "6c59b3b595feb313f4178a2114c8aa4c06619056c094a909d7f1cd9aa730e5aa",
+    "009-starting-green.log": "2a61b141b66909142bd80cebbbb27720d80c7896ea280dfbb3ef8d4d20f56d48",
+    "009-charset-green.log": "a756624da6a8305adb4c6a7fb7cd823baf0c51ff37c49336dc1938c455de7072",
+    "009-final-green.log": "6fd0ae1e7cbf1aa01d45977c317f4f2a630c14559793231cb6dc8daf58db6bb4"
+  }
+}

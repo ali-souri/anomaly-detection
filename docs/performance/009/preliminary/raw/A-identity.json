@@ -1,0 +1,16 @@
+{
+  "version": "A",
+  "image": "sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5",
+  "jarSha256": "f23766f4d65e8764b0021f87ead2752aa2607715e985be8b4968f87250d2cfbe",
+  "sourceCommit": "416ea7c007b5a6a3e0801f0d7d1769ffc0a46df1",
+  "baselinePublication": "8d7d41c34c9e2d10e955092239fd87bb91a8acf7",
+  "java": [
+    "Picked up JAVA_TOOL_OPTIONS: -Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -Xlog:gc:stdout:time,uptime,level,tags",
+    "[2026-11-11T04:03:38.418+0000][0.002s][info][gc] Using G1",
+    "openjdk version \"21.0.11\" 2026-04-21 LTS",
+    "OpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)",
+    "OpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode, sharing)"
+  ],
+  "jvmEnvironment": "[\"DETECTION_LIMITS_MAX_ACTIVE=3\",\"DETECTION_LIMITS_MAX_NUMBERS=2000000\",\"DETECTION_LIMITS_MAX_BODY_BYTES=67108864\",\"JAVA_TOOL_OPTIONS=-Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -Xlog:gc:stdout:time,uptime,level,tags\",\"PORT=8080\",\"SPRING_PROFILES_ACTIVE=default\",\"SWAGGER_ENABLED=false\",\"PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"JAVA_HOME=/opt/java/openjdk\",\"LANG=en_US.UTF-8\",\"LANGUAGE=en_US:en\",\"LC_ALL=en_US.UTF-8\",\"JAVA_VERSION=jdk-21.0.11+10\"]",
+  "harnessSha256": "95666B36A1D36B579969D8EB70F145A39E72FDE96806F110345C02C14E6C9064"
+}

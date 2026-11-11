@@ -1,0 +1,102 @@
+{
+  "utc": "2026-11-11T04:10:37.2044983Z",
+  "availableHostKiB": 7953748,
+  "containers": [
+    {
+      "name": "anomaly-009-app-1",
+      "cpu": [
+        "usage_usec 230113641",
+        "user_usec 219359165",
+        "system_usec 10754476",
+        "nice_usec 0",
+        "nr_periods 686",
+        "nr_throttled 459",
+        "throttled_usec 22120585",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "1746300928",
+      "memoryPeakBytes": "2332098560",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-app-2",
+      "cpu": [
+        "usage_usec 227347402",
+        "user_usec 214223916",
+        "system_usec 13123486",
+        "nice_usec 0",
+        "nr_periods 691",
+        "nr_throttled 433",
+        "throttled_usec 20705706",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "2212765696",
+      "memoryPeakBytes": "2329268224",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-app-3",
+      "cpu": [
+        "usage_usec 230648849",
+        "user_usec 218483278",
+        "system_usec 12165570",
+        "nice_usec 0",
+        "nr_periods 695",
+        "nr_throttled 443",
+        "throttled_usec 20222267",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "2036948992",
+      "memoryPeakBytes": "2339631104",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    },
+    {
+      "name": "anomaly-009-proxy-1",
+      "cpu": [
+        "usage_usec 31547880",
+        "user_usec 2948997",
+        "system_usec 28598882",
+        "nice_usec 0",
+        "nr_periods 633",
+        "nr_throttled 0",
+        "throttled_usec 0",
+        "nr_bursts 0",
+        "burst_usec 0"
+      ],
+      "memoryCurrentBytes": "6971392",
+      "memoryPeakBytes": "19390464",
+      "memoryEvents": [
+        "low 0",
+        "high 0",
+        "max 0",
+        "oom 0",
+        "oom_kill 0",
+        "oom_group_kill 0"
+      ]
+    }
+  ]
+}
