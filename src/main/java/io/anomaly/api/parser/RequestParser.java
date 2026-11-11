@@ -14,9 +14,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /** Direct token validation; no tree, coercion or request-specific shared state. */
 public final class RequestParser {
+  // Match Spring Jackson conversion, including generic Unicode and US-ASCII byte readers.
+  private static final Set<String> BYTE_ENCODINGS =
+      Set.of(
+          "UTF-8", "UTF-16BE", "UTF-16LE", "UTF-32BE", "UTF-32LE", "UTF-16", "UTF-32", "US-ASCII");
   private final int maxNumbers;
   private final JsonFactory factory;
 
@@ -60,7 +65,8 @@ public final class RequestParser {
    * Semantic checks follow syntax consumption so later malformed input retains its error category.
    *
    * @param request bounded bytes, still O(n) memory together with the numeric list
-   * @param charset optional declared charset; Unicode encodings retain Jackson autodetection
+   * @param charset optional declared charset; preserves Spring's byte-versus-Reader encoding
+   *     selection
    * @return immutable request, with null threshold only for omission
    * @throws InvalidRequestException for semantic/type/required-field failures
    * @throws InputTooLargeException for the final data field's count policy
@@ -131,7 +137,7 @@ public final class RequestParser {
   }
 
   private JsonParser open(byte[] request, Charset charset) throws IOException {
-    return charset == null || charset.name().startsWith("UTF-")
+    return charset == null || BYTE_ENCODINGS.contains(charset.name())
         ? factory.createParser(request)
         : factory.createParser(new InputStreamReader(new ByteArrayInputStream(request), charset));
   }

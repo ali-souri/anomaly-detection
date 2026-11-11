@@ -33,6 +33,8 @@ jobs:
           python -B scripts/test_analyze008.py
           python -B scripts/test_report008.py
           python -B scripts/test_analyze009.py
+          python -B scripts/test_report009.py
+          python -B scripts/test_resources009.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

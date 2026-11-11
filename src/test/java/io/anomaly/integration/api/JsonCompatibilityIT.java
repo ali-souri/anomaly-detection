@@ -129,6 +129,24 @@ class JsonCompatibilityIT extends HttpTestSupport {
   }
 
   @Test
+  void asciiHeaderRetainsTheBaselineUnicodeByteReader() throws Exception {
+    var result =
+        bytes(
+            "{\"algorithm\":\"IQR\",\"data\":[],\"é\":0}".getBytes(StandardCharsets.UTF_8),
+            "application/json;charset=US-ASCII",
+            false);
+    assertThat(result.statusCode()).isEqualTo(400);
+    assertThat(json(result).path("detail").asText()).isEqualTo("Undocumented field: é.");
+  }
+
+  @Test
+  void genericUtf16HeaderRetainsByteAutodetection() throws Exception {
+    var result =
+        bytes(EMPTY.getBytes(StandardCharsets.UTF_16LE), "application/json;charset=UTF-16", false);
+    assertThat(result.statusCode()).isEqualTo(200);
+  }
+
+  @Test
   void utf8BomAndExactDeclaredAndChunkedByteLimitsStayEffective() throws Exception {
     byte[] body = EMPTY.getBytes(StandardCharsets.UTF_8);
     byte[] bom = new byte[body.length + 3];
