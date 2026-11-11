@@ -14,7 +14,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter;
 
-/** Bounds raw bytes before Jackson creates a JSON tree, including unknown/chunked body lengths. */
+/** Bounds raw bytes before message conversion, including unknown/chunked body lengths. */
 @ControllerAdvice(assignableTypes = DetectionController.class)
 public final class BoundedRequestBodyAdvice extends RequestBodyAdviceAdapter {
   private final int maxBytes;

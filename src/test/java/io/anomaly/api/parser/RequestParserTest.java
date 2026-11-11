@@ -25,7 +25,7 @@ class RequestParserTest {
   void blankAlgorithmIsInvalid(String algorithm) {
     var json = mapper.createObjectNode().put("algorithm", algorithm);
     json.putArray("data");
-    assertThatThrownBy(() -> parser.parse(json))
+    assertThatThrownBy(() -> parser.parse(mapper.writeValueAsBytes(json)))
         .isInstanceOf(InvalidRequestException.class)
         .hasMessageContaining("required canonical string");
   }
@@ -33,7 +33,7 @@ class RequestParserTest {
   @Test
   void convertedDataIsAnImmutableSnapshotWithOmissionPreserved() throws Exception {
     var source = mapper.readTree("{\"algorithm\":\"IQR\",\"data\":[2,1,2]}");
-    var request = parser.parse(source);
+    var request = parser.parse(mapper.writeValueAsBytes(source));
     ((com.fasterxml.jackson.databind.node.ArrayNode) source.get("data")).add(99);
     assertThat(request.data()).containsExactly(2., 1., 2.);
     assertThat(request.threshold()).isNull();

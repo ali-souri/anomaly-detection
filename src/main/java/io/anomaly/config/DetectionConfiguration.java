@@ -1,5 +1,6 @@
 package io.anomaly.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.anomaly.api.mapper.ResponseMapper;
 import io.anomaly.api.parser.RequestParser;
 import io.anomaly.core.algorithm.AnomalyDetector;
@@ -42,8 +43,8 @@ public class DetectionConfiguration {
   }
 
   @Bean
-  RequestParser requestParser(RequestLimits limits) {
-    return new RequestParser(limits.maxNumbers());
+  RequestParser requestParser(RequestLimits limits, ObjectMapper mapper) {
+    return new RequestParser(limits.maxNumbers(), mapper.getFactory());
   }
 
   @Bean

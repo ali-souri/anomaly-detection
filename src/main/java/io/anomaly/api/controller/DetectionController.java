@@ -1,6 +1,5 @@
 package io.anomaly.api.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import io.anomaly.api.dto.DetectionRequest;
 import io.anomaly.api.dto.DetectionResponse;
 import io.anomaly.api.mapper.ResponseMapper;
@@ -12,9 +11,12 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 /** Thin HTTP entry point for one calculation per request. */
@@ -41,7 +43,8 @@ public final class DetectionController {
   /**
    * Runs detection on a required JSON object.
    *
-   * @param request untrusted JSON, validated before conversion
+   * @param request bounded raw JSON bytes, validated directly by the token reader
+   * @param contentType declared charset, preserving the existing converter's encoding behavior
    * @return a flat algorithm-specific JSON response
    */
   @PostMapping(
@@ -157,8 +160,9 @@ public final class DetectionController {
                 mediaType = "application/problem+json",
                 schema = @Schema(implementation = ProblemDetail.class)))
   })
-  public DetectionResponse detect(@RequestBody JsonNode request) {
-    DetectionRequest input = parser.parse(request);
+  public DetectionResponse detect(
+      @RequestBody byte[] request, @RequestHeader(HttpHeaders.CONTENT_TYPE) MediaType contentType) {
+    DetectionRequest input = parser.parse(request, contentType.getCharset());
     return mapper.toResponse(service.detect(input.algorithm(), input.data(), input.threshold()));
   }
 }

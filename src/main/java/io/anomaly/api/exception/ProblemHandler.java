@@ -21,6 +21,11 @@ public final class ProblemHandler extends ResponseEntityExceptionHandler {
   /** Creates shared, stateless HTTP exception handling. */
   public ProblemHandler() {}
 
+  @ExceptionHandler(MalformedJsonException.class)
+  ResponseEntity<ProblemDetail> malformed(MalformedJsonException error, WebRequest request) {
+    return response(HttpStatus.BAD_REQUEST, "MALFORMED_JSON", error.getMessage(), request);
+  }
+
   @ExceptionHandler(InputTooLargeException.class)
   ResponseEntity<ProblemDetail> tooLarge(InputTooLargeException error, WebRequest request) {
     return response(HttpStatus.PAYLOAD_TOO_LARGE, "INPUT_TOO_LARGE", error.getMessage(), request);

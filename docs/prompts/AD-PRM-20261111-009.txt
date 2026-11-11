@@ -1,0 +1,177 @@
+PROMPT_ID: AD-PRM-20261111-009
+REQUIRED_RESULT_ID: AD-RES-20261111-009
+PARENT_PROMPT: AD-PRM-20261111-008
+PARENT_RESULT: AD-RES-20261111-008
+SUPERSEDES: NONE
+
+TASK
+Implement ONE more small optimization: parse request JSON directly into the validated numeric request using Jackson's token API, without building an intermediate JsonNode tree.
+Then compare the real 008 baseline and new candidate in the SAME experiment session under the unchanged resource budget and 10-RPS FULL-output target.
+Target about 40-45 minutes. Preserve simple code the owner can read and explain quickly. Stop after this increment; do not automatically begin another optimization.
+
+WORKSPACE AND AUTHORITY
+Canonical folder: F:\projects\anomaly-detection
+Remote: git@github.com:ali-souri/anomaly-detection.git
+Read AGENTS.md, current Git status, result 008, profile/measurement evidence, API contract and actual controller/parser/body-limit wiring.
+The owner explicitly authorized one more optimization. This authorizes scoped implementation, meaningful tests, local bounded experiments, documentation, feature commits and green pushes. No routine reapproval is needed.
+
+Verified 008 publication/baseline:
+8d7d41c34c9e2d10e955092239fd87bb91a8acf7
+Its exact-code CI SHA:
+595c637f575cf2007c9725ff3dd15d8a0e1ff533
+Known executed 008 container:
+sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5
+Known executed container JAR:
+f23766f4d65e8764b0021f87ead2752aa2607715e985be8b4968f87250d2cfbe
+
+Preserve newer owner edits and record actual starting state; never reset to the pinned baseline.
+Create feature/v0.3-direct-json from the preserved 008 increment, which is not yet on develop.
+Keep incomplete work off develop/master. Do not move frozen release refs, edit issued prompts/results, overwrite accepted 007/008 evidence, force push, rewrite history, Git clean/reset, bypass hooks or change repository visibility.
+All generated local caches/data/logs/temp files stay on F: inside this project. Existing installed tools on C: may be read/executed. Keep existing Docker storage; no relocation, new project data root on C:, global installation/configuration, unrelated-service changes or paid infrastructure.
+
+EVIDENCE AND SCOPE
+008's scaled IQR diagnostic attributed about 26.18% of Java execution samples to tree creation, 13.71% to conversion into a numeric list, 25.85% to serialization and 15.77% to sorting.
+These are sampled stack frequencies, not precise wall-clock phase times.
+008's local double[] IQR sort workspace reduced paired core mean from 657.289 to 201.915 ms/op on the measured fixture, but the deployment still failed 10 RPS.
+Keep that verified workspace improvement and 007's immutable Double-reference reuse unchanged.
+The historical 007/008 capacity runs were at different times/host states; they are not the required contemporaneous baseline/candidate experiment.
+
+Only the API input path and its minimal Spring bridge may change.
+Keep io.anomaly role packages, one modular application, Strategy/registry, constructor injection and the Spring/Jackson-independent statistical core.
+Do not optimize serialization, change detector/model representations, add response modes/compression/caching, new frameworks, microservices, RabbitMQ, gRPC, persistence, authentication or parallel/chunk statistics.
+The production statistical core should remain identical to 008; verify its source tree.
+Preserve Java 17+ target and current pinned dependencies; no dependency/runtime upgrade experiment.
+
+A. DECLARE HYPOTHESIS AND CHARACTERIZE CONTRACT FIRST
+Write docs/performance/009/hypothesis.md before modifying the production path.
+Hypothesis: removing per-number JSON tree nodes and the extra tree traversal reduces input-path allocation/CPU cost; any whole-API or capacity benefit must be measured separately.
+Do not promise ten RPS or convert sample percentages into a guaranteed speedup.
+
+Run baseline tests and add meaningful contract characterizations BEFORE the refactor, including:
+- All property orders, including data before algorithm/threshold.
+- Required algorithm/data, missing versus explicit-null threshold, empty input and unknown fields.
+- Wrong object/array/scalar shapes; strings, booleans, null elements and nested data.
+- Integer/floating/exponent tokens, finite bounds, signed zero, integer -0 versus -0.0 and representative large integers interpreted as doubles.
+- Malformed/truncated JSON and relevant whitespace/encoding behavior.
+- Exact count/byte boundaries and unknown/chunked byte limits.
+- Stable error categories, permit release and subsequent successful recovery.
+Probe the existing duplicate-member/trailing-content policy too. Do not silently alter it to simplify the parser. Preserve relevant observed behavior with small readable logic; if this requires disproportionate complexity, flag incompatibility and keep the prototype/release blocked instead of concealing it.
+
+Use TDD honestly: characterize existing behavior before the representation refactor and keep that GREEN throughout. Any genuinely new behavior requires an actual meaningful RED before its implementation.
+Do not invent functional failures for intentionally unchanged behavior or count compilation/environment/scaffold failures as functional RED. Record actual commands/order.
+
+B. IMPLEMENT A SMALL DIRECT READER
+Use the project's existing Jackson streaming/token API and compatible configured JsonFactory/constraints. Do not build JSON trees/maps, stringify/reparse JSON or introduce a generic parsing framework.
+Parse allowed fields in any order; validate token types explicitly before numeric access.
+Do not use coercive default DTO binding or accessors that turn strings/null/booleans into numbers.
+Preserve effective missing/null/default semantics, finite/non-negative threshold handling and IEEE double interpretation.
+Keep syntax errors as MALFORMED_JSON, semantic input errors as INVALID_REQUEST and unsupported algorithms as UNSUPPORTED_ALGORITHM with the documented HTTP statuses. Numeric calculation failures remain 422.
+If the Java boundary now throws a Jackson parsing exception outside the old message converter, translate it deliberately; malformed input must not become a generic 500.
+
+Append validated numbers directly into the ordinary numeric request list, checking the inclusive configured count limit before appending beyond it.
+Do not preallocate every request to the maximum two-million-value capacity.
+Keep original order, duplicates, immutable snapshots and signed-zero behavior. Reuse existing immutable Double values afterward as 007/008 do.
+This optimization removes the tree; it does NOT make global detection O(1) memory or turn the HTTP API into asynchronous streaming.
+
+Choose the smallest Spring integration. For example, an explicitly documented byte[] request boundary can use the existing bounded advice and call the direct parser; a tiny converter is acceptable only if needed to preserve the contract more simply.
+The current Operation annotation already declares DetectionRequest as the OpenAPI request schema. Preserve that JSON object schema and examples even if the internal Java parameter becomes bytes.
+Keep the controller thin. Remove unused production JsonNode parsing paths rather than maintaining two implementations for old tests.
+Preserve existing test behaviors/assertions; adapt only their internal invocation where the internal parser signature changes.
+
+Keep BoundedRequestBodyAdvice's existing full byte-limit protection if that is the simplest safe bridge. A bounded raw-body buffer is acceptable and must remain included in memory measurements.
+Do not also redesign the byte-reading mechanism as a second optimization.
+If the bridge adds a raw byte copy, acknowledge and measure it rather than claiming all buffering disappeared.
+
+C. PRESERVE ADMISSION, ERROR AND DOCUMENTATION CONTRACTS
+Demo defaults remain configurable per instance:
+- 1 active detection request.
+- Inclusive 2,000,000 values.
+- Inclusive 67,108,864 body bytes (64 MiB).
+Admission occurs before expensive body materialization and covers the entire synchronous response, releasing on every failure/success.
+Busy returns 503 ADMISSION_FULL plus Retry-After: 1; oversized input returns 413 INPUT_TOO_LARGE.
+Actual byte enforcement must remain effective for declared and unknown/chunked bodies, including long trailing whitespace. Content-Length-only protection is insufficient.
+No waiting queue or collection of decoded pending datasets.
+Preserve strict 400/405/415, numerical 422 and safe 500 behavior.
+
+Keep the existing endpoint /api/v1/anomaly-detection, request/response wire schemas, IQR/Z_SCORE defaults/conventions, empty/small/zero-variance warnings and FULL output.
+Keep dev PLUS SWAGGER_ENABLED=true isolation, including direct Swagger resources.
+Preserve the full README URLs:
+http://localhost:8080/swagger-ui/index.html
+http://localhost:8080/v3/api-docs
+
+D. TEST AND COVERAGE GATES
+Keep all existing regression coverage and real random-port HTTP tests.
+Add meaningful direct-reader unit tests and HTTP regressions for token/error/boundary cases that the new path introduces.
+Use real HTTP for malformed-body/error-code mapping, media type, unknown-length limits, occupied admission and recovery; unit-only parser success is insufficient.
+Keep deterministic concurrency coordination; no flaky sleep-based correctness assertions.
+
+Require zero missed LINE and BRANCH counters across all handwritten application production code in combined unit + integration coverage.
+No handwritten exclusions, generated markers, ignored tests, threshold reduction, artificial state forcing or weakened fresh/nonempty coverage guards.
+Preserve JaCoCo agent/tmpdir configuration in both test forks; pre-commit format/lint and pre-push clean verify stay active.
+Run strict JavaDoc and all existing authored harness/Node/Python checks; test changed tooling meaningfully.
+Root JaCoCo does not cover separate scripts/harnesses.
+Do not rerun unchanged core JMH solely to produce new numbers: core behavior is unchanged and the new optimization is before detect.
+
+E. CONTEMPORANEOUS BASELINE/CANDIDATE EXPERIMENT
+Use explicit 008 and 009 artifacts in separate application runs. Record exact source/harness commits, executed JAR/image hashes, runtime versions and effective configuration.
+Reuse the known baseline image only after identity checks; otherwise reconstruct it in a project-local isolated checkout.
+Use the SAME exact runtime image/JDK, collector, heap, fixture seed, resource limits, generator, response shape and warmup method.
+Never run the full baseline and candidate deployments simultaneously and exceed the budget.
+Stop each task-owned deployment before switching; preserve unrelated services.
+
+Unchanged ceiling:
+- Three app replicas, each 3.75 CPUs / 3 GiB container / 2 GiB heap.
+- Three admission permits per replica.
+- nginx 1 CPU / 128 MiB.
+- k6 2 CPUs / 2 GiB, GOMAXPROCS=2, maximum 20 VUs.
+Total 14.25 CPU units / 11.125 GiB.
+Do not increase permits or other resources in this experiment; isolate the input-path change.
+Capture host availability/headroom, actual CPU/cgroup throttling, GC and generator observations. Preserve the existing host headroom protection.
+No builds/JMH/coverage instrumentation alongside measured load.
+
+FIRST verify fully correct FULL responses for both algorithms/implementations outside timing, including every value/order/count/statistic/field on the complete 2M fixtures.
+Then run interleaved baseline/candidate load pairs for IQR, Z_SCORE and 50/50 mixed in the same session, each offering 10 total arrivals/second for a 60-second steady window after matched warmup.
+Prefer A/B for each workload rather than all old runs far apart from all new runs. If budget permits, repeat a baseline near the end to expose host drift; record order/times.
+Use continuous arrivals around the declared measurement window where needed to distinguish steady completion rate from startup/drain effects. Preserve full timestamps and report the window definition; do not redefine the window after seeing results.
+No reduced payload, retries hiding rejections, compression, output truncation or fixture-specific fast paths.
+
+Each request contains 2,000,000 numbers from the existing seeded MIXED fixture.
+Each successful FULL response still includes 40,000 anomalies and 1,960,000 normal values, about 9.9 MB. Receive all bytes; local post-reception discarding is allowed when disclosed.
+Validate sampled semantic checks during load without making the generator parse huge arrays on every iteration. Retain exhaustive outside-timing checks too.
+
+Report offered/scheduled/successful/rejected/error/timeout/dropped counts, exact-window completion rates, successful latency with sample counts, backlog/drain timestamps, payload/traffic bytes, GC and container/process memory separately.
+503/413 never count toward successful throughput and never enter successful-request latency.
+A pass requires stable successful processing at 10 RPS, no sustained rejection/errors/timeouts/drops or growing backlog; finite boundary accounting must be explicit, not rounded into a pass.
+If the host drifts or a measurement cannot complete safely, label it inconclusive/unexecuted rather than inferring success.
+
+F. CONFIRM THE INPUT-PATH EFFECT
+Capture one short matched baseline/candidate diagnostic profile at the same controlled concurrency to verify reduced tree/list overhead and observe GC/allocation effects.
+Reuse existing JFR tooling where practical. Keep recordings/exports bounded and ignored on F:; commit compact summaries/settings/hashes only.
+Group both old tree+conversion and new direct token reading consistently as an input-parsing bucket. Do not claim JSON CPU became zero simply because JsonNode frames disappeared.
+Keep unknown/native/blocked work visible and distinguish sample weights from exact B/op/live heap.
+If a small parser benchmark is useful and fits, time the complete actual byte-to-validated-request path for each version, including baseline tree construction. Do not time only baseline conversion from a prebuilt tree or a fake replacement validator.
+This benchmark is optional; paired real API/capacity evidence and honest diagnostic observations are mandatory.
+Final capacity runs must have no active recording or JaCoCo agent. Separate quality gates remain mandatory.
+If the prototype loses compatibility, adds disproportionate complexity or has no supported benefit, remove only this task's own edits safely and report OPTIMIZATION_NOT_ACCEPTED.
+
+G. PUBLISH FACTS AND STOP
+Preserve all accepted 007/008 files, older tags and release branches.
+Write new compact evidence/commands/configurations under docs/performance/009/ with fresh run identities.
+Update current architecture/class diagram, useful JavaDoc, API internal-processing explanation, README and Persian interview script to match actual delivered code/results. Keep docs concise and English-first except the Persian script.
+Explain that the numeric list and bounded raw buffer still consume O(n) memory.
+Save this issued prompt verbatim at docs/prompts/AD-PRM-20261111-009.txt.
+
+If all three target scenarios and quality gates pass, merge through develop into clean-tested master, create release/v0.3 and annotated v0.3.0, and verify actual CI on that exact release SHA.
+A bounded local pass does not establish production endurance or universal tail latency.
+If required proof or capacity remains unmet, keep the verified increment/evidence on the feature branch and create no v0.3 release.
+Do not change the target/budget or start a second optimization. Stop only task-owned containers.
+
+RESULT
+Write docs/results/AD-RES-20261111-009.md.
+Report COMPLETE/PARTIAL separately from:
+OPTIMIZATION_VERIFIED / OPTIMIZATION_NOT_ACCEPTED
+CAPACITY_TARGET_MET / CAPACITY_TARGET_NOT_MET / CAPACITY_NOT_EXECUTED
+
+Include actual elapsed time, identities, small code change, compatibility/TDD evidence, exact tests/coverage counters, paired same-session baseline/candidate results, profile/GC/allocation observations, effective fixed resources, CI evidence and remaining limitations.
+If the target still fails, identify the remaining measured bottleneck and stop. Do not imply that another parser change, more permits or microservices guarantees success.
+

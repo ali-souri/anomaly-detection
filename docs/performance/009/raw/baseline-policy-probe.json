@@ -1,0 +1,82 @@
+[
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[1],\"data\":[]}",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+  },
+  {
+    "request": "{\"algorithm\":null,\"algorithm\":\"IQR\",\"threshold\":null,\"threshold\":1.5,\"data\":[null],\"data\":[1]}",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\"],\"anomalies\":[],\"normalValues\":[1.0],\"q1\":1.0,\"q3\":1.0,\"iqr\":0.0,\"lowerBound\":1.0,\"upperBound\":1.0}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[1,2,3,4],\"data\":[1]}",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\"],\"anomalies\":[],\"normalValues\":[1.0],\"q1\":1.0,\"q3\":1.0,\"iqr\":0.0,\"lowerBound\":1.0,\"upperBound\":1.0}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[null,1,2,3]}",
+    "status": 413,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:input_too_large\",\"title\":\"Payload Too Large\",\"status\":413,\"detail\":\"data exceeds the configured number limit.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INPUT_TOO_LARGE\"}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[]} garbage",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[]} {",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[]} [1]",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"NO_DATA\",\"warnings\":[],\"anomalies\":[],\"normalValues\":[],\"q1\":null,\"q3\":null,\"iqr\":null,\"lowerBound\":null,\"upperBound\":null}"
+  },
+  {
+    "request": "{\"algorithm\":null,\"data\":[1,}",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:malformed_json\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Malformed JSON request.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"MALFORMED_JSON\"}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[-0,-0.0,0e0]}",
+    "status": 200,
+    "body": "{\"algorithm\":\"IQR\",\"threshold\":1.5,\"status\":\"COMPLETED\",\"warnings\":[\"SMALL_DATASET\"],\"anomalies\":[],\"normalValues\":[0.0,-0.0,0.0],\"q1\":-0.0,\"q3\":0.0,\"iqr\":0.0,\"lowerBound\":-0.0,\"upperBound\":0.0}"
+  },
+  {
+    "request": "null",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:invalid_request\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Request must be a JSON object.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INVALID_REQUEST\"}"
+  },
+  {
+    "request": "  ",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:malformed_json\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Malformed JSON request.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"MALFORMED_JSON\"}"
+  },
+  {
+    "request": "[1,",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:malformed_json\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Malformed JSON request.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"MALFORMED_JSON\"}"
+  },
+  {
+    "request": "{\"algorithm\":\"IQR\",\"data\":[],\"x\":\"é\"}",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:invalid_request\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Undocumented field: x.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INVALID_REQUEST\"}"
+  },
+  {
+    "charset": "UTF-16",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:invalid_request\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Undocumented field: x.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INVALID_REQUEST\"}"
+  },
+  {
+    "charset": "UTF-32",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:invalid_request\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Undocumented field: x.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INVALID_REQUEST\"}"
+  },
+  {
+    "charset": "ISO-8859-1",
+    "status": 400,
+    "body": "{\"type\":\"urn:anomaly-detection:problem:invalid_request\",\"title\":\"Bad Request\",\"status\":400,\"detail\":\"Undocumented field: x.\",\"instance\":\"/api/v1/anomaly-detection\",\"code\":\"INVALID_REQUEST\"}"
+  }
+]
