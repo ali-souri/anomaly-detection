@@ -39,3 +39,13 @@ backlog and actual rates. No sustained rejections, timeouts, drops or backlog gr
 as a target pass. If this bounded host misses, report CAPACITY_TARGET_NOT_MET and keep the feature
 branch without a release. Docker evidence is a changed Linux/cgroup environment, not an algorithm
 comparison against the Windows baseline.
+
+## Budget-neutral adjustment declared after first scaled measurements
+
+At 2026-11-11 00:04 UTC the 0.25-CPU nginx profile showed sustained approximately 24-25% CPU,
+980 throttled periods out of 1,419 and 64,621,263 throttled microseconds, while application CPUs
+were below their quotas. The planned next small configuration experiment reallocates existing
+CPU: **3 × 3.75 application CPUs + 1 nginx CPU + 2 generator CPUs = the same 14.25 CPU ceiling**.
+Heap, memory, replica count, active=3, fixtures, output and 60-second 10-RPS scenarios stay the
+same. This is a measured proxy configuration adjustment, not additional/unbounded infrastructure.
+Its actual execution and outcomes must be reported separately.
