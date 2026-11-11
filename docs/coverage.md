@@ -20,7 +20,7 @@ tests and are not interchangeable with instruction, method or class coverage. Mi
 data, absent XML or no analyzed application classes fail a separate mandatory Maven guard even when
 JaCoCo itself would skip a goal. No handwritten production class is excluded.
 
-Scope: all 25 production Java files under io.anomaly, including configuration, API, statistics and
+Historical v0.2.1 scope: all 25 production Java files under io.anomaly, including configuration, API, statistics and
 startup. JaCoCo analyzes 22 executable classes; three pure interfaces have no executable bodies.
 Standard built-in filters apply to compiler-generated record accessors/equals/hashCode/toString,
 enum helper code and empty private no-arg constructors (Inputs). Handwritten record constructors,
@@ -51,3 +51,15 @@ data, missing XML and an empty analyzed report. Fixtures stay under ignored .cac
 Benchmark prompt AD-PRM-20261110-003 must use v0.2.1 and first read AD-RES-20261111-005.
 Timed production/JMH JVMs must have no active JaCoCo agent. Agent injection is confined to test
 forks; do not bypass pre-push or CI coverage gates to run a benchmark.
+
+## Verified v0.3 candidate
+
+The feature candidate has 29 production Java files, 30 XML class entries including the bounded
+body reader's anonymous HttpInputMessage, 27 executable classes and the same three pure interfaces.
+Combined 59 unit / 55 genuine HTTP integration tests pass with no failures/errors/skips.
+Fresh exact counters: LINE 294 covered / 0 missed, BRANCH 132 / 0, INSTRUCTION 1377 / 0,
+METHOD 68 / 0, CLASS 27 / 0 and COMPLEXITY 136 / 0. Built-in generated-code filtering is unchanged;
+there are still no handwritten exclusions. Both forked agent/tmpdir settings and nonempty coverage
+checks remain mandatory. The separate benchmark's nine tests and Node/Python tooling are not
+included in these application coverage counters. The capacity target failed independently, so
+this positive coverage evidence does not authorize a v0.3 release. See result 007 for exact CI/source.

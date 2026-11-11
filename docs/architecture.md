@@ -121,7 +121,7 @@ classDiagram
     ProblemHandler ..> DetectionController : handles errors
 ```
 
-The diagram shows the meaningful production relationships, omitting configuration, enums and
+The diagram shows the meaningful production relationships, omitting the composition root, enums and
 small exceptions. Diagram labels show packages relative to io.anomaly. It is a Mermaid **class diagram**, with no planned future classes.
 
 ## Why these choices

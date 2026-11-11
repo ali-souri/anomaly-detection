@@ -78,3 +78,8 @@ Current package rules and benchmark handoff are in AGENTS.md. See [coverage](cov
 exact JaCoCo 0.8.16 instrumentation, zero-missed LINE/BRANCH checks, standard filtering and
 missing-data rejection. Pre-push/CI always start with clean; convenience runs do not establish
 combined release coverage. Historical release branches and tags remain frozen.
+
+The v0.3 candidate adds 59 unit / 55 real HTTP integration cases, plus a separately verified
+nine-test benchmark harness, two Node contract tests and four Python accounting tests.
+It retains exact application LINE/BRANCH checks. Its ten-RPS capacity gate failed; the feature
+branch is not merged to released master and has no release tag. See result 007 and the load report.

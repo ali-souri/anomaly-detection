@@ -170,11 +170,11 @@ for instrumentation, exact counters, filtering and failure-fixture evidence.
 - Corrected v0.1 patch: annotated tag `v0.1.1` closes direct Swagger static-resource access; v0.1.0 is preserved.
 - [v0.2 release](docs/releases/v0.2.md): frozen `release/v0.2`, annotated tag `v0.2.0`.
 - [v0.2.1 maintenance](docs/releases/v0.2.1.md): io.anomaly packages, exact coverage gate and benchmark baseline.
-- [Roadmap](docs/roadmap.md): benchmark v0.2 before deciding v0.3.
+- [Roadmap](docs/roadmap.md): current candidate gates and conditional follow-ups.
 - [Initial execution result](docs/results/AD-RES-20261110-002.md): preserved v0.1/v0.2 evidence.
 - [Maintenance result](docs/results/AD-RES-20261111-005.md): measured coverage, exact v0.2.1 source and CI artifacts.
 - [Executed benchmark](docs/benchmarks/v0.2/report.md): measured v0.2.1 core/API results, raw evidence and run commands.
-- [v0.3 recommendation](docs/decisions/v0.3-architecture.md): minimum complexity supported by those measurements.
+- [v0.3 architecture decision](docs/decisions/v0.3-architecture.md): delivered scope and measured limitations.
 
 All project caches, temporary files, wrapper distributions and outputs stay under `.cache/`
 and `target/`, on F: in the canonical workspace. No generated directories belong in Git.
