@@ -19,6 +19,27 @@ class IqrDetectorTest {
   private final IqrDetector detector = new IqrDetector();
 
   @Test
+  void quartileOrderingRetainsSignedZeroAndOriginalPartitionSigns() {
+    var input = List.of(0.0, -0.0, 0.0, -0.0);
+    var result = detector.detect(input, 1.5);
+    assertThat(Double.doubleToRawLongBits(result.q1())).isEqualTo(Long.MIN_VALUE);
+    assertThat(Double.doubleToRawLongBits(result.q3())).isZero();
+    assertThat(result.summary().anomalies()).isEmpty();
+    assertThat(result.summary().normalValues()).containsExactly(0.0, -0.0, 0.0, -0.0);
+    assertThat(input).containsExactly(0.0, -0.0, 0.0, -0.0);
+  }
+
+  @Test
+  void permutedDuplicateValuesUseGlobalHalvesAndStrictZeroThreshold() {
+    var input = List.of(4., -4., 0., 3., -1., -4., 1., -0.0, -3., 4.);
+    var result = detector.detect(input, 0);
+    assertThat(result.q1()).isEqualTo(-3);
+    assertThat(result.q3()).isEqualTo(3);
+    assertThat(result.summary().anomalies()).containsExactly(4., -4., -4., 4.);
+    assertThat(result.summary().normalValues()).containsExactly(0., 3., -1., 1., -0.0, -3.);
+  }
+
+  @Test
   void sampleUsesHandCalculatedQuartilesAndStablePartitions() {
     var data = new ArrayList<>(List.of(10., 12., 11., 13., 12., 14., 11., 13., 12., 100.));
     var before = new ArrayList<>(data);

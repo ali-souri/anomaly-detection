@@ -4,13 +4,13 @@ import io.anomaly.core.model.DetectionSummary;
 import io.anomaly.core.model.IqrResult;
 import io.anomaly.core.validation.Inputs;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * Median-of-halves IQR strategy. Sorts a copy in O(n log n) time and O(n) memory. For a singleton
- * Q1 = Q3 = its value; for odd n the overall middle is excluded only from the halves, never from
- * classification. Threshold is a dimensionless IQR multiplier.
+ * Median-of-halves IQR strategy. Sorts a primitive scratch copy in O(n log n) time and O(n) memory.
+ * For a singleton Q1 = Q3 = its value; for odd n the overall middle is excluded only from the
+ * halves, never from classification. Threshold is a dimensionless IQR multiplier.
  */
 public final class IqrDetector implements AnomalyDetector {
   /** Creates a stateless median-of-halves IQR strategy. */
@@ -39,10 +39,13 @@ public final class IqrDetector implements AnomalyDetector {
           null,
           null);
     }
-    var sorted = new ArrayList<>(original);
-    Collections.sort(sorted);
-    double q1 = size == 1 ? sorted.get(0) : median(sorted, 0, size / 2);
-    double q3 = size == 1 ? sorted.get(0) : median(sorted, (size + 1) / 2, size);
+    double[] sorted = new double[size];
+    for (int index = 0; index < size; index++) {
+      sorted[index] = original.get(index);
+    }
+    Arrays.sort(sorted);
+    double q1 = size == 1 ? sorted[0] : median(sorted, 0, size / 2);
+    double q3 = size == 1 ? sorted[0] : median(sorted, (size + 1) / 2, size);
     double iqr = Inputs.finite(q3 - q1);
     double margin = Inputs.finite(threshold * iqr);
     double lower = Inputs.finite(q1 - margin);
@@ -65,13 +68,13 @@ public final class IqrDetector implements AnomalyDetector {
         upper);
   }
 
-  private static double median(List<Double> sorted, int from, int to) {
+  private static double median(double[] sorted, int from, int to) {
     int middle = from + (to - from) / 2;
     if ((to - from) % 2 == 1) {
-      return sorted.get(middle);
+      return sorted[middle];
     }
-    double left = sorted.get(middle - 1);
-    double right = sorted.get(middle);
+    double left = sorted[middle - 1];
+    double right = sorted[middle];
     double sum = left + right;
     // Rescale only when the sum overflows; ordinary addition preserves subnormal values.
     return Double.isFinite(sum) ? sum / 2 : left / 2 + right / 2;

@@ -9,12 +9,13 @@ try {
     foreach ($active in 1,2,3) {
         foreach ($algorithm in 'IQR','Z_SCORE') {
             $run="before-$algorithm-active$active"
-            $jvm='-Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:FlightRecorderOptions=stackdepth=128 -XX:StartFlightRecording=name=008,settings=profile,delay=20s,duration=15s,maxsize=128m,filename=/app/tmp/profile.jfr -Xlog:gc:stdout:time,uptime,level,tags'
+            $jvm='-Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:FlightRecorderOptions=stackdepth=128 -XX:StartFlightRecording=name=profile008,settings=profile,delay=20s,duration=15s,maxsize=128m,filename=/app/tmp/profile.jfr -Xlog:gc:stdout:time,uptime,level,tags'
             & docker run -d --name anomaly-008-profile --network $network --network-alias app --cpus 3.75 --memory 3g --memory-swap 3g -e "JAVA_TOOL_OPTIONS=$jvm" -e "DETECTION_LIMITS_MAX_ACTIVE=$active" $image | Out-Null
             if ($LASTEXITCODE -ne 0) { throw 'Profile application failed to start' }
             try {
                 $ready=$false
                 for ($attempt=0;$attempt -lt 60;$attempt++) {
+                    if ((& docker inspect anomaly-008-profile --format '{{.State.Running}}') -ne 'true') { throw 'Profile JVM exited during startup; see retained log' }
                     & docker exec anomaly-008-profile wget -q -O /dev/null http://127.0.0.1:8080/actuator/health/readiness 2>$null
                     if ($LASTEXITCODE -eq 0) { $ready=$true; break }
                     Start-Sleep -Milliseconds 500
@@ -29,6 +30,8 @@ try {
                 [ordered]@{run=$run;sourceCommit='33d4e2f3936723cbc4ec28cd03e4428944cecc60';image=$image;active=$active;cpus=3.75;containerBytes=3221225472;jvmOptions=$jvm;containerStart=(& docker inspect anomaly-008-profile --format '{{.State.StartedAt}}');cpuBefore=$beforeCpu;cpuAfter=@(& docker exec anomaly-008-profile cat /sys/fs/cgroup/cpu.stat);memoryPeakBytes=(& docker exec anomaly-008-profile cat /sys/fs/cgroup/memory.peak);memoryEvents=@(& docker exec anomaly-008-profile cat /sys/fs/cgroup/memory.events);recordingBytes=(Get-Item ".cache/008/profiles/$run.jfr").Length;recordingSha256=(Get-FileHash ".cache/008/profiles/$run.jfr").Hash} |
                     ConvertTo-Json -Depth 4 | Set-Content -Encoding utf8 "docs/performance/008/raw/$run-profile.json"
             } finally {
+                & docker logs anomaly-008-profile *> ".cache/008/profiles/$run-server.log"
+                & docker inspect anomaly-008-profile --format '{{json .State}}' > ".cache/008/profiles/$run-container-state.json"
                 & docker stop -t 10 anomaly-008-profile | Out-Null
                 & docker rm anomaly-008-profile | Out-Null
             }

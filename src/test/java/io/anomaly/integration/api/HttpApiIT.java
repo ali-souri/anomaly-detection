@@ -22,6 +22,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Import(HttpApiIT.FailureEndpoint.class)
 class HttpApiIT extends HttpTestSupport {
   @Test
+  void signedZeroQuartilesAndFullOrderedValuesSurviveRealHttp() throws Exception {
+    var response = post("{\"data\":[0.0,-0.0,0.0,-0.0],\"algorithm\":\"IQR\",\"threshold\":0}");
+    assertThat(response.statusCode()).isEqualTo(200);
+    var body = json(response);
+    assertThat(Double.doubleToRawLongBits(body.path("q1").asDouble())).isEqualTo(Long.MIN_VALUE);
+    assertThat(Double.doubleToRawLongBits(body.path("q3").asDouble())).isZero();
+    assertThat(body.path("normalValues").toString()).isEqualTo("[0.0,-0.0,0.0,-0.0]");
+    assertThat(body.path("anomalies").size()).isZero();
+  }
+
+  @Test
   void sampleRunsThroughRealSerializationRegistryAndIqr() throws Exception {
     var response =
         post("{\"algorithm\":\"IQR\",\"threshold\":1.5,\"data\":[10,12,11,13,12,14,11,13,12,100]}");
