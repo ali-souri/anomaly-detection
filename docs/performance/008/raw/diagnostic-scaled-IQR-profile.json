@@ -1,0 +1,45 @@
+{
+  "run": "diagnostic-scaled-IQR",
+  "sourceCommit": "0ba3803",
+  "image": "sha256:26a1bf88cfee5aebb907539488227f083aae105509de4c53a38bfc3a77251df5",
+  "active": 3,
+  "cpus": 3.75,
+  "containerBytes": 3221225472,
+  "profiledReplica": 1,
+  "replicas": 3,
+  "containerStart": "2026-11-11T02:06:32.752667811Z",
+  "cpuBefore": [
+    "usage_usec 13601824",
+    "user_usec 12252883",
+    "system_usec 1348941",
+    "nice_usec 0",
+    "nr_periods 58",
+    "nr_throttled 5",
+    "throttled_usec 350584",
+    "nr_bursts 0",
+    "burst_usec 0"
+  ],
+  "cpuAfter": [
+    "usage_usec 144813629",
+    "user_usec 135895522",
+    "system_usec 8918106",
+    "nice_usec 0",
+    "nr_periods 450",
+    "nr_throttled 263",
+    "throttled_usec 14890146",
+    "nr_bursts 0",
+    "burst_usec 0"
+  ],
+  "memoryPeakBytes": "2343030784",
+  "memoryEvents": [
+    "low 0",
+    "high 0",
+    "max 0",
+    "oom 0",
+    "oom_kill 0",
+    "oom_group_kill 0"
+  ],
+  "recordingBytes": 1407420,
+  "recordingSha256": "73FB52F404DB326325F202A8E74B7D42F48FE07D2440D97C010C42EADABDE275",
+  "settings": "profile; delay=25s; duration=15s; maxsize=128m; stackdepth=128"
+}

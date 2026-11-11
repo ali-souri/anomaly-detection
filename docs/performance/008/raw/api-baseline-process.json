@@ -1,0 +1,19 @@
+{
+  "pid": 33652,
+  "url": "http://127.0.0.1:57304",
+  "jarSha256": "17A2C7800749153DC6E26F928A6DD8A9835432A28BD859ED741E5A40598F5ED0",
+  "jvmOptions": [
+    "-Xms512m",
+    "-Xmx2g",
+    "-XX:+UseG1GC",
+    "-Djava.io.tmpdir=F:\\projects\\anomaly-detection/.cache/tmp",
+    "-Xlog:gc:file=F:\\projects\\anomaly-detection\\.cache\\008\\api-baseline/gc.log:time,uptime,level,tags",
+    "-jar",
+    "F:\\projects\\anomaly-detection\\.cache\\008\\baseline\\application.jar",
+    "--server.port=57304",
+    "--server.address=127.0.0.1"
+  ],
+  "peakWorkingSetBytes": 1324298240,
+  "privateBytesAfter": 834396160,
+  "cpuSeconds": 26.921875
+}

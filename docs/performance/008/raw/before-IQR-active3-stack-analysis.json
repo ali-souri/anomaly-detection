@@ -1,0 +1,2429 @@
+{
+  "cpuSamples": {
+    "jdk.NativeMethodSample": {
+      "count": 478,
+      "exclusive": {
+        "transport-native-io": 478
+      },
+      "inclusive": {
+        "transport-native-io": 478,
+        "json-serialization": 27,
+        "raw-body-buffer": 1
+      },
+      "leafFrames": [
+        [
+          "sun.nio.ch.Net.accept",
+          227
+        ],
+        [
+          "sun.nio.ch.EPoll.wait",
+          223
+        ],
+        [
+          "sun.nio.ch.SocketDispatcher.write0",
+          27
+        ],
+        [
+          "sun.nio.ch.SocketDispatcher.read0",
+          1
+        ]
+      ],
+      "threads": [
+        [
+          "http-nio-8080-Acceptor",
+          227
+        ],
+        [
+          "http-nio-8080-Poller",
+          223
+        ],
+        [
+          "http-nio-8080-exec-7",
+          5
+        ],
+        [
+          "http-nio-8080-exec-5",
+          5
+        ],
+        [
+          "http-nio-8080-exec-4",
+          4
+        ],
+        [
+          "http-nio-8080-exec-9",
+          3
+        ],
+        [
+          "http-nio-8080-exec-6",
+          3
+        ],
+        [
+          "http-nio-8080-exec-2",
+          2
+        ],
+        [
+          "http-nio-8080-exec-3",
+          2
+        ],
+        [
+          "http-nio-8080-exec-8",
+          2
+        ],
+        [
+          "http-nio-8080-exec-1",
+          2
+        ]
+      ],
+      "exclusivePercent": {
+        "transport-native-io": 100.0
+      },
+      "inclusivePercent": {
+        "transport-native-io": 100.0,
+        "json-serialization": 5.648535564853557,
+        "raw-body-buffer": 0.20920502092050208
+      }
+    },
+    "jdk.ExecutionSample": {
+      "count": 1433,
+      "exclusive": {
+        "json-serialization": 247,
+        "json-tree-creation": 280,
+        "tree-to-number-list": 122,
+        "sort-workspace": 648,
+        "detector-validation-copy": 58,
+        "result-construction": 41,
+        "detector-statistics-classification": 30,
+        "transport-native-io": 6,
+        "unclassified": 1
+      },
+      "inclusive": {
+        "transport-native-io": 1432,
+        "json-serialization": 249,
+        "json-tree-creation": 280,
+        "tree-to-number-list": 122,
+        "sort-workspace": 648,
+        "detector-statistics-classification": 777,
+        "detector-validation-copy": 58,
+        "result-construction": 41
+      },
+      "leafFrames": [
+        [
+          "java.lang.Double.compare",
+          265
+        ],
+        [
+          "java.util.ComparableTimSort.mergeLo",
+          144
+        ],
+        [
+          "jdk.internal.math.DoubleToDecimal.toChars1",
+          136
+        ],
+        [
+          "java.util.ComparableTimSort.mergeHi",
+          115
+        ],
+        [
+          "java.util.ArrayList.add",
+          79
+        ],
+        [
+          "java.util.Objects.requireNonNull",
+          68
+        ],
+        [
+          "jdk.internal.math.FloatingDecimal.readJavaFormatString",
+          66
+        ],
+        [
+          "java.util.ComparableTimSort.binarySort",
+          66
+        ],
+        [
+          "jdk.internal.math.DoubleToDecimal.removeTrailingZeroes",
+          52
+        ],
+        [
+          "io.anomaly.api.parser.RequestParser.parse",
+          52
+        ],
+        [
+          "com.fasterxml.jackson.core.json.UTF8JsonGenerator.writeRaw",
+          52
+        ],
+        [
+          "com.fasterxml.jackson.core.io.NumberInput.parseDouble",
+          40
+        ],
+        [
+          "com.fasterxml.jackson.databind.deser.std.BaseNodeDeserializer._deserializeContainerNoRecursion",
+          34
+        ],
+        [
+          "io.anomaly.core.validation.Inputs.copy",
+          33
+        ],
+        [
+          "com.fasterxml.jackson.core.json.UTF8StreamJsonParser._parseUnsignedNumber",
+          33
+        ]
+      ],
+      "threads": [
+        [
+          "http-nio-8080-exec-7",
+          171
+        ],
+        [
+          "http-nio-8080-exec-6",
+          171
+        ],
+        [
+          "http-nio-8080-exec-8",
+          171
+        ],
+        [
+          "http-nio-8080-exec-4",
+          159
+        ],
+        [
+          "http-nio-8080-exec-5",
+          149
+        ],
+        [
+          "http-nio-8080-exec-10",
+          139
+        ],
+        [
+          "http-nio-8080-exec-1",
+          120
+        ],
+        [
+          "http-nio-8080-exec-2",
+          119
+        ],
+        [
+          "http-nio-8080-exec-9",
+          119
+        ],
+        [
+          "http-nio-8080-exec-3",
+          113
+        ],
+        [
+          "Notification Thread",
+          1
+        ],
+        [
+          "http-nio-8080-Poller",
+          1
+        ]
+      ],
+      "exclusivePercent": {
+        "json-serialization": 17.236566643405443,
+        "json-tree-creation": 19.539427773900908,
+        "tree-to-number-list": 8.51360781577111,
+        "sort-workspace": 45.21981856245638,
+        "detector-validation-copy": 4.047452896022331,
+        "result-construction": 2.8611304954640615,
+        "detector-statistics-classification": 2.0935101186322402,
+        "transport-native-io": 0.418702023726448,
+        "unclassified": 0.06978367062107467
+      },
+      "inclusivePercent": {
+        "transport-native-io": 99.93021632937892,
+        "json-serialization": 17.37613398464759,
+        "json-tree-creation": 19.539427773900908,
+        "tree-to-number-list": 8.51360781577111,
+        "sort-workspace": 45.21981856245638,
+        "detector-statistics-classification": 54.221912072575016,
+        "detector-validation-copy": 4.047452896022331,
+        "result-construction": 2.8611304954640615
+      }
+    }
+  },
+  "firstSampleUtc": "2026-11-11T01:51:40.642048492Z",
+  "lastSampleUtc": "2026-11-11T01:51:55.549673411Z",
+  "sampledAllocationWeightBytes": 44025771488,
+  "exclusiveAllocationWeightBytes": {
+    "json-serialization": 11351693360,
+    "json-tree-creation": 16987371304,
+    "unclassified": 8423888,
+    "transport-native-io": 4146246392,
+    "tree-to-number-list": 2460190824,
+    "sort-workspace": 1307451520,
+    "detector-validation-copy": 885421256,
+    "detector-statistics-classification": 1332639728,
+    "result-construction": 389194920,
+    "raw-body-buffer": 5157138296
+  },
+  "allocationClassesTop": [
+    [
+      "[B",
+      9885008880
+    ],
+    [
+      "com/fasterxml/jackson/databind/node/DoubleNode",
+      7555811136
+    ],
+    [
+      "[Ljava/lang/Object;",
+      6474521656
+    ],
+    [
+      "jdk/internal/math/DoubleToDecimal",
+      5648800984
+    ],
+    [
+      "jdk/internal/math/FloatingDecimal$ASCIIToBinaryBuffer",
+      4569981808
+    ],
+    [
+      "java/time/Instant",
+      4145237480
+    ],
+    [
+      "java/lang/String",
+      3296352216
+    ],
+    [
+      "java/lang/Double",
+      1221793008
+    ],
+    [
+      "[C",
+      1216308776
+    ],
+    [
+      "java/nio/HeapByteBuffer",
+      3395208
+    ],
+    [
+      "java/lang/StringBuilder",
+      3339832
+    ],
+    [
+      "[Ljava/lang/management/MemoryUsage;",
+      2753624
+    ]
+  ],
+  "gcEvents": [
+    {
+      "startTime": "2026-11-11T01:51:40.553037028Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.088903513S",
+      "sumOfPauses": "PT0.088903513S",
+      "longestPause": "PT0.088903513S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:40.709253480Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.035745881S",
+      "sumOfPauses": "PT0.035745881S",
+      "longestPause": "PT0.035745881S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:40.750448045Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.009557758S",
+      "sumOfPauses": "PT0.009557758S",
+      "longestPause": "PT0.009557758S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:40.833871266Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.096771646S",
+      "sumOfPauses": "PT0.096771646S",
+      "longestPause": "PT0.096771646S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:41.060149584Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.078067764S",
+      "sumOfPauses": "PT0.078067764S",
+      "longestPause": "PT0.078067764S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:41.189493330Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.062979353S",
+      "sumOfPauses": "PT0.062979353S",
+      "longestPause": "PT0.062979353S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:40.760094127Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.681166247S",
+      "sumOfPauses": "PT0.004715034S",
+      "longestPause": "PT0.004273592S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:41.644542529Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.111091998S",
+      "sumOfPauses": "PT0.111091998S",
+      "longestPause": "PT0.111091998S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:41.856876719Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.199701386S",
+      "sumOfPauses": "PT0.199701386S",
+      "longestPause": "PT0.199701386S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:42.063777748Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.037564268S",
+      "sumOfPauses": "PT0.037564268S",
+      "longestPause": "PT0.037564268S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:42.400575217Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.15736007S",
+      "sumOfPauses": "PT0.15736007S",
+      "longestPause": "PT0.15736007S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:42.630510259Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.085745254S",
+      "sumOfPauses": "PT0.085745254S",
+      "longestPause": "PT0.085745254S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:42.101449792Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.624503722S",
+      "sumOfPauses": "PT0.004638601S",
+      "longestPause": "PT0.004221127S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:42.980988327Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.066581224S",
+      "sumOfPauses": "PT0.066581224S",
+      "longestPause": "PT0.066581224S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.128147305Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.095350829S",
+      "sumOfPauses": "PT0.095350829S",
+      "longestPause": "PT0.095350829S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.274365681Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.06555635S",
+      "sumOfPauses": "PT0.06555635S",
+      "longestPause": "PT0.06555635S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.347753755Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.024355669S",
+      "sumOfPauses": "PT0.024355669S",
+      "longestPause": "PT0.024355669S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.476558374Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.069531204S",
+      "sumOfPauses": "PT0.069531204S",
+      "longestPause": "PT0.069531204S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.372235729Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.399234267S",
+      "sumOfPauses": "PT0.00358454S",
+      "longestPause": "PT0.003149619S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:43.771670126Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.102729531S",
+      "sumOfPauses": "PT0.102729531S",
+      "longestPause": "PT0.102729531S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:44.082362156Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.098096881S",
+      "sumOfPauses": "PT0.098096881S",
+      "longestPause": "PT0.098096881S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:44.320791587Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.110685751S",
+      "sumOfPauses": "PT0.110685751S",
+      "longestPause": "PT0.110685751S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:44.547957604Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.124444736S",
+      "sumOfPauses": "PT0.124444736S",
+      "longestPause": "PT0.124444736S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:44.943036844Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.161669546S",
+      "sumOfPauses": "PT0.161669546S",
+      "longestPause": "PT0.161669546S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:45.127130147Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.052584191S",
+      "sumOfPauses": "PT0.052584191S",
+      "longestPause": "PT0.052584191S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:45.314681182Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.051512416S",
+      "sumOfPauses": "PT0.051512416S",
+      "longestPause": "PT0.051512416S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:45.442294174Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.06744599S",
+      "sumOfPauses": "PT0.06744599S",
+      "longestPause": "PT0.06744599S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:45.658735356Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.089126149S",
+      "sumOfPauses": "PT0.089126149S",
+      "longestPause": "PT0.089126149S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:45.179787506Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.646424454S",
+      "sumOfPauses": "PT0.007504348S",
+      "longestPause": "PT0.006898068S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:46.118301815Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.139848966S",
+      "sumOfPauses": "PT0.139848966S",
+      "longestPause": "PT0.139848966S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:46.359065336Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.167755462S",
+      "sumOfPauses": "PT0.167755462S",
+      "longestPause": "PT0.167755462S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:46.631634244Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.115611214S",
+      "sumOfPauses": "PT0.115611214S",
+      "longestPause": "PT0.115611214S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.033470805Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.201410694S",
+      "sumOfPauses": "PT0.201410694S",
+      "longestPause": "PT0.201410694S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.236141315Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.042464181S",
+      "sumOfPauses": "PT0.042464181S",
+      "longestPause": "PT0.042464181S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.414057758Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.043212399S",
+      "sumOfPauses": "PT0.043212399S",
+      "longestPause": "PT0.043212399S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.593343066Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.040253707S",
+      "sumOfPauses": "PT0.040253707S",
+      "longestPause": "PT0.040253707S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.691311359Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.045331393S",
+      "sumOfPauses": "PT0.045331393S",
+      "longestPause": "PT0.045331393S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:47.278702015Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.585677073S",
+      "sumOfPauses": "PT0.003932828S",
+      "longestPause": "PT0.003454522S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:48.154406624Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.222111591S",
+      "sumOfPauses": "PT0.222111591S",
+      "longestPause": "PT0.222111591S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:48.427391784Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.174076208S",
+      "sumOfPauses": "PT0.174076208S",
+      "longestPause": "PT0.174076208S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:48.818077303Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.078229037S",
+      "sumOfPauses": "PT0.078229037S",
+      "longestPause": "PT0.078229037S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:48.903488421Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.045477682S",
+      "sumOfPauses": "PT0.045477682S",
+      "longestPause": "PT0.045477682S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.031490182Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.07776109S",
+      "sumOfPauses": "PT0.07776109S",
+      "longestPause": "PT0.07776109S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:48.949048413Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.299641148S",
+      "sumOfPauses": "PT0.00362944S",
+      "longestPause": "PT0.003262496S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.362822709Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.105050499S",
+      "sumOfPauses": "PT0.105050499S",
+      "longestPause": "PT0.105050499S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.644627220Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.093681286S",
+      "sumOfPauses": "PT0.093681286S",
+      "longestPause": "PT0.093681286S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.749373622Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.011952202S",
+      "sumOfPauses": "PT0.011952202S",
+      "longestPause": "PT0.011952202S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.853461020Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.044702373S",
+      "sumOfPauses": "PT0.044702373S",
+      "longestPause": "PT0.044702373S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:50.044264322Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.104176824S",
+      "sumOfPauses": "PT0.104176824S",
+      "longestPause": "PT0.104176824S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:49.761395440Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.578263322S",
+      "sumOfPauses": "PT0.003870198S",
+      "longestPause": "PT0.003432231S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:50.485920105Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.183699541S",
+      "sumOfPauses": "PT0.183699541S",
+      "longestPause": "PT0.183699541S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:50.803626840Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.066901175S",
+      "sumOfPauses": "PT0.066901175S",
+      "longestPause": "PT0.066901175S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:50.878800746Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.002099793S",
+      "sumOfPauses": "PT0.002099793S",
+      "longestPause": "PT0.002099793S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:51.051991920Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.094127321S",
+      "sumOfPauses": "PT0.094127321S",
+      "longestPause": "PT0.094127321S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:51.216000665Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.066814773S",
+      "sumOfPauses": "PT0.066814773S",
+      "longestPause": "PT0.066814773S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:50.881014926Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.668376333S",
+      "sumOfPauses": "PT0.003170746S",
+      "longestPause": "PT0.002596907S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:51.568708103Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.092993585S",
+      "sumOfPauses": "PT0.092993585S",
+      "longestPause": "PT0.092993585S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:51.772347275Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.137942851S",
+      "sumOfPauses": "PT0.137942851S",
+      "longestPause": "PT0.137942851S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:52.182982622Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.086943702S",
+      "sumOfPauses": "PT0.086943702S",
+      "longestPause": "PT0.086943702S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:52.406188965Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.126554301S",
+      "sumOfPauses": "PT0.126554301S",
+      "longestPause": "PT0.126554301S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:52.764830648Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.118479741S",
+      "sumOfPauses": "PT0.118479741S",
+      "longestPause": "PT0.118479741S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:52.886930193Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.037886169S",
+      "sumOfPauses": "PT0.037886169S",
+      "longestPause": "PT0.037886169S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:53.034262521Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.036440863S",
+      "sumOfPauses": "PT0.036440863S",
+      "longestPause": "PT0.036440863S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:53.151017273Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.0646626S",
+      "sumOfPauses": "PT0.0646626S",
+      "longestPause": "PT0.0646626S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:53.279923270Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.025695734S",
+      "sumOfPauses": "PT0.025695734S",
+      "longestPause": "PT0.025695734S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:52.924897478Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.548730401S",
+      "sumOfPauses": "PT0.006230582S",
+      "longestPause": "PT0.005685348S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:53.612696385Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.15959225S",
+      "sumOfPauses": "PT0.15959225S",
+      "longestPause": "PT0.15959225S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:53.934206104Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.143852988S",
+      "sumOfPauses": "PT0.143852988S",
+      "longestPause": "PT0.143852988S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:54.081229999Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.030015679S",
+      "sumOfPauses": "PT0.030015679S",
+      "longestPause": "PT0.030015679S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:54.307719703Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.101465579S",
+      "sumOfPauses": "PT0.101465579S",
+      "longestPause": "PT0.101465579S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:54.664962183Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.15154877S",
+      "sumOfPauses": "PT0.15154877S",
+      "longestPause": "PT0.15154877S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:54.111346343Z",
+      "name": "G1Old",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.716861774S",
+      "sumOfPauses": "PT0.003586055S",
+      "longestPause": "PT0.002973783S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:55.075545636Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.130359087S",
+      "sumOfPauses": "PT0.130359087S",
+      "longestPause": "PT0.130359087S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:55.317138781Z",
+      "name": "G1New",
+      "cause": "G1 Evacuation Pause",
+      "duration": "PT0.140058445S",
+      "sumOfPauses": "PT0.140058445S",
+      "longestPause": "PT0.140058445S"
+    },
+    {
+      "startTime": "2026-11-11T01:51:55.463219154Z",
+      "name": "G1New",
+      "cause": "G1 Humongous Allocation",
+      "duration": "PT0.026347673S",
+      "sumOfPauses": "PT0.026347673S",
+      "longestPause": "PT0.026347673S"
+    }
+  ],
+  "allocationWeightByThread": {
+    "http-nio-8080-exec-2": 4050545880,
+    "http-nio-8080-exec-4": 4723707824,
+    "Notification Thread": 5166912,
+    "JFR Recording Scheduler": 3125104,
+    "http-nio-8080-exec-3": 4528627880,
+    "http-nio-8080-exec-7": 4739414520,
+    "http-nio-8080-exec-6": 4723696856,
+    "http-nio-8080-exec-5": 4697919640,
+    "http-nio-8080-exec-9": 4059125712,
+    "http-nio-8080-Poller": 17480,
+    "http-nio-8080-exec-8": 4572186624,
+    "C1 CompilerThread0": 14184,
+    "http-nio-8080-exec-1": 3779246416,
+    "http-nio-8080-exec-10": 4142858768,
+    "JFR Periodic Tasks": 36112,
+    "Catalina-utility-2": 18040,
+    "Catalina-utility-1": 63536
+  },
+  "minimumObservedHeapBytes": 593628776,
+  "maximumObservedHeapBytes": 2070388056,
+  "blockedEventCounts": {
+    "jdk.SocketWrite": 7,
+    "jdk.ThreadPark": 62,
+    "jdk.SocketRead": 2
+  },
+  "recordingEvents": [
+    {
+      "startTime": "2026-11-11T01:51:40.672578875Z",
+      "duration": "PT0S",
+      "eventThread": {
+        "osName": "JFR Recording Scheduler",
+        "osThreadId": 27,
+        "javaName": "JFR Recording Scheduler",
+        "javaThreadId": 22,
+        "group": {
+          "parent": {
+            "parent": null,
+            "name": "system"
+          },
+          "name": "main"
+        },
+        "virtual": false
+      },
+      "stackTrace": null,
+      "id": 1,
+      "name": "profile008",
+      "destination": "/app/tmp/profile.jfr",
+      "disk": true,
+      "maxAge": "PT2562047788015215H30M7.999999999S",
+      "flushInterval": "PT1S",
+      "maxSize": 134217728,
+      "recordingStart": "2026-11-11T01:51:40.546Z",
+      "recordingDuration": "PT15S"
+    }
+  ],
+  "effectiveSampleSettings": [
+    {
+      "id": 1390,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1390,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1388,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1388,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1386,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1386,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1384,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1384,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1382,
+      "name": "stackTrace",
+      "value": "false"
+    },
+    {
+      "id": 1382,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1380,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1380,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1378,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1378,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1376,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1376,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1374,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1374,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1372,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1372,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1370,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1370,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1368,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1368,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1740,
+      "name": "period",
+      "value": "30 s"
+    },
+    {
+      "id": 1740,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1738,
+      "name": "period",
+      "value": "30 s"
+    },
+    {
+      "id": 1738,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1736,
+      "name": "period",
+      "value": "30 s"
+    },
+    {
+      "id": 1736,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1734,
+      "name": "period",
+      "value": "30 s"
+    },
+    {
+      "id": 1734,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1730,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 1730,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1395,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 1395,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1393,
+      "name": "period",
+      "value": "5 s"
+    },
+    {
+      "id": 1393,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1366,
+      "name": "stackTrace",
+      "value": "false"
+    },
+    {
+      "id": 1366,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1364,
+      "name": "stackTrace",
+      "value": "false"
+    },
+    {
+      "id": 1364,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1362,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1362,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1360,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 1360,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1358,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1358,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 1356,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1356,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1354,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1354,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1352,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1352,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1350,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1350,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 1348,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 1348,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 7,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 7,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 8,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 8,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 9,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 10,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 10,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 11,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 11,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 12,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 12,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 13,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 13,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 14,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 14,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 15,
+      "name": "stackTrace",
+      "value": "false"
+    },
+    {
+      "id": 15,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 16,
+      "name": "stackTrace",
+      "value": "false"
+    },
+    {
+      "id": 16,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 17,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 18,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 19,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 20,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 21,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 21,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 22,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 22,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 23,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 23,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 24,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 25,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 25,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 26,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 26,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 27,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 28,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 29,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 30,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 31,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 32,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 33,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 34,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 35,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 36,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 36,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 37,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 37,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 38,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 39,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 40,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 40,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 41,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 41,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 42,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 43,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 44,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 45,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 46,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 46,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 47,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 48,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 49,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 50,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 51,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 52,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 53,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 54,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 55,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 56,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 57,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 58,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 59,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 60,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 61,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 62,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 63,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 64,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 65,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 66,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 67,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 68,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 69,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 70,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 71,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 72,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 73,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 74,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 74,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 75,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 76,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 77,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 78,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 79,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 80,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 81,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 82,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 83,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 83,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 84,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 85,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 86,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 87,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 88,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 89,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 90,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 90,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 91,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 91,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 92,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 92,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 93,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 93,
+      "name": "throttle",
+      "value": "300/s"
+    },
+    {
+      "id": 93,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 94,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 94,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 95,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 95,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 96,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 96,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 97,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 98,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 99,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 99,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 100,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 100,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 101,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 101,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 102,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 102,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 103,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 103,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 104,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 104,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 105,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 105,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 106,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 106,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 107,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 107,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 108,
+      "name": "period",
+      "value": "10 s"
+    },
+    {
+      "id": 108,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 109,
+      "name": "period",
+      "value": "10 s"
+    },
+    {
+      "id": 109,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 110,
+      "name": "period",
+      "value": "5 s"
+    },
+    {
+      "id": 110,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 111,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 111,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 112,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 112,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 113,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 113,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 114,
+      "name": "period",
+      "value": "10 s"
+    },
+    {
+      "id": 114,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 115,
+      "name": "period",
+      "value": "10 s"
+    },
+    {
+      "id": 115,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 116,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 116,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 117,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 117,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 118,
+      "name": "period",
+      "value": "10 ms"
+    },
+    {
+      "id": 118,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 119,
+      "name": "period",
+      "value": "20 ms"
+    },
+    {
+      "id": 119,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 120,
+      "name": "period",
+      "value": "60 s"
+    },
+    {
+      "id": 120,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 121,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 121,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 122,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 122,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 123,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 123,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 124,
+      "name": "period",
+      "value": "1000 ms"
+    },
+    {
+      "id": 124,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 125,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 125,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 126,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 126,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 127,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 127,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 128,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 128,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 129,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 129,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 130,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 130,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 131,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 131,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 132,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 132,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 133,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 133,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 134,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 134,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 135,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 135,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 136,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 136,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 137,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 137,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 138,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 138,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 139,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 139,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 140,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 140,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 141,
+      "name": "period",
+      "value": "beginChunk"
+    },
+    {
+      "id": 141,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 142,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 143,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 144,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 144,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 145,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 145,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 146,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 147,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 148,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 149,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 150,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 151,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 152,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 153,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 154,
+      "name": "period",
+      "value": "everyChunk"
+    },
+    {
+      "id": 154,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 155,
+      "name": "enabled",
+      "value": "false"
+    },
+    {
+      "id": 156,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 156,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 157,
+      "name": "stackTrace",
+      "value": "true"
+    },
+    {
+      "id": 157,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 158,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 158,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 159,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 159,
+      "name": "enabled",
+      "value": "true"
+    },
+    {
+      "id": 160,
+      "name": "period",
+      "value": "endChunk"
+    },
+    {
+      "id": 160,
+      "name": "enabled",
+      "value": "true"
+    }
+  ]
+}

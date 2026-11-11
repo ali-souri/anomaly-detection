@@ -1,0 +1,4 @@
+services:
+  app:
+    environment:
+      JAVA_TOOL_OPTIONS: -Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:FlightRecorderOptions=stackdepth=128 -XX:StartFlightRecording=name=profile008scaled,settings=profile,delay=25s,duration=15s,maxsize=128m,filename=/app/tmp/scaled.jfr -Xlog:gc:stdout:time,uptime,level,tags

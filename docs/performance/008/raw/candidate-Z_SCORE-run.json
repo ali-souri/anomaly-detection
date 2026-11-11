@@ -1,0 +1,17 @@
+{
+  "run": "candidate-Z_SCORE",
+  "startedUtc": "2026-11-11T02:03:22.8075233Z",
+  "endedUtc": "2026-11-11T02:04:30.4763569Z",
+  "exitCode": 99,
+  "sourceCommit": "0ba38032861ffa36f69cf5caf434abb471665161",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "Z_SCORE",
+  "mode": "arrival",
+  "duration": "60s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://proxy:8080",
+  "network": "anomaly-008_default"
+}

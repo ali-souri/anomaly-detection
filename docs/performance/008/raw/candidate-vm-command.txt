@@ -1,0 +1,1 @@
+/sbin/docker-init -- java -jar /app/app.jar

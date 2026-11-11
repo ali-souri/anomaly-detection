@@ -31,6 +31,7 @@ jobs:
           node --test load-tests/contract.test.mjs
           python -B scripts/test_summarize_load.py
           python -B scripts/test_analyze008.py
+          python -B scripts/test_report008.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

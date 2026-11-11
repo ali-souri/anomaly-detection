@@ -52,7 +52,7 @@ Benchmark prompt AD-PRM-20261110-003 must use v0.2.1 and first read AD-RES-20261
 Timed production/JMH JVMs must have no active JaCoCo agent. Agent injection is confined to test
 forks; do not bypass pre-push or CI coverage gates to run a benchmark.
 
-## Verified v0.3 candidate
+## Verified 007 v0.3 candidate
 
 The feature candidate has 29 production Java files, 30 XML class entries including the bounded
 body reader's anonymous HttpInputMessage, 27 executable classes and the same three pure interfaces.
@@ -63,3 +63,8 @@ there are still no handwritten exclusions. Both forked agent/tmpdir settings and
 checks remain mandatory. The separate benchmark's nine tests and Node/Python tooling are not
 included in these application coverage counters. The capacity target failed independently, so
 this positive coverage evidence does not authorize a v0.3 release. See result 007 for exact CI/source.
+
+008 preserves those checks and adds two numerical/signed-zero unit cases plus one genuine HTTP
+case: **61 unit / 56 integration**. Exact fresh counters: LINE296/0, BRANCH134/0, INSTRUCTION1380/0,
+METHOD68/0, CLASS27/0 and COMPLEXITY137/0. Source/XML scope and built-in filters are unchanged;
+the additional loop contributes two branch outcomes. No handwritten exclusions or reduced gates.

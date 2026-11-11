@@ -145,6 +145,12 @@ Registry lookup costs expected O(1); parsing costs O(n), and response mapping sh
 lists in O(1) (HTTP serialization still costs O(n)).
 The API is synchronous and in-memory, intentionally small enough to read and explain.
 
+008 changes only IQR's private sort workspace to a primitive double array. The validated original
+Double snapshot remains the source of ordered immutable partitions, preserving the 007 reference
+reuse benefit. Median-of-halves indices, overflow/subnormal arithmetic and signed-zero ordering
+remain unchanged. Profile/measurement evidence is in performance/008; the class relationships above
+remain actual and unchanged. Parsing, limits, admission and Z_SCORE were not refactored.
+
 v0.3 reuses immutable Double references in classification partitions, retaining primitive
 arithmetic, defensive snapshots and eager immutable FULL results. No primitive-model migration
 or deferred work is involved. A servlet filter takes an immediate semaphore permit before body

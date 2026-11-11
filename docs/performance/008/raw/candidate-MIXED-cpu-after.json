@@ -1,0 +1,71 @@
+[
+  {
+    "instance": 1,
+    "cpu": [
+      "usage_usec 675526755",
+      "user_usec 640153737",
+      "system_usec 35373017",
+      "nice_usec 0",
+      "nr_periods 2070",
+      "nr_throttled 1293",
+      "throttled_usec 63681963",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ],
+    "memoryPeakBytes": "2346893312",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ]
+  },
+  {
+    "instance": 2,
+    "cpu": [
+      "usage_usec 677235496",
+      "user_usec 641495308",
+      "system_usec 35740187",
+      "nice_usec 0",
+      "nr_periods 2074",
+      "nr_throttled 1344",
+      "throttled_usec 60806535",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ],
+    "memoryPeakBytes": "2340872192",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ]
+  },
+  {
+    "instance": 3,
+    "cpu": [
+      "usage_usec 680735750",
+      "user_usec 643853233",
+      "system_usec 36882517",
+      "nice_usec 0",
+      "nr_periods 2069",
+      "nr_throttled 1341",
+      "throttled_usec 64389667",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ],
+    "memoryPeakBytes": "2345226240",
+    "memoryEvents": [
+      "low 0",
+      "high 0",
+      "max 0",
+      "oom 0",
+      "oom_kill 0",
+      "oom_group_kill 0"
+    ]
+  }
+]

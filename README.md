@@ -122,6 +122,12 @@ with sustained 503s and no unexpected errors/timeouts/dropped iterations. Comple
 rates and latency sample counts are in the load report. Work remains on the feature branch;
 no v0.3.0 release is published.
 
+Continuation 008 profiles that increment and changes only IQR's temporary sorting workspace.
+Matched 2M core means are **657.289 → 201.915 ms/op**; the full deployment still misses ten RPS
+(339 IQR / 348 Z_SCORE / 335 mixed successes in separate 60-second runs). Current verification
+is **61 unit / 56 HTTP**, LINE296/0 and BRANCH134/0. See [008 profile, measurements and commands](docs/performance/008/README.md).
+The 007 evidence above is historical and preserved; no general end-to-end or capacity gain is claimed.
+
 ## Testing and Coverage
 
 Unit tests exercise small contracts; `*IT` tests start real random-port HTTP servers. The release

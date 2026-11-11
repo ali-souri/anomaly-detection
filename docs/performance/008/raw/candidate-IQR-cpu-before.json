@@ -1,0 +1,44 @@
+[
+  {
+    "instance": 1,
+    "cpu": [
+      "usage_usec 15371403",
+      "user_usec 13450479",
+      "system_usec 1920924",
+      "nice_usec 0",
+      "nr_periods 112",
+      "nr_throttled 6",
+      "throttled_usec 260849",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "instance": 2,
+    "cpu": [
+      "usage_usec 15203907",
+      "user_usec 13486294",
+      "system_usec 1717613",
+      "nice_usec 0",
+      "nr_periods 102",
+      "nr_throttled 7",
+      "throttled_usec 291487",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  },
+  {
+    "instance": 3,
+    "cpu": [
+      "usage_usec 13893186",
+      "user_usec 12205379",
+      "system_usec 1687806",
+      "nice_usec 0",
+      "nr_periods 94",
+      "nr_throttled 7",
+      "throttled_usec 228646",
+      "nr_bursts 0",
+      "burst_usec 0"
+    ]
+  }
+]

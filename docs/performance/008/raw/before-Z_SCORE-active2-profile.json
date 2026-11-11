@@ -1,0 +1,43 @@
+{
+  "run": "before-Z_SCORE-active2",
+  "sourceCommit": "33d4e2f3936723cbc4ec28cd03e4428944cecc60",
+  "image": "sha256:e86a3dfeb02bc7c2be559b8a6f79602fdec6d4df41ec52e58d901acfd31cde64",
+  "active": 2,
+  "cpus": 3.75,
+  "containerBytes": 3221225472,
+  "jvmOptions": "-Xms512m -Xmx2g -XX:+UseG1GC -Djava.io.tmpdir=/app/tmp -XX:FlightRecorderOptions=stackdepth=128 -XX:StartFlightRecording=name=profile008,settings=profile,delay=20s,duration=15s,maxsize=128m,filename=/app/tmp/profile.jfr -Xlog:gc:stdout:time,uptime,level,tags",
+  "containerStart": "2026-11-11T01:50:15.325517612Z",
+  "cpuBefore": [
+    "usage_usec 10092668",
+    "user_usec 9133563",
+    "system_usec 959104",
+    "nice_usec 0",
+    "nr_periods 36",
+    "nr_throttled 4",
+    "throttled_usec 162694",
+    "nr_bursts 0",
+    "burst_usec 0"
+  ],
+  "cpuAfter": [
+    "usage_usec 101995193",
+    "user_usec 93917517",
+    "system_usec 8077676",
+    "nice_usec 0",
+    "nr_periods 379",
+    "nr_throttled 49",
+    "throttled_usec 404411",
+    "nr_bursts 0",
+    "burst_usec 0"
+  ],
+  "memoryPeakBytes": "1810419712",
+  "memoryEvents": [
+    "low 0",
+    "high 0",
+    "max 0",
+    "oom 0",
+    "oom_kill 0",
+    "oom_group_kill 0"
+  ],
+  "recordingBytes": 1634021,
+  "recordingSha256": "E11E7C98908849AD23053BC5181FDEE272A5C1BD3876DB716ED39500024C9F6E"
+}

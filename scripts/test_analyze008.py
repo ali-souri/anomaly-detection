@@ -13,7 +13,7 @@ class ProfileAccountingTest(unittest.TestCase):
     def test_streamed_export_crosses_chunks_without_loading_the_whole_recording(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1] / '.cache/tmp') as directory:
             source = Path(directory) / 'events.json'
-            event = {'type': 'test', 'values': {'text': 'x' * 70000 + '} quoted " bracket ]'}}
+            event = {'type': 'test', 'values': {'text': 'x' * 1100000 + '} quoted " bracket ]'}}
             source.write_text(json.dumps({'recording': {'events': [event, event]}}))
             self.assertEqual(list(streamed_events(source)), [event, event])
 

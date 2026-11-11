@@ -1,0 +1,17 @@
+{
+  "run": "diagnostic-scaled-IQR",
+  "startedUtc": "2026-11-11T02:06:40.3018685Z",
+  "endedUtc": "2026-11-11T02:07:22.9482689Z",
+  "exitCode": 99,
+  "sourceCommit": "0ba38032861ffa36f69cf5caf434abb471665161",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "IQR",
+  "mode": "arrival",
+  "duration": "35s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://proxy:8080",
+  "network": "anomaly-008_default"
+}

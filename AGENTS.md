@@ -26,3 +26,8 @@
   target (IQR, Z_SCORE and 50/50 mixed independently), without a latency SLO. Read result 007,
   docs/load-tests/README.md and the updated decision before any follow-up. Keep incomplete
   capacity work on its feature branch; no release or automatic next task until its gates pass.
+- Continuation 008 is on feature/v0.3-profile-optimization, based on preserved 007, not develop.
+  Read result 008 and docs/performance/008/README.md before further work. Its single production
+  change is IQR primitive scratch sorting; strict parsing/FULL output and 007 reference reuse stay.
+  Capacity still failed. The profile supports a future bounded-parser experiment, not automatic
+  work, extra resources, microservices or more permits as an assumed fix.

@@ -1,0 +1,17 @@
+{
+  "run": "before-IQR-active2",
+  "startedUtc": "2026-11-11T01:49:10.8772658Z",
+  "endedUtc": "2026-11-11T01:49:48.6579225Z",
+  "exitCode": 0,
+  "sourceCommit": "4d693d949304ffd41835bc4de87fa1e672edfad1",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "IQR",
+  "mode": "clients",
+  "duration": "30s",
+  "clients": 2,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://app:8080",
+  "network": "anomaly-008-profile"
+}

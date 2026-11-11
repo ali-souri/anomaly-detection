@@ -1,0 +1,15 @@
+{
+  "implementation": "baseline",
+  "sourceCommit": "33d4e2f3936723cbc4ec28cd03e4428944cecc60",
+  "harnessSourceCommit": "331cb861ee6fbbbbae77aac4e82878647cb2eec4",
+  "executionScriptCommit": "0ba38032861ffa36f69cf5caf434abb471665161",
+  "coreTree": "dd25bf3771f9caff665709518d96ba9862a8ba29",
+  "detectorSha256": "11338FF8976C19E44A24B0B2A0F3FBEA25ACEF0B6274360AE995DB191B83338B",
+  "harnessSha256": "95666B36A1D36B579969D8EB70F145A39E72FDE96806F110345C02C14E6C9064",
+  "utc": "2026-11-11T01:58:53.4377112Z",
+  "jvmEnvironment": {
+    "JAVA_TOOL_OPTIONS": null,
+    "JDK_JAVA_OPTIONS": null
+  },
+  "scope": "No agent or active JFR recording; matched separate native JVMs"
+}

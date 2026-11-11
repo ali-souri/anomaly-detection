@@ -1,0 +1,29 @@
+{
+  "utc": "2026-11-11T01:42:50.5500979Z",
+  "startCommit": "33d4e2f3936723cbc4ec28cd03e4428944cecc60",
+  "hostMemory": {
+    "TotalVisibleMemorySize": 33231280,
+    "FreePhysicalMemory": 9759444
+  },
+  "docker": {
+    "NCPU": 20,
+    "MemTotal": 16605085696,
+    "ServerVersion": "29.6.2",
+    "DockerRootDir": "/var/lib/docker"
+  },
+  "baselineImage": "sha256:e86a3dfeb02bc7c2be559b8a6f79602fdec6d4df41ec52e58d901acfd31cde64",
+  "hostTools": [
+    {
+      "Name": "java.exe",
+      "Source": "C:\\Users\\hwis\\AppData\\Local\\Programs\\Temurin\\jdk-21\\bin\\java.exe"
+    },
+    {
+      "Name": "jfr.exe",
+      "Source": "C:\\Users\\hwis\\AppData\\Local\\Programs\\Temurin\\jdk-21\\bin\\jfr.exe"
+    },
+    {
+      "Name": "jcmd.exe",
+      "Source": "C:\\Users\\hwis\\AppData\\Local\\Programs\\Temurin\\jdk-21\\bin\\jcmd.exe"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+Picked up JAVA_TOOL_OPTIONS: -XX:StartFlightRecording=name=008,settings=profile,delay=20s,duration=15s,maxsize=128m,filename=/tmp/profile.jfr
+[0.087s][error][jfr,startup] Name of recording can't be numeric
+Error occurred during initialization of VM
+Failure when starting JFR on_create_vm_3

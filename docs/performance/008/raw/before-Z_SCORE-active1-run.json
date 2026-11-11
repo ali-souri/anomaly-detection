@@ -1,0 +1,17 @@
+{
+  "run": "before-Z_SCORE-active1",
+  "startedUtc": "2026-11-11T01:48:07.6237105Z",
+  "endedUtc": "2026-11-11T01:48:44.9154197Z",
+  "exitCode": 0,
+  "sourceCommit": "4d693d949304ffd41835bc4de87fa1e672edfad1",
+  "suiteSha256": "D26B85E7D4EEEF1D4CDC18CEE7E205AEA91B2C9A5956C51641CAE8F3260599FD",
+  "algorithm": "Z_SCORE",
+  "mode": "clients",
+  "duration": "30s",
+  "clients": 1,
+  "maxVUs": 20,
+  "generatorCpu": 2,
+  "generatorMemoryBytes": 2147483648,
+  "baseUrl": "http://app:8080",
+  "network": "anomaly-008-profile"
+}
